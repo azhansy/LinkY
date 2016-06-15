@@ -1,0 +1,26 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:textColorPrimary">@color/myTextPrimaryColor</item>
+        <item name="android:windowBackground">@color/myWindowBackground</item>
+
+        <!--ToolBar标题的颜色，参考toolbar_layout.xml-->
+        <item name="toolBarTitleColor">@color/item_title_color</item>
+        <item name="actionMenuTextColor">@color/orangeColor</item>
+        <item name="android:actionBarSize">48dp</item>
+        <item name="actionBarSize">48dp</item>
+
+        <!--左滑返回不为黑-->
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <style name="MainTheme" parent="AppTheme">
+        <item name="android:windowIsTranslucent">false</item>
+    </style>
+</resources>
