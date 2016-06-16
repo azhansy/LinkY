@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <attr name="toolBarTitleColor" format="color" />
+    <declare-styleable name="CircleImageView">
+        <attr name="ci_border_width" format="dimension" />
+        <attr name="ci_border_color" format="color" />
+        <attr name="ci_round_radius" format="dimension" />
+    </declare-styleable>
 </resources>
