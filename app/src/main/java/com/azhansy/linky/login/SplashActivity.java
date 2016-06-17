@@ -4,9 +4,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 
+import com.azhansy.linky.MainActivity;
 import com.azhansy.linky.R;
 import com.azhansy.linky.base.BaseActivity;
-import com.azhansy.linky.login.LoginActivity;
 import com.azhansy.linky.swipebackhelper.SwipeBackHelper;
 
 /**
@@ -27,7 +27,7 @@ public class SplashActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         SwipeBackHelper.getCurrentPage(this).setSwipeBackEnable(false);
         new Handler().postDelayed(() -> {
-            LoginActivity.launch(this);
+            MainActivity.launch(this);
             finish();
         }, RETENTION_TIME);
     }

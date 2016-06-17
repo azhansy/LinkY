@@ -40,8 +40,6 @@ public class LoginActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SwipeBackHelper.getCurrentPage(this).setSwipeBackEnable(false);
-        mUsername.setFocusable(true);
-        KeyboardUtil.show(mUsername,100);
     }
 
 

@@ -4,8 +4,8 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="orangeColor">#FD7B3E</color>
-    <color name="myWindowBackground">#F5F5F5</color>
-    <color name="myTextPrimaryColor">#FFFFFF</color>
+    <color name="myWindowBackground">#F2F4F8</color>
+    <!--<color name="myTextPrimaryColor">#FFFFFF</color>-->
     <color name="mySearchToggleColor">#7F7F7F</color>
     <!-- Menu Item Color -->
     <color name="menu_transparent">#00FFFFFF</color>
