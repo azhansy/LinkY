@@ -12,4 +12,9 @@
     <string name="night_night">夜间模式</string>
     <string name="activity_setting_title">设置</string>
     <string name="activity_change_channel_title">更改栏目</string>
+    <string name="press_twice_to_exit">再按一次返回键退出</string>
+
+    <string name="parse_exception_message">数据异常</string>
+    <string name="network_exception_message">网络异常，请检查网络连接</string>
+    <string name="api_request_error_msg">请求错误（%d）</string>
 </resources>

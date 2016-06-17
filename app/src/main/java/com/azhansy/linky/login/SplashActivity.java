@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 
-import com.azhansy.linky.MainActivity;
+import com.azhansy.linky.ui.MainActivity;
 import com.azhansy.linky.R;
 import com.azhansy.linky.base.BaseActivity;
 import com.azhansy.linky.swipebackhelper.SwipeBackHelper;

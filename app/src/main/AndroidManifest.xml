@@ -22,9 +22,8 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateVisible" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="false"
-            android:label="主页面"
             android:theme="@style/MainTheme"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustNothing" />

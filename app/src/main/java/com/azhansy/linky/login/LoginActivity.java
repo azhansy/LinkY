@@ -7,11 +7,10 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.widget.EditText;
 
-import com.azhansy.linky.MainActivity;
+import com.azhansy.linky.ui.MainActivity;
 import com.azhansy.linky.R;
 import com.azhansy.linky.base.BaseActivity;
 import com.azhansy.linky.swipebackhelper.SwipeBackHelper;
-import com.azhansy.linky.utils.KeyboardUtil;
 
 import butterknife.Bind;
 import butterknife.OnClick;

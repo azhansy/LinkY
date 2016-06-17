@@ -1,4 +1,4 @@
-package com.azhansy.linky;
+package com.azhansy.linky.ui;
 
 
 import android.content.Context;
@@ -8,18 +8,20 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.azhansy.linky.R;
 import com.azhansy.linky.base.BaseActivity;
 import com.azhansy.linky.login.LoginActivity;
 import com.azhansy.linky.swipebackhelper.SwipeBackHelper;
+import com.azhansy.linky.utils.ToastUtil;
 
-import java.util.Collections;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import butterknife.Bind;
-import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -35,8 +37,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SwipeBackHelper.getCurrentPage(this).setSwipeBackEnable(false);
-
         initMenu();
+        mNavView.setNavigationItemSelectedListener(this);
     }
 
     private void initMenu() {
@@ -77,7 +79,26 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            exitBy2Click();
+        }
+    }
+
+    private static Boolean isExit = false; // used for exit by twice
+    private void exitBy2Click(){
+        Timer timer;
+        if (!isExit) {
+            isExit = true;
+            ToastUtil.showToast(this,this.getResources().getString(R.string.press_twice_to_exit));
+            timer = new Timer();
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    isExit = false;
+                }
+            }, 2000);
+        }else {
+            finish();
+            System.exit(0);
         }
     }
 }

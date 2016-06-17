@@ -17,7 +17,6 @@ import com.loopj.android.http.RequestParams;
  * 网络请求工具类
  */
 public class HttpUtil {
-
     /**
      * 检测网络是否可用
      * @return true or false
@@ -70,20 +69,4 @@ public class HttpUtil {
         client.post(urlString, params, res);
     }
 
-    //下载文件
-    public static void downloadFile(String urlString, RequestParams params, BinaryHttpResponseHandler res) throws Exception {
-        client.get(urlString,params, res);
-    }
-    //下载app文件
-    public static void downloadApp(String urlString, BinaryHttpResponseHandler res) throws Exception {
-        client.get(urlString,res);
-    }
-    //测试下载文件
-    public static void downloadFile(String urlString, BinaryHttpResponseHandler res) throws Exception {
-        client.get(urlString, res);
-    }
-    //上传文件
-    public static void uploadFile(String urlString, RequestParams params, AsyncHttpResponseHandler res) throws Exception {
-        client.post(urlString, params, res);
-    }
 }
