@@ -6,12 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
-import android.view.View;
 
-import com.yyw.proxy.R;
-import com.yyw.proxy.base.ui.BaseActivity;
 
-import butterknife.Bind;
+import com.azhansy.linky.base.BaseActivity;
+
 
 
 /**
@@ -20,21 +18,21 @@ import butterknife.Bind;
 public abstract class MVPBaseActivity<Presenter extends MVPBasePresenter> extends BaseActivity {
 
     @Nullable
-    @Bind(R.id.loading_layout)
-    protected View mLoading;
+//    @Bind(R.id.loading_layout)
+//    protected View mLoading;
 
     protected Presenter mPresenter;
     protected String mGid;
 
-    @Override
-    public int getLayoutResource() {
-        return R.layout.layout_of_common_title_and_loading;
-    }
+//    @Override
+//    public int getLayoutResource() {
+//        return R.layout.layout_of_common_title_and_loading;
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        hideLoading();
+//        hideLoading();
 
         mGid = getIntent().getStringExtra(IBaseUi.KEY_GID);
 
@@ -58,17 +56,17 @@ public abstract class MVPBaseActivity<Presenter extends MVPBasePresenter> extend
         super.onDestroy();
     }
 
-    protected void showLoading() {
-        if (mLoading != null) {
-            mLoading.setVisibility(View.VISIBLE);
-        }
-    }
-
-    protected void hideLoading() {
-        if (mLoading != null) {
-            mLoading.setVisibility(View.GONE);
-        }
-    }
+//    protected void showLoading() {
+//        if (mLoading != null) {
+//            mLoading.setVisibility(View.VISIBLE);
+//        }
+//    }
+//
+//    protected void hideLoading() {
+//        if (mLoading != null) {
+//            mLoading.setVisibility(View.GONE);
+//        }
+//    }
 
     /**
      * 是否需要使用Presenter

@@ -1,13 +1,14 @@
 package com.azhansy.linky.weather.view;
 
 
+import com.azhansy.linky.base.MVP.IBaseUi;
 import com.azhansy.linky.weather.WeatherAdapter;
 import com.azhansy.linky.weather.bean.TodayBean;
 
 /**
  * Created by Administrator on 2015/9/11 0011.
  */
-public interface ViewToday {
+public interface ViewToday extends IBaseUi{
     //显示感冒等指数在主界面
     void setIndexData(WeatherAdapter adapter);
 

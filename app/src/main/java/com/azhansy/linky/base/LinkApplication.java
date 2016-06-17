@@ -16,8 +16,8 @@ public class LinkApplication extends Application {
     public void onCreate() {
         super.onCreate();
         INSTANCE = this;
-        context = getApplicationContext();
         bus = new RxBus();
+        context = getApplicationContext();
     }
     public RxBus getRxBus(){
         return bus;

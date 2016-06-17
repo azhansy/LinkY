@@ -38,6 +38,9 @@ public class TodayBean {
     }
 
     public TodayBean(JSONObject jsonObject) {
+        if (jsonObject == null) {
+            return;
+        }
         this.date = jsonObject.optString("date");
         this.week = jsonObject.optString("week");
         this.curTemp = jsonObject.optString("curTemp");

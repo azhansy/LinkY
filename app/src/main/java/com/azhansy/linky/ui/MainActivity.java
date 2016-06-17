@@ -6,10 +6,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.azhansy.linky.R;
@@ -17,6 +19,7 @@ import com.azhansy.linky.base.BaseActivity;
 import com.azhansy.linky.login.LoginActivity;
 import com.azhansy.linky.swipebackhelper.SwipeBackHelper;
 import com.azhansy.linky.utils.ToastUtil;
+import com.azhansy.linky.weather.WeatherFragment;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -28,6 +31,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @Bind(R.id.nav_view)
     NavigationView mNavView;
 
+    WeatherFragment weatherFragment;
     @Override
     public int getLayoutResource() {
         return R.layout.activity_main;
@@ -37,8 +41,16 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SwipeBackHelper.getCurrentPage(this).setSwipeBackEnable(false);
-        initMenu();
         mNavView.setNavigationItemSelectedListener(this);
+        initMenu();
+        initFragment();
+    }
+
+    private void initFragment() {
+        if (weatherFragment == null) {
+            weatherFragment = WeatherFragment.getInstance();
+        }
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, weatherFragment, "weatherFragment").commit();
     }
 
     private void initMenu() {

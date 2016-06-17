@@ -3,6 +3,7 @@
     package="com.azhansy.linky">
 
     <application
+        android:name=".base.LinkApplication"
         android:allowBackup="true"
         android:icon="@mipmap/logo"
         android:label="@string/app_name"

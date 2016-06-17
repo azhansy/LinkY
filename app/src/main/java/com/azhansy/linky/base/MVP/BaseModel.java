@@ -1,7 +1,8 @@
 package com.azhansy.linky.base.MVP;
 
-import com.yyw.proxy.R;
-import com.yyw.proxy.application.ProxyApplication;
+
+import com.azhansy.linky.R;
+import com.azhansy.linky.base.LinkApplication;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -70,7 +71,7 @@ public abstract class BaseModel {
         } catch (JSONException e) {
             this.state = false;
             this.errorCode = 0;
-            this.message = ProxyApplication.getInstance().getString(R.string.parse_exception_message);
+            this.message = LinkApplication.getInstance().getString(R.string.parse_exception_message);
         }
         return (M) this;
     }
@@ -88,7 +89,7 @@ public abstract class BaseModel {
      * @param jsonArray
      * @param parser
      */
-    protected void parseJsonArray(JSONArray jsonArray, BaseJSONArrayParser parser) {
-        parser.parseJsonArray(jsonArray);
-    }
+//    protected void parseJsonArray(JSONArray jsonArray, BaseJSONArrayParser parser) {
+//        parser.parseJsonArray(jsonArray);
+//    }
 }
