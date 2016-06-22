@@ -8,4 +8,6 @@ public class Config {
 
     //百度天气预报接口
     public static final String weather_host = "http://apis.baidu.com/apistore/weatherservice/recentweathers";
+    //笑话接口
+    public static final String joke_host = "http://apis.baidu.com/showapi_open_bus/showapi_joke/joke_text";
 }

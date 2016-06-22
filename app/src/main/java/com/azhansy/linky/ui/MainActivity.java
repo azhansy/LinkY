@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.azhansy.linky.R;
 import com.azhansy.linky.base.BaseActivity;
+import com.azhansy.linky.joke.JokeFragment;
 import com.azhansy.linky.login.LoginActivity;
 import com.azhansy.linky.swipebackhelper.SwipeBackHelper;
 import com.azhansy.linky.utils.ToastUtil;
@@ -31,7 +32,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @Bind(R.id.nav_view)
     NavigationView mNavView;
 
-    WeatherFragment weatherFragment;
+//    WeatherFragment weatherFragment;
+    JokeFragment jokeFragment;
     @Override
     public int getLayoutResource() {
         return R.layout.activity_main;
@@ -47,10 +49,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     }
 
     private void initFragment() {
-        if (weatherFragment == null) {
-            weatherFragment = WeatherFragment.getInstance();
+        if (jokeFragment == null) {
+            jokeFragment = JokeFragment.getInstance();
         }
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, weatherFragment, "weatherFragment").commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, jokeFragment, "weatherFragment").commit();
     }
 
     private void initMenu() {
