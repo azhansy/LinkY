@@ -7,7 +7,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
-        <!-- <item name="android:textColorPrimary">@color/myTextPrimaryColor</item>系统默认字体颜色-->
+        <item name="android:textColorPrimary">@color/black</item>
         <item name="android:windowBackground">@color/myWindowBackground</item>
 
         <!--ToolBar标题的颜色，参考toolbar_layout.xml-->

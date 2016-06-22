@@ -2,6 +2,8 @@ package com.azhansy.linky.weather;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
@@ -22,6 +24,18 @@ public class WeatherFragment extends MVPBaseFragment<WeatherPresenterImpl> imple
     TextView mCurtemp;
     @Bind(R.id.tv_city)
     TextView mCity;
+    @Bind(R.id.tv_date)
+    TextView mDate;
+    @Bind(R.id.tv_week)
+    TextView mWeek;
+    @Bind(R.id.tv_type)
+    TextView mType;
+    @Bind(R.id.tv_fengxiang)
+    TextView mFengxiang;
+    @Bind(R.id.tv_fengli)
+    TextView mFengli;
+    @Bind(R.id.rv_weather)
+    RecyclerView mWeatherList;
     @Override
     protected int getLayoutResource() {
         return R.layout.fragment_weather;
@@ -51,7 +65,8 @@ public class WeatherFragment extends MVPBaseFragment<WeatherPresenterImpl> imple
 
     @Override
     public void setIndexData(WeatherAdapter adapter) {
-
+        mWeatherList.setLayoutManager(new GridLayoutManager(getActivity(),1));
+        mWeatherList.setAdapter(adapter);
     }
 
     @Override
@@ -61,6 +76,12 @@ public class WeatherFragment extends MVPBaseFragment<WeatherPresenterImpl> imple
 
     @Override
     public void setTempData(TodayBean todayBean) {
+        mCurtemp.setText(todayBean.getCurTemp());
+        mDate.setText(todayBean.getDate());
+        mWeek.setText(todayBean.getWeek());
+        mType.setText(todayBean.getType());
+        mFengxiang.setText(todayBean.getFengxiang());
+        mFengli.setText(todayBean.getFengli());
 
     }
 

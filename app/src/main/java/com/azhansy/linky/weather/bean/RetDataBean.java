@@ -29,8 +29,8 @@ public class RetDataBean {
         this.city = jsonObject.optString("city");
         this.cityid = jsonObject.optLong("cityid");
 
-        JSONObject today = jsonObject.optJSONObject("today");
-        this.todayBean = new TodayBean(today);
+        JSONObject td = jsonObject.optJSONObject("today");
+        this.todayBean = new TodayBean(td);
 
         ForecastBean forecastBean;
         JSONArray jsonArray = jsonObject.optJSONArray("forecast");

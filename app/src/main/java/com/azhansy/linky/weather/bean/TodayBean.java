@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Administrator on 2015/9/8 0008.
+ * Created by SHU on 2015/9/8 0008.
  */
 public class TodayBean {
     private String date; //当前日期

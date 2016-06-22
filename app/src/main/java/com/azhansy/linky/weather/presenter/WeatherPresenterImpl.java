@@ -3,6 +3,7 @@ package com.azhansy.linky.weather.presenter;
 import com.azhansy.linky.base.LinkApplication;
 import com.azhansy.linky.base.RxBasePresenter;
 import com.azhansy.linky.utils.Logger;
+import com.azhansy.linky.weather.WeatherAdapter;
 import com.azhansy.linky.weather.bean.RetDataBean;
 import com.azhansy.linky.weather.business.WeatherBusiness;
 import com.azhansy.linky.weather.view.ViewToday;
@@ -14,9 +15,11 @@ import com.loopj.android.http.RequestParams;
  */
 public class WeatherPresenterImpl extends RxBasePresenter implements WeatherPresenter {
     WeatherBusiness mWeatherBusiness;
+    WeatherAdapter weatherAdapter;
 
     public WeatherPresenterImpl(){
         mWeatherBusiness = new WeatherBusiness();
+        weatherAdapter = new WeatherAdapter(getContext());
     }
     @Override
     public void getData(RequestParams params) {
@@ -28,6 +31,8 @@ public class WeatherPresenterImpl extends RxBasePresenter implements WeatherPres
                     if (viewToday != null && reBean != null) {
                         viewToday.setHead(reBean.getCity());
                         viewToday.setTempData(reBean.getTodayBean());
+                        weatherAdapter.replaceAll(reBean.getTodayBean().getIndexBeanList());
+                        viewToday.setIndexData(weatherAdapter);
                     }
                 }, throwable -> {
                     Logger.d("throwable......");

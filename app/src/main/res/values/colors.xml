@@ -49,5 +49,8 @@
     <color name="green">#33cb77</color>
     <color name="transparent">#00000000</color>
 
+    <color name="color_title">#333333</color>
+    <color name="color_context">#999999</color>
+
     <color name="common_divide_line_color">#d9d9d9</color>
 </resources>

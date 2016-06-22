@@ -6,6 +6,7 @@ import com.azhansy.linky.utils.Config;
 import com.azhansy.linky.utils.HttpUtil;
 import com.azhansy.linky.utils.Logger;
 import com.azhansy.linky.weather.bean.RetDataBean;
+import com.azhansy.linky.weather.bean.StateBean;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
@@ -26,8 +27,8 @@ public class WeatherBusiness {
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response);
                 Logger.d(response.toString());
-                RetDataBean retDataBean = new RetDataBean(response);
-                LinkApplication.getInstance().getRxBus().send(retDataBean);
+                StateBean stateBean = new StateBean(response);
+                LinkApplication.getInstance().getRxBus().send(stateBean.getRetDataBean());
 
             }
 

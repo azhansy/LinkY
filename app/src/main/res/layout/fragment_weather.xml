@@ -1,32 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/windowBackGround"
     android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/activity_horizontal_margin">
+
         <TextView
             android:id="@+id/tv_city"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp"
-            tools:text="湛江"
-            android:textSize="@dimen/common_18_sp" />
+            android:layout_weight="1"
+            android:textSize="@dimen/common_18_sp"
+            tools:text="湛江" />
+
         <TextView
-            android:textColor="#F24A1D"
             android:id="@+id/tv_curtemp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="29℃"
+            tools:text="29℃"
+            android:textColor="#F24A1D"
             android:textSize="@dimen/common_18_sp" />
     </LinearLayout>
 
@@ -41,25 +45,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            tools:text="2015-09-10"
-            android:textSize="@dimen/common_18_sp" />
+            android:textSize="@dimen/common_18_sp"
+            tools:text="2015-09-10" />
+
         <TextView
             android:id="@+id/tv_week"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            tools:text="星期四"
-            android:textSize="@dimen/common_18_sp" />
+            android:textSize="@dimen/common_18_sp"
+            tools:text="星期四" />
 
         <TextView
             android:id="@+id/tv_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            tools:text="多云"
             android:textColor="#F24A1D"
-            android:textSize="@dimen/common_18_sp" />
+            android:textSize="@dimen/common_18_sp"
+            tools:text="多云" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -71,21 +77,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            tools:text="东风"
-            android:textSize="@dimen/common_18_sp" />
+            android:textSize="@dimen/common_18_sp"
+            tools:text="东风" />
 
         <TextView
             android:id="@+id/tv_fengli"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            tools:text="3-4级"
-            android:textSize="@dimen/common_18_sp" />
+            android:textSize="@dimen/common_18_sp"
+            tools:text="3-4级" />
     </LinearLayout>
+
+    <include layout="@layout/common_line" />
+
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_weather"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="#E2E2E2"
-        android:id="@+id/rv_weather"/>
+        tools:listitem="@layout/list_item_weather"
+        android:background="#E2E2E2" />
 </LinearLayout>
