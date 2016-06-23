@@ -26,6 +26,9 @@ public class BlogFragment extends BaseFragment {
     private List<BlogModel> mBlogModelList;
 
 
+    public static BlogFragment getInstance(){
+        return new BlogFragment();
+    }
     @Override
     protected int getLayoutResource() {
         return R.layout.fragment_blog;

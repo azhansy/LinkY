@@ -18,7 +18,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:textColor="@color/color_title"
+            android:textColor="@color/item_title_color"
             android:singleLine="true"
             android:textSize="18dp"
             tools:text="不是每个给你奶喝的人都叫妈" />
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:gravity="center"
-            android:textColor="@color/color_context"
+            android:textColor="@color/item_info_color"
             android:textSize="13dp"
             tools:text="2016-06-22 20:00:04.112" />
     </LinearLayout>
@@ -43,7 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:textColor="@color/color_title"
+            android:textColor="@color/item_title_color"
             android:textSize="18dp"
             android:text="内容 " />
 
@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:gravity="left|center"
-            android:textColor="@color/color_context"
+            android:textColor="@color/item_info_color"
             android:textSize="18dp"
             tools:text="各项气象条件适宜，发生感冒机率较低。但请避免长期处于空调房间中，以防感冒。" />
     </LinearLayout>

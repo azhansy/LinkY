@@ -27,4 +27,19 @@ public class RxBus {
     public boolean hasObservers() {
         return _bus.hasObservers();
     }
+
+//    // 单例RxBus
+//    public static RxBus getDefault() {
+//        RxBus rxBus = defaultInstance;
+//        if (defaultInstance == null) {
+//            synchronized (RxBus.class) {
+//                rxBus = defaultInstance;
+//                if (defaultInstance == null) {
+//                    rxBus = new RxBus();
+//                    defaultInstance = rxBus;
+//                }
+//            }
+//        }
+//        return rxBus;
+//    }
 }
