@@ -20,4 +20,7 @@
     <string name="fragment_weather_title">天气预报</string>
     <string name="fragment_joke_title">笑话全集</string>
     <string name="fragment_blog_title">技术博客</string>
+
+    <string name="activity_change_channel_show_channel">显示的栏目</string>
+    <string name="activity_change_channel_other_channel">未显示的栏目</string>
 </resources>
