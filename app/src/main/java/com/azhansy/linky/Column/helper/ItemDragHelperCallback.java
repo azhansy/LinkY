@@ -1,4 +1,4 @@
-package com.azhansy.linky.settings.helper;
+package com.azhansy.linky.column.helper;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -6,7 +6,8 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.helper.ItemTouchHelper;
 
 /**
- * Created by 蔡小木 on 2016/4/28 0028.
+ * Created by SHU on 2016/6/27.
+ * ItemTouchHelper item平滑效果回调
  */
 public class ItemDragHelperCallback extends ItemTouchHelper.Callback {
 

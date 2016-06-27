@@ -30,11 +30,17 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustNothing" />
         <activity
-            android:name=".settings.ChangeChannelActivity"
+            android:name=".column.ChangeChannelActivity"
             android:exported="false"
+            android:label="更改栏目"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustNothing" />
-
+        <activity
+            android:name=".setting.SettingsActivity"
+            android:exported="false"
+            android:label="设置"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustNothing" />
     </application>
 
 

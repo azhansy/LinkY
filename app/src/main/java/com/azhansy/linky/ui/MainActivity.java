@@ -11,19 +11,20 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
 import android.transition.Slide;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.FrameLayout;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.azhansy.linky.R;
 import com.azhansy.linky.base.BaseActivity;
 import com.azhansy.linky.blog.fragment.BlogFragment;
 import com.azhansy.linky.joke.JokeFragment;
 import com.azhansy.linky.login.LoginActivity;
-import com.azhansy.linky.settings.ChangeChannelActivity;
+import com.azhansy.linky.column.ChangeChannelActivity;
+import com.azhansy.linky.setting.SettingsActivity;
 import com.azhansy.linky.swipebackhelper.SwipeBackHelper;
 import com.azhansy.linky.utils.Config;
 import com.azhansy.linky.utils.ToastUtil;
@@ -41,9 +42,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @Bind(R.id.nav_view)
     NavigationView mNavView;
-
-//    WeatherFragment weatherFragment;
-    JokeFragment jokeFragment;
+    @Bind(R.id.tv_title)
+    TextView mTitle;
     private List<Fragment> fragmentList;
     private Fragment currentFragment;
     ArrayList<Config.Channel> savedChannelList;
@@ -59,7 +59,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         mNavView.setNavigationItemSelectedListener(this);
         addFragment();
         initMenu();
-//        initFragment();
     }
 
     private void addFragment() {
@@ -71,13 +70,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         fragmentList.add(JokeFragment.getInstance());
         fragmentList.add(BlogFragment.getInstance());
     }
-
-//    private void initFragment() {
-//        if (jokeFragment == null) {
-//            jokeFragment = JokeFragment.getInstance();
-//        }
-//        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, jokeFragment, "weatherFragment").commit();
-//    }
 
     private void initMenu() {
         savedChannelList = new ArrayList<>();
@@ -107,10 +99,12 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         if (currentFragment == null || !currentFragment.getClass().getName().equals(fragment.getClass().getName())) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment,fragment.getClass().getName()).commit();
             currentFragment = fragment;
-//            ActionBar actionBar = getSupportActionBar();
-//            assert actionBar != null;
-//            actionBar.setTitle(title);
+            setTitle(title);
         }
+    }
+
+    private void setTitle(String title){
+        mTitle.setText(title);
     }
     public static void launch(Context context) {
         Intent intent = new Intent(context, MainActivity.class);
@@ -130,7 +124,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 startActivity(new Intent(this, MainActivity.class));
                 break;
             case R.id.nav_setting:
-                LoginActivity.launch(this);
+//                closeDrawerLayout();
+                SettingsActivity.launch(this);
                 break;
             case R.id.nav_change:
                 ChangeChannelActivity.launch(this);
@@ -143,13 +138,23 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     }
     @Override
     public void onBackPressed() {
+        if(!closeDrawerLayout()){
+            exitBy2Click();
+        }
+    }
+
+    /**
+     * 关闭侧滑菜单，返回true
+     * @return 返回侧滑菜单是否已经关闭，执行关闭动作返回真
+     */
+    private boolean closeDrawerLayout(){
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         assert drawer != null;
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else {
-            exitBy2Click();
+            return true;
         }
+        return false;
     }
 
     private static Boolean isExit = false; // used for exit by twice

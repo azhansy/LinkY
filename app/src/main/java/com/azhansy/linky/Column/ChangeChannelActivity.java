@@ -1,4 +1,4 @@
-package com.azhansy.linky.settings;
+package com.azhansy.linky.column;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,7 +10,7 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 
 import com.azhansy.linky.R;
 import com.azhansy.linky.base.BaseActivity;
-import com.azhansy.linky.settings.helper.ItemDragHelperCallback;
+import com.azhansy.linky.column.helper.ItemDragHelperCallback;
 import com.azhansy.linky.utils.Config;
 
 import java.util.ArrayList;
@@ -38,7 +38,6 @@ public class ChangeChannelActivity extends BaseActivity implements IChangeChanne
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mToolbarTitle.setText("更改栏目");
         mIChangeChannelPresenter = new ChangeChannelPresenterImpl(this, this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         mRv.setLayoutManager(linearLayoutManager);

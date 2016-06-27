@@ -1,4 +1,4 @@
-package com.azhansy.linky.settings;
+package com.azhansy.linky.column;
 
 import android.content.Context;
 import android.content.SharedPreferences;

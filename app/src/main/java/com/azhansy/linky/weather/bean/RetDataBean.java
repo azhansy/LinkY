@@ -26,6 +26,8 @@ public class RetDataBean {
     }
 
     public RetDataBean(JSONObject jsonObject) {
+        if (jsonObject == null)
+            return;
         this.city = jsonObject.optString("city");
         this.cityid = jsonObject.optLong("cityid");
 

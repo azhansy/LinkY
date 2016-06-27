@@ -1,16 +1,16 @@
-package com.azhansy.linky.settings;
+package com.azhansy.linky.column;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.azhansy.linky.R;
+import com.azhansy.linky.column.helper.OnItemMoveListener;
 import com.azhansy.linky.utils.Config;
 
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ import butterknife.ButterKnife;
 /**
  * Created by SHU on 2016/6/25.
  */
-public class ChannelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements OnItemMoveListener  {
+public class ChannelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements OnItemMoveListener {
     private static final int TYPE_CHANNEL_HEADER = 0;
     private static final int TYPE_CHANNEL = 1;
 

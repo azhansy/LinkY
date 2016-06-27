@@ -25,7 +25,7 @@
 
     </style>
 
-    <!--侧滑返回无效，还要在代码中设置false-->
+    <!--侧滑返回无效，还要在代码中设置false SwipeBackHelper.getCurrentPage(this).setSwipeBackEnable(false);-->
     <style name="MainTheme" parent="AppTheme">
         <item name="android:windowIsTranslucent">false</item>
     </style>

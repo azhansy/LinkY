@@ -1,7 +1,7 @@
-package com.azhansy.linky.settings.helper;
+package com.azhansy.linky.column.helper;
 
 /**
- * Created by 蔡小木 on 2016/4/28 0028.
+ * Created by SHU on 2016/6/25.
  */
 public interface OnItemMoveListener {
     void onItemMove(int fromPosition, int toPosition);
