@@ -18,12 +18,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.avos.avoscloud.AVAnalytics;
 import com.azhansy.linky.R;
 import com.azhansy.linky.base.BaseActivity;
 import com.azhansy.linky.blog.fragment.BlogFragment;
+import com.azhansy.linky.information.InformationFragment;
 import com.azhansy.linky.joke.JokeFragment;
 import com.azhansy.linky.login.LoginActivity;
 import com.azhansy.linky.column.ChangeChannelActivity;
+import com.azhansy.linky.novel.NovelFragment;
 import com.azhansy.linky.setting.SettingsActivity;
 import com.azhansy.linky.swipebackhelper.SwipeBackHelper;
 import com.azhansy.linky.utils.Config;
@@ -59,6 +62,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         mNavView.setNavigationItemSelectedListener(this);
         addFragment();
         initMenu();
+        AVAnalytics.trackAppOpened(getIntent());//统计应用的打开情况
     }
 
     private void addFragment() {
@@ -69,6 +73,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         fragmentList.add(WeatherFragment.getInstance());
         fragmentList.add(JokeFragment.getInstance());
         fragmentList.add(BlogFragment.getInstance());
+        fragmentList.add(NovelFragment.getInstance());
+        fragmentList.add(InformationFragment.getInstance());
     }
 
     private void initMenu() {
@@ -88,14 +94,14 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         switchFragment(fragmentList.get(0),getString(savedChannelList.get(0).getTitle()));
     }
     private void switchFragment(Fragment fragment, String title) {
-        Slide slideTransition;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            //Gravity.START部分机型崩溃java.lang.IllegalArgumentException: Invalid slide direction
-            slideTransition = new Slide(Gravity.LEFT);
-            slideTransition.setDuration(700);
-            fragment.setEnterTransition(slideTransition);
-            fragment.setExitTransition(slideTransition);
-        }
+//        Slide slideTransition;
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            //Gravity.START部分机型崩溃java.lang.IllegalArgumentException: Invalid slide direction
+//            slideTransition = new Slide(Gravity.LEFT);
+//            slideTransition.setDuration(700);
+//            fragment.setEnterTransition(slideTransition);
+//            fragment.setExitTransition(slideTransition);
+//        }
         if (currentFragment == null || !currentFragment.getClass().getName().equals(fragment.getClass().getName())) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment,fragment.getClass().getName()).commit();
             currentFragment = fragment;
@@ -118,6 +124,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             switchFragment(fragmentList.get(id), getString(savedChannelList.get(id).getTitle()));
         }
         switch (id) {
+            case R.id.nav_login:
+                LoginActivity.launch(this);
+                break;
             case R.id.nav_night:
 //                Config.isNight = !Config.isNight;
                 finish();

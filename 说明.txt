@@ -12,3 +12,9 @@ http://apistore.baidu.com/apiworks/servicedetail/112.html
 http://apistore.baidu.com/apiworks/servicedetail/864.html
 
 6、看小说
+
+leancloud:
+AppID
+uIj3m9mKpcIOsJOH65i8xC6v-gzGzoHsz
+App key
+eyKl3G9qdrAiU52mmFTgXjjB

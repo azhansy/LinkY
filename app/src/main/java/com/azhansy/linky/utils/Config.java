@@ -13,10 +13,13 @@ public class Config {
     //笑话接口
     public static final String joke_host = "http://apis.baidu.com/showapi_open_bus/showapi_joke/joke_text";
 
+
     public enum Channel {
         WEATHER( R.string.fragment_weather_title, R.mipmap.logo),
         JOKE(R.string.fragment_joke_title, R.mipmap.logo),
-        BLOG(R.string.fragment_blog_title, R.mipmap.logo);
+        BLOG(R.string.fragment_blog_title, R.mipmap.logo),
+        NOVEL(R.string.fragment_novel_title,R.mipmap.logo),
+        INFORMATION(R.string.fragment_information_title,R.mipmap.logo);
 
         private int title;
         private int icon;

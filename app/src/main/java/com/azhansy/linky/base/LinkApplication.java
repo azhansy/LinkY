@@ -3,6 +3,8 @@ package com.azhansy.linky.base;
 import android.app.Application;
 import android.content.Context;
 
+import com.avos.avoscloud.AVOSCloud;
+import com.avos.avoscloud.AVObject;
 import com.azhansy.linky.Rx.RxBus;
 
 /**
@@ -18,6 +20,10 @@ public class LinkApplication extends Application {
         INSTANCE = this;
         bus = new RxBus();
         context = getApplicationContext();
+        AVOSCloud.initialize(this, "uIj3m9mKpcIOsJOH65i8xC6v-gzGzoHsz", "eyKl3G9qdrAiU52mmFTgXjjB");
+//        AVObject testObject = new AVObject("TestObject");
+//        testObject.put("foo", "bar");
+//        testObject.saveInBackground();
     }
     public RxBus getRxBus(){
         return bus;

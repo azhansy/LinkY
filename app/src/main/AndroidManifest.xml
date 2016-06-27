@@ -3,6 +3,7 @@
     package="com.azhansy.linky">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <application
         android:name=".base.LinkApplication"
         android:allowBackup="true"
@@ -22,7 +23,8 @@
             android:exported="false"
             android:label="登录"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateVisible" />
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".ui.MainActivity"
             android:exported="false"

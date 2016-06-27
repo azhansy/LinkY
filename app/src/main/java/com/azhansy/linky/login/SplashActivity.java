@@ -16,7 +16,7 @@ public class SplashActivity extends BaseActivity {
     /**
      * 页面最小停留的时间
      */
-    private static final long RETENTION_TIME = 2000;
+    private static final long RETENTION_TIME = 2*1000;
     @Override
     public int getLayoutResource() {
         return R.layout.activity_splash;
