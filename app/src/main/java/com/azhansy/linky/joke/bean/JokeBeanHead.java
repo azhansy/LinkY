@@ -27,6 +27,11 @@ public class JokeBeanHead {
     private int maxResult;
     private String allNum;
 
+    private boolean state;
+
+    public JokeBeanHead(){
+
+    }
     public JokeBeanHead(JSONObject object) {//"showapi_res_body"
         if (object == null) {
             return;
@@ -104,5 +109,13 @@ public class JokeBeanHead {
 
     public void setAllNum(String allNum) {
         this.allNum = allNum;
+    }
+
+    public boolean isState() {
+        return state;
+    }
+
+    public void setState(boolean state) {
+        this.state = state;
     }
 }

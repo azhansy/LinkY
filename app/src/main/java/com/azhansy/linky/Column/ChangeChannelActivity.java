@@ -7,11 +7,16 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.azhansy.linky.R;
 import com.azhansy.linky.base.BaseActivity;
+import com.azhansy.linky.base.LinkApplication;
 import com.azhansy.linky.column.helper.ItemDragHelperCallback;
+import com.azhansy.linky.rx.event.ChannelEvent;
 import com.azhansy.linky.utils.Config;
+import com.azhansy.linky.utils.ToastUtil;
 
 import java.util.ArrayList;
 
@@ -51,6 +56,24 @@ public class ChangeChannelActivity extends BaseActivity implements IChangeChanne
         mIChangeChannelPresenter.getChannel();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuItem item = menu.add(Menu.NONE,111,Menu.NONE,"确定");
+        item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == 111) {
+            mIChangeChannelPresenter.saveChannel(savedChannel);
+            ToastUtil.showToastShort(this,"保存成功");
+            LinkApplication.getInstance().getRxBus().send(new ChannelEvent());
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     public static void launch(Context context){
         Intent intent = new Intent(context, ChangeChannelActivity.class);
         context.startActivity(intent);
@@ -65,7 +88,6 @@ public class ChangeChannelActivity extends BaseActivity implements IChangeChanne
 
     @Override
     public void onBackPressed() {
-        mIChangeChannelPresenter.saveChannel(savedChannel);
         super.onBackPressed();
     }
 }

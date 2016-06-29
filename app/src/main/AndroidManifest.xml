@@ -43,6 +43,24 @@
             android:label="设置"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustNothing" />
+        <activity
+            android:name=".joke.JokeDetailActivity"
+            android:exported="false"
+            android:label="笑话详情"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustNothing" />
+        <activity
+            android:name=".weather.WeatherForecastActivity"
+            android:exported="false"
+            android:label="天气预报"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustNothing" />
+        <activity
+            android:name=".setting.AboutActivity"
+            android:exported="false"
+            android:label="关于"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustNothing" />
     </application>
 
 

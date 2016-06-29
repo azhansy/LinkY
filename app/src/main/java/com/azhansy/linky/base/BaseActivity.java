@@ -1,6 +1,7 @@
 package com.azhansy.linky.base;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -22,6 +23,7 @@ import com.azhansy.linky.R;
 import com.azhansy.linky.swipebackhelper.SwipeBackHelper;
 import com.azhansy.linky.utils.AppManager;
 import com.azhansy.linky.utils.DrawableUtil;
+import com.azhansy.linky.utils.SharePreferenceUtil;
 import com.azhansy.linky.utils.SystemBarTintManager;
 
 import butterknife.ButterKnife;
@@ -36,10 +38,14 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected TextView mToolbarTitle;
     protected Toolbar mToolbar;
     protected SystemBarTintManager mTintManager;
+    public boolean isNight;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //切换肤色 theme
+        isNight = SharePreferenceUtil.isNight();
+        setTheme(isNight ? R.style.AppNightTheme : R.style.AppTheme);
         appManager.addActivity(this);
         SwipeBackHelper.onCreate(this);
         SwipeBackHelper.getCurrentPage(this)
@@ -341,5 +347,15 @@ public abstract class BaseActivity extends AppCompatActivity {
      */
     protected void setSwipeBackEnable(boolean enable){
         SwipeBackHelper.getCurrentPage(this).setSwipeBackEnable(enable); //设置不给滑动
+    }
+
+    public void reload() {
+        Intent intent = getIntent();
+        //一个Activity跳转到另一个Activity的结束和开始动画
+        overridePendingTransition(0, 0);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        finish();
+        overridePendingTransition(0, 0);
+        startActivity(intent);
     }
 }

@@ -1,11 +1,14 @@
 package com.azhansy.linky.weather.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import org.json.JSONObject;
 
 /**
  * Created by Administrator on 2015/9/8 0008.
  */
-public class ForecastBean {
+public class ForecastBean implements Parcelable{
     private String date;  //未来的日期
     private String week;  //未来是星期几
     private String fengxiang; //风向
@@ -91,4 +94,40 @@ public class ForecastBean {
     public void setType(String type) {
         this.type = type;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.date);
+        dest.writeString(this.week);
+        dest.writeString(this.fengxiang);
+        dest.writeString(this.fengli);
+        dest.writeString(this.hightemp);
+        dest.writeString(this.lowtemp);
+        dest.writeString(this.type);
+    }
+
+    public static final Parcelable.Creator<ForecastBean> CREATOR = new Creator<ForecastBean>() {
+        @Override
+        public ForecastBean createFromParcel(Parcel source) {
+            ForecastBean forecastBean = new ForecastBean();
+            forecastBean.setDate(source.readString());
+            forecastBean.setWeek(source.readString());
+            forecastBean.setFengxiang(source.readString());
+            forecastBean.setFengli(source.readString());
+            forecastBean.setHightemp(source.readString());
+            forecastBean.setLowtemp(source.readString());
+            forecastBean.setType(source.readString());
+            return forecastBean;
+        }
+
+        @Override
+        public ForecastBean[] newArray(int size) {
+            return new ForecastBean[0];
+        }
+    };
 }

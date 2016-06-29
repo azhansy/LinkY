@@ -2,6 +2,7 @@ package com.azhansy.linky.base;
 
 import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.util.SparseArray;
 import android.view.View;
 import android.widget.ImageView;
@@ -49,6 +50,19 @@ public class BaseRecyclerViewHolder extends RecyclerView.ViewHolder {
     public BaseRecyclerViewHolder setText(int viewId, String text) {
         TextView view = getView(viewId);
         view.setText(text);
+        return this;
+    }
+
+    /**
+     * 为TextView设置字符串
+     *
+     * @param viewId
+     * @param text
+     * @return
+     */
+    public BaseRecyclerViewHolder setText(int viewId, String text,boolean isHtml) {
+        TextView view = getView(viewId);
+        view.setText(Html.fromHtml(text));
         return this;
     }
 

@@ -10,5 +10,5 @@ import java.util.ArrayList;
 public interface IChangeChannelPresenter {
     void getChannel();
 
-    void saveChannel(ArrayList<Config.Channel> savedChannel);
+    boolean saveChannel(ArrayList<Config.Channel> savedChannel);
 }

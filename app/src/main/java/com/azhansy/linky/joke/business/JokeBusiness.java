@@ -26,6 +26,7 @@ public class JokeBusiness{
                 super.onSuccess(statusCode, headers, response);
                 Logger.d(response.toString());
                 JokeBeanHead bean = new JokeBeanHead(response);
+                bean.setState(true);
                 LinkApplication.getInstance().getRxBus().send(bean);
 
             }
@@ -33,6 +34,10 @@ public class JokeBusiness{
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                 super.onFailure(statusCode, headers, responseString, throwable);
+                Logger.d(responseString.toString());
+                JokeBeanHead jokeBeanHead = new JokeBeanHead();
+                jokeBeanHead.setState(false);
+                LinkApplication.getInstance().getRxBus().send(jokeBeanHead);
             }
         });
     }

@@ -23,26 +23,20 @@
             android:textSize="18dp"
             tools:text="不是每个给你奶喝的人都叫妈" />
 
-        <TextView
-            android:id="@+id/tv_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:gravity="center"
-            android:textColor="@color/item_info_color"
-            android:textSize="13dp"
-            tools:text="2016-06-22 20:00:04.112" />
+
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
+            android:visibility="gone"
             android:textColor="@color/item_title_color"
             android:textSize="18dp"
             android:text="内容 " />
@@ -51,12 +45,20 @@
             android:id="@+id/tv_details"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:gravity="left|center"
+            android:gravity="left"
+            android:lineSpacingMultiplier="1.2"
             android:textColor="@color/item_info_color"
             android:textSize="18dp"
             tools:text="各项气象条件适宜，发生感冒机率较低。但请避免长期处于空调房间中，以防感冒。" />
     </LinearLayout>
-
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:layout_marginRight="16dp"
+        android:textColor="@color/item_info_color"
+        android:textSize="13dp"
+        tools:text="2016-06-22 20:00:04.112" />
     <include layout="@layout/common_line" />
 </LinearLayout>

@@ -5,7 +5,9 @@ import android.content.Context;
 
 import com.avos.avoscloud.AVOSCloud;
 import com.avos.avoscloud.AVObject;
-import com.azhansy.linky.Rx.RxBus;
+import com.azhansy.linky.rx.RxBus;
+import com.azhansy.linky.model.UserModel;
+import com.azhansy.linky.utils.SharePreferenceUtil;
 
 /**
  * Created by 神奇勇士 on 2016/6/15.
@@ -17,13 +19,12 @@ public class LinkApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        SharePreferenceUtil.init(this);
         INSTANCE = this;
         bus = new RxBus();
         context = getApplicationContext();
+        AVObject.registerSubclass(UserModel.class);
         AVOSCloud.initialize(this, "uIj3m9mKpcIOsJOH65i8xC6v-gzGzoHsz", "eyKl3G9qdrAiU52mmFTgXjjB");
-//        AVObject testObject = new AVObject("TestObject");
-//        testObject.put("foo", "bar");
-//        testObject.saveInBackground();
     }
     public RxBus getRxBus(){
         return bus;

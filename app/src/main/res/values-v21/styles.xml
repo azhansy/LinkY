@@ -17,6 +17,7 @@
         <item name="android:actionBarSize">48dp</item>
         <item name="actionBarSize">48dp</item>
 
+        <item name="colorControlNormal">?colorPrimary</item>
         <!--左滑返回不为黑-->
         <item name="android:windowIsTranslucent">true</item>
 
@@ -28,5 +29,13 @@
         </item>
 
         <item name="android:windowTranslucentStatus">true</item>
+    </style>
+    <!--夜间模式主题-->
+    <style name="AppNightTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorNightPrimary</item>
+        <item name="colorPrimaryDark">@color/colorNightPrimaryDark</item>
+        <item name="colorAccent">@android:color/darker_gray</item>
+        <item name="android:windowBackground">@android:color/darker_gray</item>
     </style>
 </resources>

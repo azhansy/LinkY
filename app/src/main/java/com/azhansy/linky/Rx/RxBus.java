@@ -1,4 +1,4 @@
-package com.azhansy.linky.Rx;
+package com.azhansy.linky.rx;
 
 import rx.Observable;
 import rx.subjects.PublishSubject;

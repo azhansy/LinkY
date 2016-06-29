@@ -31,6 +31,7 @@ public class WeatherPresenterImpl extends RxBasePresenter implements WeatherPres
                     if (viewToday != null && reBean != null) {
                         viewToday.setHead(reBean.getCity());
                         viewToday.setTempData(reBean.getTodayBean());
+                        viewToday.setForecast(reBean.getForecastBeanList());
                         weatherAdapter.replaceAll(reBean.getTodayBean().getIndexBeanList());
                         viewToday.setIndexData(weatherAdapter);
                     }

@@ -26,6 +26,9 @@ public abstract class BaseRecyclerViewAdapter<T> extends RecyclerView.Adapter<Ba
     public interface OnItemClickListener {
         void onItemClick(View view, Object data, int position);
     }
+    public void setOnRecycleViewItemClickListener(OnItemClickListener lis){
+        this.listener = lis;
+    }
 
     @Override
     public BaseRecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -68,6 +71,12 @@ public abstract class BaseRecyclerViewAdapter<T> extends RecyclerView.Adapter<Ba
         mList.addAll(elem);
         notifyDataSetChanged();
     }
+//    public void addList(List<T> elem){
+//        for (T t : elem) {
+//            mList.add(t);
+//        }
+//        notifyDataSetChanged();
+//    }
 
     public List<T> getList() {
         return mList;

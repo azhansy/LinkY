@@ -9,7 +9,7 @@
     <string name="login_logout">登出账号</string>
     <string name="default_description">生活的美好，需要你用心去发现，用眼去摄录。</string>
 
-    <string name="night_night">夜间模式</string>
+    <string name="night_night">模式切换</string>
     <string name="activity_setting_title">设置</string>
     <string name="activity_change_channel_title">更改栏目</string>
     <string name="press_twice_to_exit">再按一次返回键退出</string>
@@ -32,4 +32,6 @@
     <string name="config_check_update">检查更新</string>
     <string name="config_about">关于</string>
     <string name="na">N/A</string>
+    <string name="nav_weather">温度 30C 阵雨</string>
+    <string name="about_introduce">这是一个爱好App,喜欢就干！</string>
 </resources>

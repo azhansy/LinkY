@@ -11,6 +11,7 @@ import com.azhansy.linky.joke.bean.JokeBean;
  * Created by SHU on 2016/6/22.
  */
 public class JokeAdapter extends BaseRecyclerViewAdapter<JokeBean> {
+    public boolean isHasMore = true;
 
     public JokeAdapter(Context mContext) {
         super(mContext);
@@ -26,6 +27,6 @@ public class JokeAdapter extends BaseRecyclerViewAdapter<JokeBean> {
         JokeBean jokeBean = mList.get(position);
         holder.setText(R.id.tv_title, jokeBean.getTitle());
         holder.setText(R.id.tv_time, jokeBean.getTime());
-        holder.setText(R.id.tv_details, jokeBean.getText());
+        holder.setText(R.id.tv_details, jokeBean.getText(),true);
     }
 }
