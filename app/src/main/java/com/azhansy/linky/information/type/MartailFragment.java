@@ -12,6 +12,7 @@ import android.webkit.WebViewClient;
 
 import com.azhansy.linky.R;
 import com.azhansy.linky.base.BaseFragment;
+import com.azhansy.linky.base.BaseWebViewFragment;
 
 import butterknife.Bind;
 
@@ -19,20 +20,25 @@ import butterknife.Bind;
  * Created by SHU on 2016/6/27.
  * 军事
  */
-public class MartailFragment extends BaseFragment {
-    @Bind(R.id.web_view)
-    WebView mWebView;
+public class MartailFragment extends BaseWebViewFragment {
+//    @Bind(R.id.web_view)
+//    WebView mWebView;
     public static MartailFragment getInstance(){
         return new MartailFragment();
     }
+
     @Override
+    public String getWebViewUrl() {
+        return "http://mil.sina.cn";
+    }
+   /* @Override
     protected int getLayoutResource() {
         return R.layout.fragment_martial;
     }
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        String urlBlog = "http://www.tiexue.net";
+        String urlBlog = "http://mil.sina.cn";
         mWebView.loadUrl(urlBlog);
         initWebView();
     }
@@ -66,5 +72,5 @@ public class MartailFragment extends BaseFragment {
     };
     private void webViewGoBack(){
         mWebView.goBack();
-    }
+    }*/
 }

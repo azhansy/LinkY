@@ -12,6 +12,7 @@ import android.webkit.WebViewClient;
 
 import com.azhansy.linky.R;
 import com.azhansy.linky.base.BaseFragment;
+import com.azhansy.linky.base.BaseWebViewFragment;
 
 import butterknife.Bind;
 
@@ -19,13 +20,18 @@ import butterknife.Bind;
  * Created by SHU on 2016/6/27.
  * 娱乐
  */
-public class FunnyFragment extends BaseFragment {
-    @Bind(R.id.web_view)
-    WebView mWebView;
+public class FunnyFragment extends BaseWebViewFragment {
+//    @Bind(R.id.web_view)
+//    WebView mWebView;
     public static FunnyFragment getInstance(){
         return new FunnyFragment();
     }
+
     @Override
+    public String getWebViewUrl() {
+        return "http://m.news.yule.com.cn";//中国娱乐网
+    }
+   /* @Override
     protected int getLayoutResource() {
         return R.layout.fragment_funny;
     }
@@ -66,5 +72,5 @@ public class FunnyFragment extends BaseFragment {
     };
     private void webViewGoBack(){
         mWebView.goBack();
-    }
+    }*/
 }

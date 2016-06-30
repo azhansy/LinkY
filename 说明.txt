@@ -12,6 +12,7 @@ http://apistore.baidu.com/apiworks/servicedetail/112.html
 http://apistore.baidu.com/apiworks/servicedetail/864.html
 
 6、看小说
+7、聊天
 
 leancloud:
 AppID

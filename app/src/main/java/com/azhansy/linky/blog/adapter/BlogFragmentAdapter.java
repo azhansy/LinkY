@@ -22,9 +22,9 @@ public class BlogFragmentAdapter extends BaseFragmentPagerAdapter {
     private void initTitle() {
         blogModelList = new ArrayList<>();
 //        blogModelList.add(new BlogModel("郭霖","http://blog.csdn.net/guolin_blog"));  //给重定向了，访问直接回到CSDN首页了。。。。
-        blogModelList.add(new BlogModel("张兴业","http://blog.csdn.net/xyz_lmn"));
-        blogModelList.add(new BlogModel("鸿洋","http://blog.csdn.net/lmj623565791"));
-        blogModelList.add(new BlogModel("任玉刚","http://blog.csdn.net/singwhatiwanna"));
+        blogModelList.add(new BlogModel("张兴业","http://m.blog.csdn.net/blog/index?username=xyz_lmn"));
+        blogModelList.add(new BlogModel("鸿洋","http://m.blog.csdn.net/blog/index?username=lmj623565791"));
+        blogModelList.add(new BlogModel("任玉刚","http://m.blog.csdn.net/blog/index?username=singwhatiwanna"));
         blogModelList.add(new BlogModel("张涛","http://www.kymjs.com"));
         blogModelList.add(new BlogModel("泡在网上的日子","http://www.jcodecraeer.com/plus/list.php?tid=18"));
 //        blogModelList.add(new BlogModel("安卓开发周报","http://www.jcodecraeer.com/a/androidweekly"));

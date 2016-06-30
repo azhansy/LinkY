@@ -27,4 +27,12 @@ public class SharePreferenceUtil {
         if (context instanceof BaseActivity)
             ((BaseActivity) context).reload();
     }
+
+    public static String getCityName(){
+        return prefs.getString("cityName", "湛江");
+    }
+
+    public static void setCityName(Context context, String name){
+        prefs.edit().putString("cityName", name).apply();
+    }
 }

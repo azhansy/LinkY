@@ -12,6 +12,7 @@ import android.webkit.WebViewClient;
 
 import com.azhansy.linky.R;
 import com.azhansy.linky.base.BaseFragment;
+import com.azhansy.linky.base.BaseWebViewFragment;
 
 import butterknife.Bind;
 
@@ -19,20 +20,25 @@ import butterknife.Bind;
  * Created by SHU on 2016/6/27.
  * 娱乐
  */
-public class SportFragment extends BaseFragment {
-    @Bind(R.id.web_view)
-    WebView mWebView;
+public class SportFragment extends BaseWebViewFragment {
+//    @Bind(R.id.web_view)
+//    WebView mWebView;
     public static SportFragment getInstance(){
         return new SportFragment();
     }
+
     @Override
+    public String getWebViewUrl() {
+        return "http://sports.sina.cn/?ttp=n5&pos=108&vt=4";
+    }
+   /* @Override
     protected int getLayoutResource() {
         return R.layout.fragment_sport;
     }
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        String urlBlog = "http://sports.cctv.com";
+        String urlBlog = "http://sports.sina.cn/?ttp=n5&pos=108&vt=4";
         mWebView.loadUrl(urlBlog);
         initWebView();
     }
@@ -66,5 +72,5 @@ public class SportFragment extends BaseFragment {
     };
     private void webViewGoBack(){
         mWebView.goBack();
-    }
+    }*/
 }
