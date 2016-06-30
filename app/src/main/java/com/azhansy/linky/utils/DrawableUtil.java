@@ -19,7 +19,6 @@ import com.azhansy.linky.R;
 
 /**
  * 主题drawable工具类
- * Created by terryyhl on 15/7/31.
  */
 public class DrawableUtil {
 

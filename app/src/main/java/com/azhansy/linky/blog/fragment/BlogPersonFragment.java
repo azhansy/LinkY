@@ -1,9 +1,10 @@
-package com.azhansy.linky.information.type;
+package com.azhansy.linky.blog.fragment;
 
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.WebSettings;
@@ -16,23 +17,35 @@ import com.azhansy.linky.base.BaseFragment;
 import butterknife.Bind;
 
 /**
- * Created by SHU on 2016/6/27.
- * 娱乐
+ * Created by SHU on 2016/6/30.
+ * 个人博客
  */
-public class SportFragment extends BaseFragment {
+public class BlogPersonFragment extends BaseFragment{
+    public static String STRINGURL = "BlogPersonFragment";
+
     @Bind(R.id.web_view)
     WebView mWebView;
-    public static SportFragment getInstance(){
-        return new SportFragment();
-    }
+
     @Override
     protected int getLayoutResource() {
-        return R.layout.fragment_sport;
+        return R.layout.layout_common_web_view;
     }
+
+    public static BlogPersonFragment getInstance(String url){
+        Bundle arguments = new Bundle();
+        arguments.putString(BlogPersonFragment.STRINGURL,url);
+        BlogPersonFragment blogPersonFragment = new BlogPersonFragment();
+        blogPersonFragment.setArguments(arguments);
+        return blogPersonFragment;
+    }
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        String urlBlog = "http://sports.cctv.com";
+        String urlBlog =getArguments().getString(BlogPersonFragment.STRINGURL);
+        if (urlBlog == null || urlBlog.isEmpty()) {
+            urlBlog = "http://blog.csdn.net/azhansy";
+        }
         mWebView.loadUrl(urlBlog);
         initWebView();
     }

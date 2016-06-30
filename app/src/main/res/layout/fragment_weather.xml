@@ -121,5 +121,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="16dp"
+        app:layout_behavior="com.azhansy.linky.view.ScrollAwareFABBehavior"
         android:src="@android:drawable/ic_dialog_info" />
 </android.support.design.widget.CoordinatorLayout>

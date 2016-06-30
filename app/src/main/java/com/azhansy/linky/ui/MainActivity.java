@@ -237,7 +237,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     private static Boolean isExit = false; // used for exit by twice
     private void exitBy2Click(){
-        /*Timer timer;
+        Timer timer;
         if (!isExit) {
             isExit = true;
             ToastUtil.showToast(this,this.getResources().getString(R.string.press_twice_to_exit));
@@ -251,8 +251,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         }else {
             finish();
             System.exit(0);
-        }*/
-        finish();
+        }
+//        finish();
     }
 
     @Override

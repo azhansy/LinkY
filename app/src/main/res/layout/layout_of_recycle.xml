@@ -23,6 +23,7 @@
         android:layout_alignParentRight="true"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
+        app:layout_behavior="com.azhansy.linky.view.ScrollAwareFABBehavior"
         android:src="@android:drawable/ic_menu_upload"
         app:rippleColor="@color/menu_item_blue" />
 </android.support.design.widget.CoordinatorLayout>

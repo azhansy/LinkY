@@ -2,10 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <TextView
+    <WebView
+        android:id="@+id/web_view"
         android:layout_width="match_parent"
-        android:text="martial"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 </LinearLayout>

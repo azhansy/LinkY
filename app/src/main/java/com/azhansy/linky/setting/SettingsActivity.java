@@ -23,25 +23,31 @@ import butterknife.OnClick;
  * 设置类
  */
 public class SettingsActivity extends BaseActivity {
-    @OnClick({R.id.btn_exit, R.id.btn_clear_cache,R.id.btn_check_update,R.id.btn_about})
+    @OnClick({R.id.btn_exit, R.id.btn_clear_cache, R.id.btn_check_update, R.id.btn_about})
     void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_exit:
                 LoginActivity.launch(this);
                 break;
             case R.id.btn_clear_cache:
-                AlertDialog dialog = new AlertDialog.Builder(this)
-                        .setTitle("确定清除缓存？")
-                        .setPositiveButton("确定", (dialog1, which) -> {
-                            DataCleanManagerUtil.cleanSharedPreference(SettingsActivity.this);
-                            ToastUtil.showToast(this,"清除完成");
-                        })
-                        .setNegativeButton("取消", null)
-                        .create();
-                dialog.show();
+                try {
+                    String data = DataCleanManagerUtil.getTotalCacheSize(this);
+
+                    AlertDialog dialog = new AlertDialog.Builder(this)
+                            .setTitle("确定清除大小为 " + data + " 的缓存？")
+                            .setPositiveButton("确定", (dialog1, which) -> {
+                                DataCleanManagerUtil.cleanSharedPreference(SettingsActivity.this);
+                                ToastUtil.showToast(this, "清除完成");
+                            })
+                            .setNegativeButton("取消", null)
+                            .create();
+                    dialog.show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 break;
             case R.id.btn_check_update:
-                AlertDialog dial= new AlertDialog.Builder(this)
+                AlertDialog dial = new AlertDialog.Builder(this)
                         .setTitle("暂时没有更新的哦")
                         .setPositiveButton("确定", (dialog1, which) -> {
                             DataCleanManagerUtil.cleanSharedPreference(SettingsActivity.this);
@@ -67,7 +73,7 @@ public class SettingsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
     }
 
-    public static void launch(Context context){
+    public static void launch(Context context) {
         Intent intent = new Intent(context, SettingsActivity.class);
         context.startActivity(intent);
     }

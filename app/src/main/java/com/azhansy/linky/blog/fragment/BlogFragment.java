@@ -2,17 +2,13 @@ package com.azhansy.linky.blog.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 
 import com.azhansy.linky.R;
 import com.azhansy.linky.base.BaseFragment;
-import com.azhansy.linky.blog.BlogAdapter;
-import com.azhansy.linky.blog.model.BlogModel;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.azhansy.linky.blog.adapter.BlogFragmentAdapter;
 
 import butterknife.Bind;
 
@@ -21,9 +17,12 @@ import butterknife.Bind;
  * 博客的Fragment
  */
 public class BlogFragment extends BaseFragment {
-    @Bind(R.id.rv_blog)
-    RecyclerView mRecyclerView;
-    private List<BlogModel> mBlogModelList;
+    @Bind(R.id.tab_layout)
+    TabLayout mTabls;
+    @Bind(R.id.viewpager)
+    ViewPager mViewPager;
+
+    private BlogFragmentAdapter adapter;
 
 
     public static BlogFragment getInstance(){
@@ -37,8 +36,11 @@ public class BlogFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(mActivity,1));
-        mBlogModelList = new ArrayList<>();
-        mRecyclerView.setAdapter(new BlogAdapter(mActivity,mBlogModelList));
+        adapter = new BlogFragmentAdapter(getFragmentManager());
+        adapter.initFragments();
+        mViewPager.setAdapter(adapter);
+//        mViewPager.setOffscreenPageLimit(8);// java.lang.IllegalStateException: Recursive entry to executePendingTransactions
+        mTabls.setupWithViewPager(mViewPager);
+        mTabls.setTabMode(TabLayout.MODE_SCROLLABLE);
     }
 }
