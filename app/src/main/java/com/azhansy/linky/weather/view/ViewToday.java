@@ -23,5 +23,7 @@ public interface ViewToday extends IBaseUi{
 
     void setForecast(List<ForecastBean> forecast);
 
+    void getDataFail();
+
 
 }

@@ -13,6 +13,8 @@ import android.widget.TextView;
 import com.azhansy.linky.R;
 import com.azhansy.linky.base.BaseActivity;
 import com.azhansy.linky.login.LoginActivity;
+import com.azhansy.linky.ui.MainActivity;
+import com.azhansy.linky.utils.AppManager;
 import com.azhansy.linky.utils.DataCleanManagerUtil;
 import com.azhansy.linky.utils.ToastUtil;
 
@@ -30,14 +32,25 @@ public class SettingsActivity extends BaseActivity {
     void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_exit:
-                LoginActivity.launch(this);
+                AlertDialog d = new AlertDialog.Builder(this)
+                        .setTitle("确定退出？")
+                        .setPositiveButton("确定", (dialog1, which) -> {
+                            LoginActivity.launch(this);
+                            finish();
+                            AppManager.getAppManager().finishActivity(MainActivity.class);
+                        })
+                        .setNegativeButton("取消", null)
+                        .create();
+                d.show();
                 break;
             case R.id.btn_clear_cache:
                 AlertDialog dialog = new AlertDialog.Builder(this)
                         .setTitle("确定清除大小为 " + dataCache + " 的缓存？")
                         .setPositiveButton("确定", (dialog1, which) -> {
-                            DataCleanManagerUtil.cleanSharedPreference(SettingsActivity.this);
+                            DataCleanManagerUtil.cleanTotalCacheSize(this);
                             ToastUtil.showToast(this, "清除完成");
+                            dataCache = "0K";
+                            mCacheSize.setText(dataCache);
                         })
                         .setNegativeButton("取消", null)
                         .create();

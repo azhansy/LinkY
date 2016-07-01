@@ -39,6 +39,15 @@ public class JokeBusiness{
                 jokeBeanHead.setState(false);
                 LinkApplication.getInstance().getRxBus().send(jokeBeanHead);
             }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                super.onFailure(statusCode, headers, throwable, errorResponse);
+//                Logger.d(errorResponse.toString()); errorResponse为null....
+                JokeBeanHead jokeBeanHead = new JokeBeanHead();
+                jokeBeanHead.setState(false);
+                LinkApplication.getInstance().getRxBus().send(jokeBeanHead);
+            }
         });
     }
 }

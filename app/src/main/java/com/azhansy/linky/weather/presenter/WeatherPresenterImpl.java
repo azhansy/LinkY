@@ -28,12 +28,16 @@ public class WeatherPresenterImpl extends RxBasePresenter implements WeatherPres
                 .subscribe(retDataBean -> {
                     ViewToday viewToday = getActualUi();
                     RetDataBean reBean = ((RetDataBean)retDataBean);
-                    if (viewToday != null && reBean != null) {
-                        viewToday.setHead(reBean.getCity());
-                        viewToday.setTempData(reBean.getTodayBean());
-                        viewToday.setForecast(reBean.getForecastBeanList());
-                        weatherAdapter.replaceAll(reBean.getTodayBean().getIndexBeanList());
-                        viewToday.setIndexData(weatherAdapter);
+                    if (viewToday != null && reBean != null ) {
+                        if (reBean.getCity() != null) {
+                            viewToday.setHead(reBean.getCity());
+                            viewToday.setTempData(reBean.getTodayBean());
+                            viewToday.setForecast(reBean.getForecastBeanList());
+                            weatherAdapter.replaceAll(reBean.getTodayBean().getIndexBeanList());
+                            viewToday.setIndexData(weatherAdapter);
+                        }else {
+                            viewToday.getDataFail();
+                        }
                     }
                 }, throwable -> {
                     Logger.d("throwable......");

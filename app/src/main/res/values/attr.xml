@@ -6,4 +6,11 @@
         <attr name="ci_border_color" format="color" />
         <attr name="ci_round_radius" format="dimension" />
     </declare-styleable>
+
+    <declare-styleable name="SettingView">
+        <attr name="sv_icon" format="reference" />
+        <attr name="sv_title" format="string" />
+        <attr name="sv_title_size" format="dimension" />
+        <attr name="sv_has_arrow" format="boolean" />
+    </declare-styleable>
 </resources>

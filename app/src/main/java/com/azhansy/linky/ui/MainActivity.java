@@ -33,6 +33,7 @@ import com.azhansy.linky.novel.NovelFragment;
 import com.azhansy.linky.rx.event.ChannelEvent;
 import com.azhansy.linky.setting.SettingsActivity;
 import com.azhansy.linky.swipebackhelper.SwipeBackHelper;
+import com.azhansy.linky.utils.AppManager;
 import com.azhansy.linky.utils.Config;
 import com.azhansy.linky.utils.SharePreferenceUtil;
 import com.azhansy.linky.utils.ToastUtil;
@@ -249,10 +250,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 }
             }, 2000);
         }else {
-            finish();
-            System.exit(0);
+            AppManager appManager = AppManager.getAppManager();
+            appManager.ExitApp(this);
         }
-//        finish();
     }
 
     @Override

@@ -1,5 +1,5 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card-view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -25,75 +25,24 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:paddingBottom="8dp"
-                android:paddingTop="8dp"
-                tools:context="org.mewx.wenku8.fragment.ConfigFragment">
+                android:paddingTop="8dp">
 
-                <RelativeLayout
-                    android:id="@+id/notice_layout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="6dp"
-                    android:paddingRight="6dp"
-                    android:paddingTop="2dp"
-                    android:visibility="gone">
 
-                    <android.support.v7.widget.CardView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:clickable="true"
-                        card-view:cardBackgroundColor="@color/novel_item_white"
-                        card-view:cardElevation="2dp"
-                        card-view:cardMaxElevation="2dp"
-                        card-view:cardUseCompatPadding="true">
-
-                        <TextView
-                            android:id="@+id/notice"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@color/menu_transparent"
-                            android:paddingBottom="8dp"
-                            android:paddingLeft="8dp"
-                            android:paddingRight="8dp"
-                            android:paddingTop="8dp"
-                            android:text="@string/na"
-                            android:textColor="@color/menu_text_color"
-                            android:textSize="12sp" />
-                    </android.support.v7.widget.CardView>
-                </RelativeLayout>
-
-                <RelativeLayout
+                <com.azhansy.linky.view.SettingView
                     android:id="@+id/btn_choose_language"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="wrap_content"
                     android:visibility="gone"
-                    android:background="@drawable/btn_menu_item"
-                    android:clickable="true">
-
-                    <ImageView
-                        android:id="@+id/image_chooselanguage"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:paddingLeft="16dp"
-                        android:src="@mipmap/ic_config" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="32dp"
-                        android:layout_toRightOf="@id/image_chooselanguage"
-                        android:text="@string/config_choose_language"
-                        android:textColor="@color/dlgTitleColor"
-                        android:textSize="16sp" />
-                </RelativeLayout>
+                    app:sv_has_arrow="false"
+                    app:sv_icon="@mipmap/ic_config"
+                    app:sv_title="@string/config_choose_language" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
-                    android:visibility="gone"
                     android:layout_marginLeft="16dp"
-                    android:background="@color/common_divide_line_color" />
+                    android:background="@color/common_divide_line_color"
+                    android:visibility="gone" />
                 <!-- Layout ClearCache -->
                 <RelativeLayout
                     android:id="@+id/btn_clear_cache"
@@ -114,19 +63,20 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="32dp"
+                        android:layout_marginLeft="16dp"
                         android:layout_toRightOf="@id/image_clearcache"
                         android:text="@string/config_clear_cache"
                         android:textColor="@color/dlgTitleColor"
                         android:textSize="16sp" />
+
                     <TextView
-                        android:layout_width="wrap_content"
-                        tools:text="2.0M"
                         android:id="@+id/tv_cache_size"
-                        android:layout_marginRight="20dp"
-                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_height="wrap_content" />
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="20dp"
+                        tools:text="2.0M" />
                 </RelativeLayout>
 
                 <View
@@ -139,9 +89,9 @@
                     android:id="@+id/btn_navigation_drawer_wallpaper"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:visibility="gone"
                     android:background="@drawable/btn_menu_item"
-                    android:clickable="true">
+                    android:clickable="true"
+                    android:visibility="gone">
 
                     <ImageView
                         android:id="@+id/image_wallpaper"
@@ -174,44 +124,16 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
-                    android:visibility="gone"
                     android:layout_marginLeft="16dp"
-                    android:background="@color/common_divide_line_color" />
+                    android:background="@color/common_divide_line_color"
+                    android:visibility="gone" />
                 <!-- Layout CheckUpdate -->
-                <RelativeLayout
+                <com.azhansy.linky.view.SettingView
                     android:id="@+id/btn_check_update"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:background="@drawable/btn_menu_item"
-                    android:clickable="true">
-
-                    <ImageView
-                        android:id="@+id/image_update"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:paddingLeft="16dp"
-                        android:src="@mipmap/ic_update" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="32dp"
-                        android:layout_toRightOf="@id/image_update"
-                        android:text="@string/config_check_update"
-                        android:textColor="@color/dlgTitleColor"
-                        android:textSize="16sp" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:paddingRight="16dp"
-                        android:src="@mipmap/ic_rightarrow" />
-                </RelativeLayout>
+                    android:layout_height="wrap_content"
+                    app:sv_icon="@mipmap/ic_update"
+                    app:sv_title="@string/config_check_update" />
 
                 <View
                     android:layout_width="match_parent"
@@ -219,41 +141,12 @@
                     android:layout_marginLeft="16dp"
                     android:background="@color/common_divide_line_color" />
                 <!-- Layout About -->
-                <RelativeLayout
+                <com.azhansy.linky.view.SettingView
                     android:id="@+id/btn_about"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:background="@drawable/btn_menu_item"
-                    android:clickable="true">
-
-                    <ImageView
-                        android:id="@+id/image_about"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:paddingLeft="16dp"
-                        android:src="@mipmap/ic_about" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="32dp"
-                        android:layout_toRightOf="@id/image_about"
-                        android:text="@string/config_about"
-                        android:textColor="@color/dlgTitleColor"
-                        android:textSize="16sp" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:paddingRight="16dp"
-                        android:src="@mipmap/ic_rightarrow" />
-                </RelativeLayout>
-
+                    android:layout_height="wrap_content"
+                    app:sv_icon="@mipmap/ic_about"
+                    app:sv_title="@string/config_about" />
             </LinearLayout>
         </ScrollView>
 

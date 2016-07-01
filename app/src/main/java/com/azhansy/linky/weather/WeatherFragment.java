@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -14,6 +15,7 @@ import com.azhansy.linky.base.LinkApplication;
 import com.azhansy.linky.base.MVP.MVPBaseFragment;
 import com.azhansy.linky.citypicker.CityPickerActivity;
 import com.azhansy.linky.utils.SharePreferenceUtil;
+import com.azhansy.linky.utils.ToastUtil;
 import com.azhansy.linky.weather.bean.ForecastBean;
 import com.azhansy.linky.weather.bean.TodayBean;
 import com.azhansy.linky.weather.presenter.WeatherPresenterImpl;
@@ -46,6 +48,8 @@ public class WeatherFragment extends MVPBaseFragment<WeatherPresenterImpl> imple
     TextView mFengli;
     @Bind(R.id.rv_weather)
     RecyclerView mWeatherList;
+    @Bind(R.id.swipeToLoadLayout)
+    SwipeRefreshLayout mSipeRefreshLayout;
 
     @OnClick({R.id.float_btn,R.id.appbar})
     void onClick(View view){
@@ -64,6 +68,7 @@ public class WeatherFragment extends MVPBaseFragment<WeatherPresenterImpl> imple
 
 
     private List<ForecastBean> forecastBeanList;
+    private RequestParams  params;
     @Override
     protected int getLayoutResource() {
         return R.layout.fragment_weather;
@@ -72,7 +77,11 @@ public class WeatherFragment extends MVPBaseFragment<WeatherPresenterImpl> imple
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        RequestParams  params = new RequestParams();
+        mSipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorPrimary));
+        mSipeRefreshLayout.setOnRefreshListener(() ->{
+            mPresenter.getData(params);
+        });
+        params = new RequestParams();
         params.put("cityname",SharePreferenceUtil.getCityName());
         mPresenter.getData(params);
     }
@@ -100,6 +109,7 @@ public class WeatherFragment extends MVPBaseFragment<WeatherPresenterImpl> imple
     @Override
     public void setHead(String s) {
         mCity.setText(s);
+        mSipeRefreshLayout.setRefreshing(false);
     }
 
     @Override
@@ -135,6 +145,12 @@ public class WeatherFragment extends MVPBaseFragment<WeatherPresenterImpl> imple
     @Override
     public void setForecast(List<ForecastBean> forecast) {
         forecastBeanList = forecast;
+    }
+
+    @Override
+    public void getDataFail() {
+        ToastUtil.showToast(getActivity(),"请求失败，请稍后再试");
+        mSipeRefreshLayout.setRefreshing(false);
     }
 
     @Override

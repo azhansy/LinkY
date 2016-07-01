@@ -12,6 +12,14 @@ import java.math.BigDecimal;
  */
 public class DataCleanManagerUtil {
 
+    public static void cleanTotalCacheSize(Context context){
+        cleanInternalCache(context);
+        cleanSharedPreference(context);
+        cleanFiles(context);
+        cleanExternalCache(context);
+//        cleanDatabases(context);
+    }
+
     /**
      * 清除本应用内部缓存(/data/data/com.xxx.xxx/cache)
      *

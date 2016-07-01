@@ -58,6 +58,7 @@ public class LoginActivity extends MVPBaseActivity<LoginPresenterImpl> implement
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setSwipeBackEnable(false);
     }
 
     @Override

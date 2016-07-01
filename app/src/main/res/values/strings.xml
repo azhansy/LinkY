@@ -33,7 +33,7 @@
     <string name="config_about">关于</string>
     <string name="na">N/A</string>
     <string name="nav_weather">温度 30C 阵雨</string>
-    <string name="about_introduce">这是一个Android爱好者的App,有关心的天气预报，有闷骚的笑话，有大神的博客，我还喜欢小说。。。喜欢就干吧！本着免费开源的思想让各位哥们一起爽爽，本人也是菜鸟一个，拿来练手用，部分素材来源于网络，如有侵权请与我联系，我会在24小时内删除！邮箱地址：azhansy@hotmail.com  嘿嘿</string>
+    <string name="about_introduce">这是一个Android爱好者的App,有关心的天气预报，有闷骚的笑话，有大神的博客，我还喜欢小说。。。喜欢就干吧！本着免费开源的思想让各位哥们一起爽爽，本人也是菜鸟一个，拿来练手用，部分素材来源于网络，如有侵权请与我联系，我会在24小时内删除！嘿嘿 \n邮箱地址：azhansy@hotmail.com</string>
 
     <string name="select_city">选择城市</string>
     <string name="hot_city">热门城市</string>
