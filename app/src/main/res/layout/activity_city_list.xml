@@ -36,7 +36,6 @@
                 android:layout_height="match_parent"
                 android:cacheColorHint="@android:color/transparent"
                 android:divider="@android:color/transparent"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 android:dividerHeight="0dp"
                 android:listSelector="@android:color/transparent" />
 

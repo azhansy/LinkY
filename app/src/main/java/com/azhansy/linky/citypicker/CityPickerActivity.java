@@ -21,13 +21,13 @@ import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.azhansy.linky.R;
+import com.azhansy.linky.base.BaseActivity;
 import com.azhansy.linky.citypicker.adapter.CityListAdapter;
 import com.azhansy.linky.citypicker.adapter.ResultListAdapter;
 import com.azhansy.linky.citypicker.db.DBManager;
 import com.azhansy.linky.citypicker.model.City;
 import com.azhansy.linky.citypicker.model.LocateState;
 import com.azhansy.linky.citypicker.utils.StringUtils;
-import com.azhansy.linky.citypicker.utils.ToastUtils;
 import com.azhansy.linky.citypicker.view.SideLetterBar;
 
 import java.util.List;
@@ -36,7 +36,7 @@ import java.util.List;
  * author zaaach on 2016/1/26.
  * https://github.com/zaaach/CityPicker
  */
-public class CityPickerActivity extends AppCompatActivity implements View.OnClickListener {
+public class CityPickerActivity extends BaseActivity implements View.OnClickListener {
     public static final int REQUEST_CODE_PICK_CITY = 2333;
     public static final String KEY_PICKED_CITY = "picked_city";
 
@@ -56,9 +56,13 @@ public class CityPickerActivity extends AppCompatActivity implements View.OnClic
     private AMapLocationClient mLocationClient;
 
     @Override
+    public int getLayoutResource() {
+        return R.layout.activity_city_list;
+    }
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_city_list);
+//        setContentView(R.layout.activity_city_list);
 
         initData();
         initView();
