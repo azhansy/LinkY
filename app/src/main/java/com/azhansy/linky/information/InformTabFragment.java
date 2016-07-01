@@ -34,6 +34,7 @@ public class InformTabFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
         adapter = new InformTabFragmentPagerAdapter(getFragmentManager());
         adapter.initFragments();
+//        mViewpager.setOffscreenPageLimit(2);
         mViewpager.setAdapter(adapter);
         mTabls.setupWithViewPager(mViewpager);
         mTabls.setTabMode(TabLayout.MODE_FIXED);

@@ -105,7 +105,7 @@ public class WeatherFragment extends MVPBaseFragment<WeatherPresenterImpl> imple
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == CityPickerActivity.RESULT_FIRST_USER) {
+        if (requestCode == CityPickerActivity.RESULT_FIRST_USER && resultCode==CityPickerActivity.RESULT_OK) {
             Bundle bundle = data.getExtras();
             String cityName = bundle.getString(CityPickerActivity.KEY_PICKED_CITY);
             if (cityName != null && !cityName.isEmpty()) {

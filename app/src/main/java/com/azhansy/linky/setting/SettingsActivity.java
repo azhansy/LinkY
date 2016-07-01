@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.azhansy.linky.R;
 import com.azhansy.linky.base.BaseActivity;
@@ -23,6 +24,8 @@ import butterknife.OnClick;
  * 设置类
  */
 public class SettingsActivity extends BaseActivity {
+    @Bind(R.id.tv_cache_size)
+    TextView mCacheSize;
     @OnClick({R.id.btn_exit, R.id.btn_clear_cache, R.id.btn_check_update, R.id.btn_about})
     void onClick(View view) {
         switch (view.getId()) {
@@ -30,21 +33,15 @@ public class SettingsActivity extends BaseActivity {
                 LoginActivity.launch(this);
                 break;
             case R.id.btn_clear_cache:
-                try {
-                    String data = DataCleanManagerUtil.getTotalCacheSize(this);
-
-                    AlertDialog dialog = new AlertDialog.Builder(this)
-                            .setTitle("确定清除大小为 " + data + " 的缓存？")
-                            .setPositiveButton("确定", (dialog1, which) -> {
-                                DataCleanManagerUtil.cleanSharedPreference(SettingsActivity.this);
-                                ToastUtil.showToast(this, "清除完成");
-                            })
-                            .setNegativeButton("取消", null)
-                            .create();
-                    dialog.show();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                AlertDialog dialog = new AlertDialog.Builder(this)
+                        .setTitle("确定清除大小为 " + dataCache + " 的缓存？")
+                        .setPositiveButton("确定", (dialog1, which) -> {
+                            DataCleanManagerUtil.cleanSharedPreference(SettingsActivity.this);
+                            ToastUtil.showToast(this, "清除完成");
+                        })
+                        .setNegativeButton("取消", null)
+                        .create();
+                dialog.show();
                 break;
             case R.id.btn_check_update:
                 AlertDialog dial = new AlertDialog.Builder(this)
@@ -63,6 +60,7 @@ public class SettingsActivity extends BaseActivity {
         }
     }
 
+    private String dataCache="0K";
     @Override
     public int getLayoutResource() {
         return R.layout.activity_of_settings;
@@ -71,6 +69,12 @@ public class SettingsActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        try {
+            dataCache = DataCleanManagerUtil.getTotalCacheSize(this);
+            mCacheSize.setText(dataCache);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static void launch(Context context) {

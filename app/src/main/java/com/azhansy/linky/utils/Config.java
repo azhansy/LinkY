@@ -18,8 +18,8 @@ public class Config {
         JOKE(R.string.fragment_joke_title, R.mipmap.logo),
         WEATHER( R.string.fragment_weather_title, R.mipmap.logo),
         BLOG(R.string.fragment_blog_title, R.mipmap.logo),
-        NOVEL(R.string.fragment_novel_title,R.mipmap.logo),
-        INFORMATION(R.string.fragment_information_title,R.mipmap.logo);
+        NOVEL(R.string.fragment_novel_title,R.mipmap.logo);
+//        INFORMATION(R.string.fragment_information_title,R.mipmap.logo); //与技术博客页面显示有冲突。。。为啥
 
         private int title;
         private int icon;

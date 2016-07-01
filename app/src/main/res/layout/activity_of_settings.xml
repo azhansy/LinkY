@@ -119,6 +119,14 @@
                         android:text="@string/config_clear_cache"
                         android:textColor="@color/dlgTitleColor"
                         android:textSize="16sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        tools:text="2.0M"
+                        android:id="@+id/tv_cache_size"
+                        android:layout_marginRight="20dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_height="wrap_content" />
                 </RelativeLayout>
 
                 <View

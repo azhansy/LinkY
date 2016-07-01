@@ -38,8 +38,8 @@ public class BlogFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
         adapter = new BlogFragmentAdapter(getFragmentManager());
         adapter.initFragments();
+//        mViewPager.setOffscreenPageLimit(4);
         mViewPager.setAdapter(adapter);
-//        mViewPager.setOffscreenPageLimit(8);// java.lang.IllegalStateException: Recursive entry to executePendingTransactions
         mTabls.setupWithViewPager(mViewPager);
         mTabls.setTabMode(TabLayout.MODE_SCROLLABLE);
     }
