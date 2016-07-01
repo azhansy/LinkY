@@ -4,7 +4,7 @@
     android:id="@+id/side_image"
     android:layout_width="match_parent"
     android:layout_height="@dimen/nav_header_height"
-    android:background="@mipmap/bg"
+    android:background="?attr/colorPrimary"
     android:fitsSystemWindows="true"
     android:gravity="bottom"
     android:orientation="vertical"
