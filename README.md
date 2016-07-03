@@ -1,5 +1,5 @@
 # LinkY
-![image](https://github.com/azhansy/LinkY/tree/linky.gif)
+![image](https://github.com/azhansy/LinkY/blob/master/linky.gif)
 这是旨在Android 开发者的爱好App
 -------------------------------------
 1、看博客技术
