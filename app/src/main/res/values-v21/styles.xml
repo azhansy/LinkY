@@ -20,7 +20,7 @@
         <item name="colorControlNormal">?colorPrimary</item>
         <!--左滑返回不为黑-->
         <item name="android:windowIsTranslucent">true</item>
-
+        <item name="actionMenuTextAppearance">@style/ActionMenuTextAppearance</item>
         <!--沉浸式状态栏-->
         <item name="android:statusBarColor" tools:ignore="NewApi">
             @android:color/transparent
@@ -29,6 +29,13 @@
         </item>
 
         <item name="android:windowTranslucentStatus">true</item>
+    </style>
+    <!--menu text size-->
+    <style name="ActionMenuTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Menu">
+        <!--<item name="android:textSize">@dimen/abc_text_size_title_material_toolbar</item>-->
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">normal</item>
+        <!--<item name="android:textColor">@android:color/white</item>-->
     </style>
     <!--夜间模式主题-->
     <style name="AppNightTheme" parent="Theme.AppCompat.Light.NoActionBar">

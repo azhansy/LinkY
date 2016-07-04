@@ -38,7 +38,6 @@ public class JokeDetailActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SwipeBackHelper.getCurrentPage(JokeDetailActivity.this).setSwipeBackEnable(false);
         mJokeBeanList = getIntent().getParcelableArrayListExtra(JOKEBEANLIST);
         mCurrentPosition = getIntent().getIntExtra(CURRENTPOSITION,0);
         if (mJokeBeanList == null) return;

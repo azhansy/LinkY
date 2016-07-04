@@ -21,6 +21,7 @@
         <item name="actionMenuTextColor">@color/white</item>
         <item name="android:actionBarSize">48dp</item>
         <item name="actionBarSize">48dp</item>
+        <item name="actionMenuTextAppearance">@style/ActionMenuTextAppearance</item>
         <!--左滑返回不为黑-->
         <item name="android:windowIsTranslucent">true</item>
 
@@ -30,7 +31,13 @@
         <!--菜单PopupWindow的样式-->
         <item name="actionOverflowMenuStyle">@style/ActionOverflowMenuStyle</item>
     </style>
-
+    <!--menu text size-->
+    <style name="ActionMenuTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Menu">
+        <!--<item name="android:textSize">@dimen/abc_text_size_title_material_toolbar</item>-->
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">normal</item>
+        <!--<item name="android:textColor">@android:color/white</item>-->
+    </style>
     <style name="ActionOverflowMenuStyle" parent="@style/Widget.AppCompat.Light.PopupMenu.Overflow">
     <!--设置这个为false可以让PopupWindow不覆盖在ActionBar/ToolBar上-->
     <item name="overlapAnchor">false</item>
