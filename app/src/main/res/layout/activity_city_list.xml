@@ -11,8 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <include
-            layout="@layout/toolbar_layout"
-            app:layout_scrollFlags="scroll|enterAlways" />
+            layout="@layout/toolbar_layout" />
 
         <include layout="@layout/view_search" />
 
@@ -23,7 +22,8 @@
         android:layout_height="match_parent"
         android:background="@color/content_bg"
         android:orientation="vertical"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+      >
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -37,6 +37,7 @@
                 android:cacheColorHint="@android:color/transparent"
                 android:divider="@android:color/transparent"
                 android:dividerHeight="0dp"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 android:listSelector="@android:color/transparent" />
 
             <TextView

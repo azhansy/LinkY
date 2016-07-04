@@ -18,5 +18,8 @@ http://apistore.baidu.com/apiworks/servicedetail/864.html
 
 7、名人名言
 http://apistore.baidu.com/apiworks/servicedetail/1756.html
+
 http://apis.baidu.com/avatardata/mingrenmingyan/lookup
+8、成语词典
+http://apistore.baidu.com/apiworks/servicedetail/1752.html
 

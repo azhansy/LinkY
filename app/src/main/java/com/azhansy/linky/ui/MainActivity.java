@@ -25,7 +25,9 @@ import com.azhansy.linky.R;
 import com.azhansy.linky.base.BaseActivity;
 import com.azhansy.linky.base.LinkApplication;
 import com.azhansy.linky.blog.fragment.BlogFragment;
+import com.azhansy.linky.culture.CultureActivity;
 import com.azhansy.linky.information.InformationFragment;
+import com.azhansy.linky.information.MoreInformActivity;
 import com.azhansy.linky.joke.JokeFragment;
 import com.azhansy.linky.login.LoginActivity;
 import com.azhansy.linky.column.ChangeChannelActivity;
@@ -138,6 +140,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         if (header == null) {
             header = mNavView.inflateHeaderView(R.layout.nav_header_main);
             navView = (TextView) header.findViewById(R.id.tv_nav_weather);
+            header.findViewById(R.id.cv_culture).setOnClickListener(v ->{
+                closeDrawerLayout();
+                CultureActivity.launch(this);
+            });
         }
         menu.clear();
         for (int i = 0; i < fragmentList.size(); i++) {

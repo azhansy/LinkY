@@ -20,9 +20,6 @@ public class WeatherPresenterImpl extends RxBasePresenter implements WeatherPres
     public WeatherPresenterImpl(){
         mWeatherBusiness = new WeatherBusiness();
         weatherAdapter = new WeatherAdapter(getContext());
-    }
-    @Override
-    public void getData(RequestParams params) {
         mSubscriptions.add(LinkApplication.getInstance().getRxBus().toObserverable()
                 .filter(event -> event instanceof RetDataBean)
                 .subscribe(retDataBean -> {
@@ -42,6 +39,9 @@ public class WeatherPresenterImpl extends RxBasePresenter implements WeatherPres
                 }, throwable -> {
                     Logger.d("throwable......");
                 }));
+    }
+    @Override
+    public void getData(RequestParams params) {
         mWeatherBusiness.getData(params);
     }
 }

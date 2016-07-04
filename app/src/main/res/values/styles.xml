@@ -88,5 +88,35 @@
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/gray</item>
     </style>
-
+    <declare-styleable name="PagerSlidingIndicator">
+        <attr name="background_stroke_color" format="color" />
+        <attr name="background_stroke_width" format="dimension" />
+        <attr name="background_color" format="color" />
+        <attr name="checked_background_color" format="color" />
+        <attr name="scrollOffset" format="dimension" />
+        <attr name="shouldExpand" format="boolean" />
+    </declare-styleable>
+    <declare-styleable name="TransitionTextView">
+        <attr name="transition_start_color" format="color" />
+        <attr name="transition_end_color" format="color" />
+    </declare-styleable>
+    <style name="PagerSlidingIndicatorStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="background_stroke_color">@color/transparent</item>
+        <item name="background_stroke_width">0dp</item>
+        <item name="background_color">#19000000</item>
+        <item name="checked_background_color">#FFFFFF</item>
+    </style>
+    <style name="TransitionTextViewStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textSize">13dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:minWidth">64dp</item>
+        <item name="android:minHeight">32dp</item>
+        <item name="transition_start_color">@color/colorPrimary</item>
+        <item name="transition_end_color">#ffffff</item>
+    </style>
 </resources>

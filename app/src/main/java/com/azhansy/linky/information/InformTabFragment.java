@@ -38,7 +38,6 @@ public class InformTabFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        setHasOptionsMenu(true);
         mTitle.setText("日常资讯");
         adapter = new InformTabFragmentPagerAdapter(getFragmentManager());
         adapter.initFragments();
@@ -48,18 +47,4 @@ public class InformTabFragment extends BaseFragment {
         mTabls.setTabMode(TabLayout.MODE_FIXED);
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        MenuItem item = menu.add(Menu.NONE, 111, Menu.NONE, "更多");
-        item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == 111) {
-            MoreInformActivity.launch(getActivity());
-        }
-        return super.onOptionsItemSelected(item);
-    }
 }

@@ -12,6 +12,10 @@ public class Config {
     public static final String weather_host = "http://apis.baidu.com/apistore/weatherservice/recentweathers";
     //笑话接口
     public static final String joke_host = "http://apis.baidu.com/showapi_open_bus/showapi_joke/joke_text";
+    //名人名言
+    public static final String ming_host = "http://apis.baidu.com/avatardata/mingrenmingyan/lookup";
+    public static final String cheng_host = "http://apis.baidu.com/avatardata/chengyu/lookup";
+    public static final String cheng_search_host = "http://apis.baidu.com/avatardata/chengyu/search";
 
 
     public enum Channel {

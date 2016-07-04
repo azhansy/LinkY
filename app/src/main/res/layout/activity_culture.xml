@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:background="@color/colorPrimary">
+
+            <com.azhansy.linky.view.PagerSlidingIndicator
+                android:id="@+id/slid_culture"
+                style="@style/PagerSlidingIndicatorStyle"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.azhansy.linky.view.TransitionTextView
+                        style="@style/TransitionTextViewStyle"
+                        android:minWidth="85dp"
+                        android:text="成语词典" />
+
+                    <com.azhansy.linky.view.TransitionTextView
+                        style="@style/TransitionTextViewStyle"
+                        android:minWidth="85dp"
+                        android:text="名人名言" />
+                </LinearLayout>
+            </com.azhansy.linky.view.PagerSlidingIndicator>
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+</android.support.design.widget.CoordinatorLayout>
