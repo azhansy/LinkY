@@ -2,6 +2,9 @@ package com.azhansy.linky.information;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.azhansy.linky.R;
@@ -11,11 +14,11 @@ import com.azhansy.linky.base.BaseFragment;
 /**
  * Created by SHU on 2016/6/27.
  */
-public class InformationFragment extends BaseFragment{
+public class InformationFragment extends BaseFragment {
 
     private InformTabFragment informTabFragment;
 
-    public static InformationFragment getInstance(){
+    public static InformationFragment getInstance() {
         return new InformationFragment();
     }
 
@@ -30,8 +33,9 @@ public class InformationFragment extends BaseFragment{
         if (savedInstanceState == null) {
             informTabFragment = InformTabFragment.getInstance();
             getFragmentManager().beginTransaction().replace(R.id.fragment_container, informTabFragment, "InformTabFragment").commit();
-        }else {
+        } else {
             informTabFragment = (InformTabFragment) getFragmentManager().findFragmentByTag("InformTabFragment");
         }
     }
+
 }

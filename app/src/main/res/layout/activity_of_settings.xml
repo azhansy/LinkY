@@ -135,6 +135,21 @@
                     app:sv_icon="@mipmap/ic_update"
                     app:sv_title="@string/config_check_update" />
 
+                <com.azhansy.linky.view.SettingView
+                    android:id="@+id/sv_more_information"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:sv_icon="@drawable/ic_sort_black_24px"
+                    app:sv_title="@string/more_information" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="16dp"
+                    android:background="@color/common_divide_line_color"
+                    android:visibility="gone" />
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"

@@ -50,6 +50,8 @@ public class WeatherFragment extends MVPBaseFragment<WeatherPresenterImpl> imple
     RecyclerView mWeatherList;
     @Bind(R.id.swipeToLoadLayout)
     SwipeRefreshLayout mSipeRefreshLayout;
+    @Bind(R.id.toolbar_title)
+    TextView mTitle;
 
     @OnClick({R.id.float_btn,R.id.appbar})
     void onClick(View view){
@@ -77,6 +79,7 @@ public class WeatherFragment extends MVPBaseFragment<WeatherPresenterImpl> imple
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        mTitle.setText("天气预报");
         mSipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorPrimary));
         mSipeRefreshLayout.setOnRefreshListener(() ->{
             mPresenter.getData(params);

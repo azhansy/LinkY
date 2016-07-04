@@ -9,6 +9,7 @@ import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.TextView;
 
 import com.azhansy.linky.R;
 import com.azhansy.linky.base.BaseFragment;
@@ -21,6 +22,8 @@ import butterknife.Bind;
 public class NovelFragment extends BaseFragment {
     @Bind(R.id.web_view)
     WebView mWebView;
+    @Bind(R.id.toolbar_title)
+    TextView mTitle;
 
     @Override
     protected int getLayoutResource() {
@@ -34,6 +37,7 @@ public class NovelFragment extends BaseFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        mTitle.setText("小说全集");
         String urlBlog = "https://h.xs.cn";
         mWebView.loadUrl(urlBlog);
         initWebView();

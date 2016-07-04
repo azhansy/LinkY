@@ -57,8 +57,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @Bind(R.id.nav_view)
     NavigationView mNavView;
-    @Bind(R.id.tv_title)
-    TextView mTitle;
+//    @Bind(R.id.tv_title)
+//    TextView mTitle;
     private List<Fragment> fragmentList;
     private Fragment currentFragment;
     ArrayList<Config.Channel> savedChannelList;
@@ -175,13 +175,13 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         if (currentFragment == null || !currentFragment.getClass().getName().equals(fragment.getClass().getName())) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment,fragment.getClass().getName()).commit();
             currentFragment = fragment;
-            setTitle(title);
+//            setTitle(title);
         }
     }
 
-    private void setTitle(String title){
-        mTitle.setText(title);
-    }
+//    private void setTitle(String title){
+//        mTitle.setText(title);
+//    }
     public static void launch(Context context) {
         Intent intent = new Intent(context, MainActivity.class);
         context.startActivity(intent);

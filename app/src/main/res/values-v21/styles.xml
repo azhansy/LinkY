@@ -13,14 +13,14 @@
 
         <!--ToolBar标题的颜色，参考toolbar_layout.xml-->
         <item name="toolBarTitleColor">@color/tool_bar_title_color</item>
-        <item name="actionMenuTextColor">@color/orangeColor</item>
+        <item name="actionMenuTextColor">@color/white</item>
         <item name="android:actionBarSize">48dp</item>
         <item name="actionBarSize">48dp</item>
-
+        <!-- actionbar 菜单的文本颜色 -->
+        <item name="actionMenuTextAppearance">@style/ActionMenuTextAppearance</item>
         <item name="colorControlNormal">?colorPrimary</item>
         <!--左滑返回不为黑-->
         <item name="android:windowIsTranslucent">true</item>
-        <item name="actionMenuTextAppearance">@style/ActionMenuTextAppearance</item>
         <!--沉浸式状态栏-->
         <item name="android:statusBarColor" tools:ignore="NewApi">
             @android:color/transparent

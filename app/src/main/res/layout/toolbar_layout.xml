@@ -7,6 +7,7 @@
     android:layout_height="?actionBarSize"
     android:background="?attr/colorPrimary"
     app:layout_collapseMode="pin"
+    app:layout_scrollFlags="scroll|enterAlways"
     android:gravity="center_vertical">
 <!--app:layout_scrollFlags="scroll|enterAlways"-->
 

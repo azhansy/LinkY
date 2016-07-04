@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.widget.TextView;
 
 import com.azhansy.linky.R;
 import com.azhansy.linky.base.BaseFragment;
@@ -21,6 +22,8 @@ public class BlogFragment extends BaseFragment {
     TabLayout mTabls;
     @Bind(R.id.viewpager)
     ViewPager mViewPager;
+    @Bind(R.id.toolbar_title)
+    TextView mTitle;
 
     private BlogFragmentAdapter adapter;
 
@@ -36,6 +39,7 @@ public class BlogFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        mTitle.setText("技术博客");
         adapter = new BlogFragmentAdapter(getFragmentManager());
         adapter.initFragments();
 //        mViewPager.setOffscreenPageLimit(4);

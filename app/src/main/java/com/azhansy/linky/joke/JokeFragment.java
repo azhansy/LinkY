@@ -8,6 +8,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 
 import com.azhansy.linky.R;
 import com.azhansy.linky.base.BaseRecyclerViewAdapter;
@@ -32,6 +33,8 @@ public class JokeFragment extends MVPBaseFragment<JokePresenterImpl> implements 
     SwipeRefreshLayout mSwipeToLoad;
     @Bind(R.id.float_btn)
     FloatingActionButton mFloatBtn;
+    @Bind(R.id.toolbar_title)
+    TextView mTitle;
 
     @OnClick(R.id.float_btn)
     void OnClick() {
@@ -67,6 +70,7 @@ public class JokeFragment extends MVPBaseFragment<JokePresenterImpl> implements 
     }
 
     private void init() {
+        mTitle.setText("笑话全集");
         jokeAdapter = new JokeAdapter(getActivity());
         jokeAdapter.setOnRecycleViewItemClickListener(this);
         mFloatBtn.setVisibility(View.VISIBLE);

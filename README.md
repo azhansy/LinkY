@@ -15,3 +15,8 @@ http://apistore.baidu.com/apiworks/servicedetail/112.html
 http://apistore.baidu.com/apiworks/servicedetail/864.html
 
 6、看小说
+
+7、名人名言
+http://apistore.baidu.com/apiworks/servicedetail/1756.html
+http://apis.baidu.com/avatardata/mingrenmingyan/lookup
+
