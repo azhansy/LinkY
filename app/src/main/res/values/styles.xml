@@ -119,4 +119,11 @@
         <item name="transition_start_color">@color/colorPrimary</item>
         <item name="transition_end_color">#ffffff</item>
     </style>
+
+    <style name="InputDialogWithXTheme" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <!--替换系统对话框背景的点9图，消除黑影-->
+        <item name="android:windowBackground">@color/transparent</item>
+    </style>
 </resources>

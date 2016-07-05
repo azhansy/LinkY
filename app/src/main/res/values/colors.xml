@@ -73,4 +73,6 @@
     <color name="gray_deep">#5c5c5c</color>
     <color name="alpha_gray">#CC646464</color>
     <color name="theme_gray">#646464</color>
+
+    <color name="input_dialog_with_x" >#f2f2f2</color>
 </resources>
