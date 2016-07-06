@@ -2,8 +2,12 @@ package com.azhansy.linky.culture;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.azhansy.linky.R;
@@ -38,13 +42,33 @@ public class MingrenFragment extends MVPBaseFragment<MingrenPrensenterImpl> impl
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        RequestParams params = new RequestParams();
-        params.put("keyword","爱因斯坦");
-        params.put("rows","10");
-        mPresenter.getData(params);
+        mPresenter.getMingRen("爱因斯坦","10");
         adapter = new MingrenAdapter(getActivity());
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),1));
         recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        MenuItem item = menu.add(Menu.NONE, 111, Menu.NONE, "搜索");
+        item.setIcon(R.mipmap.ic_menu_search);
+        item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == 111) {
+            ToastUtil.showToast(getActivity(),"搜索");
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -75,8 +99,5 @@ public class MingrenFragment extends MVPBaseFragment<MingrenPrensenterImpl> impl
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (mPresenter != null) {
-            mPresenter.onDestroy();
-        }
     }
 }

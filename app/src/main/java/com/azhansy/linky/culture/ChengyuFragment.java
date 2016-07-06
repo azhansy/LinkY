@@ -2,8 +2,12 @@ package com.azhansy.linky.culture;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.azhansy.linky.R;
@@ -38,6 +42,7 @@ public class ChengyuFragment extends MVPBaseFragment<ChengyuPrensenterImpl> impl
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        setHasOptionsMenu(true);
         RequestParams params = new RequestParams();
         params.put("keyWord","人");
         mPresenter.getData(params);
@@ -46,6 +51,22 @@ public class ChengyuFragment extends MVPBaseFragment<ChengyuPrensenterImpl> impl
         recyclerView.setAdapter(adapter);
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        MenuItem item = menu.add(Menu.NONE, 123, Menu.NONE, "搜索");
+        item.setIcon(R.mipmap.ic_menu_search);
+        item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == 123) {
+            ToastUtil.showToast(getActivity(),"搜索");
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
     @Override
     public Context getPresenterContext() {
         return getActivity();

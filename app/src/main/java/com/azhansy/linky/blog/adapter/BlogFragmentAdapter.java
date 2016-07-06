@@ -27,7 +27,7 @@ public class BlogFragmentAdapter extends BaseFragmentPagerAdapter {
         blogModelList.add(new BlogModel("任玉刚","http://m.blog.csdn.net/blog/index?username=singwhatiwanna"));
         blogModelList.add(new BlogModel("张涛","http://www.kymjs.com"));
         blogModelList.add(new BlogModel("泡在网上的日子","http://www.jcodecraeer.com/plus/list.php?tid=18"));
-        blogModelList.add(new BlogModel("安卓开发周报","http://www.jcodecraeer.com/a/androidweekly"));
+        blogModelList.add(new BlogModel("安卓开发周报","http://www.androidweekly.cn"));
         blogModelList.add(new BlogModel("格比飞勇","http://blog.csdn.net/azhansy"));
     }
     @Override

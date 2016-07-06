@@ -15,7 +15,7 @@
 
         <item name="colorControlNormal">?colorPrimary</item>
         <!--影响了toolbar 的menu 颜色 -->
-        <item name="android:textColorSecondary">@android:color/white</item>
+       <!-- <item name="android:textColorSecondary">@android:color/white</item>-->
 
         <!-- actionbar 菜单的文本颜色 -->
         <item name="actionMenuTextColor">@color/white</item>
@@ -30,6 +30,17 @@
         <item name="android:windowDrawsSystemBarBackgrounds" tools:ignore="NewApi">true</item>
         <!--菜单PopupWindow的样式-->
         <item name="actionOverflowMenuStyle">@style/ActionOverflowMenuStyle</item>
+        <item name="popupMenuStyle">@style/CustomPopupMenuStyle</item>
+
+        <!--window overlay 基类用这个属性来控制是否下移一个action bar 高度-->
+        <item name="windowActionBarOverlay">true</item>
+
+    </style>
+
+    <style name="CustomPopupMenuStyle" parent="@style/Widget.AppCompat.Light.PopupMenu">
+        <item name="android:popupBackground">?colorPrimaryDark</item>
+        <item name="android:dropDownVerticalOffset">1dp</item>
+        <item name="actionMenuTextColor">@color/white</item>
     </style>
     <!--menu text size-->
     <style name="ActionMenuTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Menu">
@@ -38,10 +49,17 @@
         <item name="android:textStyle">normal</item>
         <!--<item name="android:textColor">@android:color/white</item>-->
     </style>
+
+    <!-- api21以上 有效-->
     <style name="ActionOverflowMenuStyle" parent="@style/Widget.AppCompat.Light.PopupMenu.Overflow">
-    <!--设置这个为false可以让PopupWindow不覆盖在ActionBar/ToolBar上-->
-    <item name="overlapAnchor">false</item>
+        <!--设置这个为false可以让PopupWindow不覆盖在ActionBar/ToolBar上-->
+        <item name="overlapAnchor">false</item>
+        <item name="android:overlapAnchor" tools:targetApi="21">false</item>
+        <item name="android:popupBackground">?colorPrimaryDark</item>
+        <item name="android:dropDownVerticalOffset">1dp</item>
+        <item name="actionMenuTextColor">@color/white</item>
     </style>
+
     <!--夜间模式主题-->
     <style name="AppNightTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
@@ -88,6 +106,7 @@
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/gray</item>
     </style>
+
     <declare-styleable name="PagerSlidingIndicator">
         <attr name="background_stroke_color" format="color" />
         <attr name="background_stroke_width" format="dimension" />
@@ -100,6 +119,7 @@
         <attr name="transition_start_color" format="color" />
         <attr name="transition_end_color" format="color" />
     </declare-styleable>
+
     <style name="PagerSlidingIndicatorStyle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -109,6 +129,7 @@
         <item name="background_color">#19000000</item>
         <item name="checked_background_color">#FFFFFF</item>
     </style>
+
     <style name="TransitionTextViewStyle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>

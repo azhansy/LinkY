@@ -1,38 +1,34 @@
 package com.azhansy.linky.culture.presenter;
 
-import com.azhansy.linky.base.LinkApplication;
-import com.azhansy.linky.base.RxBasePresenter;
+import com.azhansy.linky.base.BaseRetrofitPresenter;
 import com.azhansy.linky.culture.MingrenView;
-import com.azhansy.linky.culture.business.MingrenBusiness;
 import com.azhansy.linky.culture.model.MingrenModel;
-import com.azhansy.linky.utils.Logger;
-import com.loopj.android.http.RequestParams;
+import com.azhansy.linky.retrofit.BaiDuStoreService;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by SHU on 2016/7/4.
  */
-public class MingrenPrensenterImpl extends RxBasePresenter implements MingrenPresenter {
-    MingrenBusiness mingrenBusiness;
-    public MingrenPrensenterImpl(){
-        mingrenBusiness = new MingrenBusiness();
-        mSubscriptions.add(LinkApplication.getInstance().getRxBus().toObserverable()
-                .filter(event -> event instanceof MingrenModel)
-                .subscribe(object ->{
-                    MingrenView view = getActualUi();
-                    MingrenModel bean = (MingrenModel) object;
-                    if (view != null/* && jokeBeanHead != null*/) {
-                        if (!bean.isState()) {
-                            view.getDataFailed("请求出错");
-                            return;
-                        }
-                        view.getDataSuccess(bean.getMingrenDetailModelList());
-                    }
-                },throwable -> {
-                    Logger.d("throwable......");
-                }));
-    }
+public class MingrenPrensenterImpl extends BaseRetrofitPresenter implements MingrenPresenter {
     @Override
-    public void getData(RequestParams params) {
-        mingrenBusiness.getData(params);
+    public void getMingRen(String keyword, String page) {
+        Call<MingrenModel> call = BaiDuStoreService.getInstance().baiDuStoreApi.getMingren(keyword, page, "10");
+        call.enqueue(new Callback<MingrenModel>() {
+            @Override
+            public void onResponse(Call<MingrenModel> call, Response<MingrenModel> response) {
+                MingrenModel mingrenModel = response.body();
+                MingrenView view = getActualUi();
+                view.getDataSuccess(mingrenModel.getResult());
+            }
+
+            @Override
+            public void onFailure(Call<MingrenModel> call, Throwable t) {
+                MingrenView view = getActualUi();
+                view.getDataFailed("请求失败");
+            }
+        });
     }
 }

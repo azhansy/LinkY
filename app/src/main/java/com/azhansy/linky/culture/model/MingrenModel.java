@@ -28,24 +28,23 @@ public class MingrenModel {
     private int total;
     private int error_code;
     private String reason;
-    private List<MingrenDetailModel> mingrenDetailModelList;
+    private List<MingrenDetailModel> result;
 
     private boolean state;
-    public MingrenModel(){
-
-    }
-    public MingrenModel(JSONObject object){
-        this.total = object.optInt("total");
-        this.error_code = object.optInt("error_code");
-        this.reason = object.optString("reason");
-        JSONArray result = object.optJSONArray("result");
-        if (result != null) {
-            mingrenDetailModelList = new ArrayList<>();
-            for (int i=0;i<result.length();i++) {
-                mingrenDetailModelList.add(new MingrenDetailModel(result.optJSONObject(i)));
-            }
-        }
-    }
+//    public MingrenModel(){
+//    }
+//    public MingrenModel(JSONObject object){
+//        this.total = object.optInt("total");
+//        this.error_code = object.optInt("error_code");
+//        this.reason = object.optString("reason");
+//        JSONArray result = object.optJSONArray("result");
+//        if (result != null) {
+//            mingrenDetailModelList = new ArrayList<>();
+//            for (int i=0;i<result.length();i++) {
+//                mingrenDetailModelList.add(new MingrenDetailModel(result.optJSONObject(i)));
+//            }
+//        }
+//    }
 
     public class MingrenDetailModel{
         private String famous_name;
@@ -72,12 +71,12 @@ public class MingrenModel {
         }
     }
 
-    public List<MingrenDetailModel> getMingrenDetailModelList() {
-        return mingrenDetailModelList;
+    public List<MingrenDetailModel> getResult() {
+        return result;
     }
 
-    public void setMingrenDetailModelList(List<MingrenDetailModel> mingrenDetailModelList) {
-        this.mingrenDetailModelList = mingrenDetailModelList;
+    public void setResult(List<MingrenDetailModel> result) {
+        this.result = result;
     }
 
     public boolean isState() {
@@ -111,4 +110,5 @@ public class MingrenModel {
     public void setReason(String reason) {
         this.reason = reason;
     }
+
 }

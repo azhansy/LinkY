@@ -26,7 +26,7 @@ public class MingrenBusiness  {
     rows 返回记录条数，默认rows=20,最大50
 
      */
-    public void getData(RequestParams params){
+   /* public void getData(RequestParams params){
         HttpUtil.getAsyncHttpClient().addHeader("apikey","a9d2b14d7c12c30cc05401795d474144");
         HttpUtil.get(Config.ming_host,params,new JsonHttpResponseHandler(){
             @Override
@@ -57,5 +57,5 @@ public class MingrenBusiness  {
                 LinkApplication.getInstance().getRxBus().send(jokeBeanHead);
             }
         });
-    }
+    }*/
 }
