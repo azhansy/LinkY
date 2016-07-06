@@ -49,7 +49,7 @@ public class ChengyuBusiness {
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 super.onFailure(statusCode, headers, throwable, errorResponse);
-                Logger.d(errorResponse.toString()); //errorResponse为null....
+//                Logger.d(errorResponse.toString()); //errorResponse为null....
                 ChengyuModel jokeBeanHead = new ChengyuModel();
                 jokeBeanHead.setState(false);
                 LinkApplication.getInstance().getRxBus().send(jokeBeanHead);

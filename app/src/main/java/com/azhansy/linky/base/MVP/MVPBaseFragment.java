@@ -1,11 +1,14 @@
 package com.azhansy.linky.base.MVP;
 
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 
 
+import com.azhansy.linky.R;
 import com.azhansy.linky.base.BaseFragment;
 
+import butterknife.Bind;
 
 
 /**
@@ -14,8 +17,8 @@ import com.azhansy.linky.base.BaseFragment;
  */
 public abstract class MVPBaseFragment<Presenter extends MVPBasePresenter> extends BaseFragment {
 
-//    @Bind(R.id.loading_layout)
-//    protected View mLoading;
+    @Bind(R.id.swipe_refresh_layout)
+    protected SwipeRefreshLayout mSwipeRefreshLayout;
 
     protected Presenter mPresenter;
 //    protected String mGid;
@@ -37,12 +40,17 @@ public abstract class MVPBaseFragment<Presenter extends MVPBasePresenter> extend
             mPresenter = createPresenter();
             mPresenter.attach(getBaseUi());
         }
+
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-//        hideLoading();
+        if (mSwipeRefreshLayout != null) {
+            mSwipeRefreshLayout.setColorSchemeColors(getActivity().getResources().getColor(R.color.colorPrimary), getResources().getColor(R.color.colorPrimaryDark));
+            mSwipeRefreshLayout.setEnabled(true);
+        }
+        stopLoading();
     }
 
     @Override
@@ -54,17 +62,17 @@ public abstract class MVPBaseFragment<Presenter extends MVPBasePresenter> extend
         super.onDestroy();
     }
 
-//    protected void showLoading() {
-//        if (mLoading != null) {
-//            mLoading.setVisibility(View.VISIBLE);
-//        }
-//    }
+    protected void refreshLoading() {
+        if (mSwipeRefreshLayout != null && !mSwipeRefreshLayout.isRefreshing()) {
+            mSwipeRefreshLayout.setRefreshing(true);
+        }
+    }
 //
-//    protected void hideLoading() {
-//        if (mLoading != null) {
-//            mLoading.setVisibility(View.GONE);
-//        }
-//    }
+    protected void stopLoading() {
+        if (mSwipeRefreshLayout != null  && mSwipeRefreshLayout.isRefreshing()) {
+            mSwipeRefreshLayout.setRefreshing(false);
+        }
+    }
 
     /**
      * 是否需要使用Presenter

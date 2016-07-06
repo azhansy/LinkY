@@ -16,6 +16,7 @@ import android.widget.ListView;
 
 import com.azhansy.linky.R;
 import com.azhansy.linky.utils.DrawableUtil;
+import com.azhansy.linky.utils.KeyboardUtil;
 import com.azhansy.linky.utils.ListViewUtil;
 
 import butterknife.ButterKnife;
@@ -51,6 +52,9 @@ public abstract class BaseFragment extends Fragment{
         InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(getActivity().getCurrentFocus()
                 .getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+    }
+    public void showInput(View view,long delay){
+        KeyboardUtil.show(view,delay);
     }
     @Override
     public void onPrepareOptionsMenu(Menu menu) {

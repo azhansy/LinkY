@@ -15,7 +15,7 @@ import retrofit2.Response;
 public class MingrenPrensenterImpl extends BaseRetrofitPresenter implements MingrenPresenter {
     @Override
     public void getMingRen(String keyword, String page) {
-        Call<MingrenModel> call = BaiDuStoreService.getInstance().baiDuStoreApi.getMingren(keyword, page, "10");
+        Call<MingrenModel> call = BaiDuStoreService.getInstance().baiDuStoreApi.getMingren(keyword, "1", "10");
         call.enqueue(new Callback<MingrenModel>() {
             @Override
             public void onResponse(Call<MingrenModel> call, Response<MingrenModel> response) {

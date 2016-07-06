@@ -32,7 +32,9 @@ public class ChengyuPrensenterImpl extends RxBasePresenter implements ChengyuPre
                 }));
     }
     @Override
-    public void getData(RequestParams params) {
+    public void getData(String wordKey) {
+        RequestParams params = new RequestParams();
+        params.put("keyWord",wordKey);
         chengyuBusiness.getData(params);
     }
 }

@@ -48,13 +48,11 @@ public class WeatherFragment extends MVPBaseFragment<WeatherPresenterImpl> imple
     TextView mFengli;
     @Bind(R.id.rv_weather)
     RecyclerView mWeatherList;
-    @Bind(R.id.swipeToLoadLayout)
-    SwipeRefreshLayout mSipeRefreshLayout;
     @Bind(R.id.toolbar_title)
     TextView mTitle;
 
-    @OnClick({R.id.float_btn,R.id.appbar})
-    void onClick(View view){
+    @OnClick({R.id.float_btn, R.id.appbar})
+    void onClick(View view) {
         switch (view.getId()) {
             case R.id.float_btn:
                 if (forecastBeanList != null) {
@@ -63,14 +61,15 @@ public class WeatherFragment extends MVPBaseFragment<WeatherPresenterImpl> imple
                 break;
             case R.id.appbar:
                 Intent intent = new Intent(mActivity, CityPickerActivity.class);
-                startActivityForResult(intent,CityPickerActivity.RESULT_FIRST_USER);
+                startActivityForResult(intent, CityPickerActivity.RESULT_FIRST_USER);
                 break;
         }
     }
 
 
     private List<ForecastBean> forecastBeanList;
-    private RequestParams  params;
+    private RequestParams params;
+
     @Override
     protected int getLayoutResource() {
         return R.layout.fragment_weather;
@@ -80,17 +79,17 @@ public class WeatherFragment extends MVPBaseFragment<WeatherPresenterImpl> imple
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mTitle.setText("天气预报");
-        mSipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorPrimary));
-        mSipeRefreshLayout.setOnRefreshListener(() ->{
+        mSwipeRefreshLayout.setOnRefreshListener(() -> {
             mPresenter.getData(params);
         });
         params = new RequestParams();
-        params.put("cityname",SharePreferenceUtil.getCityName());
+        params.put("cityname", SharePreferenceUtil.getCityName());
         mPresenter.getData(params);
+        refreshLoading();
     }
 
-    public static WeatherFragment getInstance(){
-        return  new WeatherFragment();
+    public static WeatherFragment getInstance() {
+        return new WeatherFragment();
     }
 
     @Override
@@ -105,28 +104,28 @@ public class WeatherFragment extends MVPBaseFragment<WeatherPresenterImpl> imple
 
     @Override
     public void setIndexData(WeatherAdapter adapter) {
-        mWeatherList.setLayoutManager(new GridLayoutManager(getActivity(),1));
+        mWeatherList.setLayoutManager(new GridLayoutManager(getActivity(), 1));
         mWeatherList.setAdapter(adapter);
     }
 
     @Override
     public void setHead(String s) {
         mCity.setText(s);
-        mSipeRefreshLayout.setRefreshing(false);
+        stopLoading();
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == CityPickerActivity.RESULT_FIRST_USER && resultCode==CityPickerActivity.RESULT_OK) {
+        if (requestCode == CityPickerActivity.RESULT_FIRST_USER && resultCode == CityPickerActivity.RESULT_OK) {
             Bundle bundle = data.getExtras();
             String cityName = bundle.getString(CityPickerActivity.KEY_PICKED_CITY);
             if (cityName != null && !cityName.isEmpty()) {
-                RequestParams  params = new RequestParams();
-                params.put("cityname",cityName);
+                RequestParams params = new RequestParams();
+                params.put("cityname", cityName);
                 mPresenter.getData(params);
                 mCity.setText(cityName);
-                SharePreferenceUtil.setCityName(mActivity,cityName);
+                SharePreferenceUtil.setCityName(mActivity, cityName);
             }
         }
     }
@@ -152,8 +151,8 @@ public class WeatherFragment extends MVPBaseFragment<WeatherPresenterImpl> imple
 
     @Override
     public void getDataFail() {
-        ToastUtil.showToast(getActivity(),"请求失败，请稍后再试");
-        mSipeRefreshLayout.setRefreshing(false);
+        ToastUtil.showToast(getActivity(), "请求失败，请稍后再试");
+        stopLoading();
     }
 
     @Override

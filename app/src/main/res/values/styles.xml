@@ -15,7 +15,7 @@
 
         <item name="colorControlNormal">?colorPrimary</item>
         <!--影响了toolbar 的menu 颜色 -->
-       <!-- <item name="android:textColorSecondary">@android:color/white</item>-->
+       <item name="android:textColorSecondary">@android:color/white</item>
 
         <!-- actionbar 菜单的文本颜色 -->
         <item name="actionMenuTextColor">@color/white</item>

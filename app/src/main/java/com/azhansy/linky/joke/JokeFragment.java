@@ -26,11 +26,9 @@ import butterknife.OnClick;
 /**
  * Created by SHU on 2016/6/22.
  */
-public class JokeFragment extends MVPBaseFragment<JokePresenterImpl> implements JokeView,BaseRecyclerViewAdapter.OnItemClickListener {
+public class JokeFragment extends MVPBaseFragment<JokePresenterImpl> implements JokeView, BaseRecyclerViewAdapter.OnItemClickListener {
     @Bind(R.id.list_recycler_view)
     RecyclerView mRecyView;
-    @Bind(R.id.swipeToLoadLayout)
-    SwipeRefreshLayout mSwipeToLoad;
     @Bind(R.id.float_btn)
     FloatingActionButton mFloatBtn;
     @Bind(R.id.toolbar_title)
@@ -66,17 +64,19 @@ public class JokeFragment extends MVPBaseFragment<JokePresenterImpl> implements 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        initToolbar();
         init();
     }
 
-    private void init() {
+    private void initToolbar() {
         mTitle.setText("笑话全集");
+    }
+
+    private void init() {
         jokeAdapter = new JokeAdapter(getActivity());
         jokeAdapter.setOnRecycleViewItemClickListener(this);
         mFloatBtn.setVisibility(View.VISIBLE);
-        mSwipeToLoad.setColorSchemeColors(getResources().getColor(R.color.colorPrimary), getResources().getColor(R.color.colorPrimaryDark));
-        mSwipeToLoad.setEnabled(true);
-        mSwipeToLoad.setOnRefreshListener(() -> {
+        mSwipeRefreshLayout.setOnRefreshListener(() -> {
             page = 1;
             getData();
         });
@@ -96,7 +96,7 @@ public class JokeFragment extends MVPBaseFragment<JokePresenterImpl> implements 
                         && newState == RecyclerView.SCROLL_STATE_IDLE
                         && lastVisibleItem + 1 == mRecyView.getAdapter()
                         .getItemCount() && jokeAdapter.isHasMore) {
-                    mSwipeToLoad.setRefreshing(true);
+                   refreshLoading();
                     page++;
                     mPresenter.getData(page);
                 }
@@ -114,6 +114,7 @@ public class JokeFragment extends MVPBaseFragment<JokePresenterImpl> implements 
 
     private void getData() {
         mPresenter.getData(page);
+        refreshLoading();
     }
 
     @Override
@@ -124,7 +125,7 @@ public class JokeFragment extends MVPBaseFragment<JokePresenterImpl> implements 
 
     @Override
     public void addListData(JokeBeanHead jokeBeanHead) {
-        mSwipeToLoad.setRefreshing(false);
+       stopLoading();
         if (page == 1) {
             jokeAdapter.replaceAll(jokeBeanHead.getJokeBeanList());
         } else {
@@ -134,7 +135,7 @@ public class JokeFragment extends MVPBaseFragment<JokePresenterImpl> implements 
 
     @Override
     public void getDataFailed(String error) {
-        mSwipeToLoad.setRefreshing(false);
+      stopLoading();
         ToastUtil.showToast(getActivity(), error);
     }
 
@@ -148,6 +149,6 @@ public class JokeFragment extends MVPBaseFragment<JokePresenterImpl> implements 
 
     @Override
     public void onItemClick(View view, Object data, int position) {
-        JokeDetailActivity.Launch(getActivity(), (ArrayList<JokeBean>) jokeAdapter.getList(),position);
+        JokeDetailActivity.Launch(getActivity(), (ArrayList<JokeBean>) jokeAdapter.getList(), position);
     }
 }

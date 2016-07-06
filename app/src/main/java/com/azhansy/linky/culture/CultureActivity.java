@@ -40,7 +40,6 @@ public class CultureActivity extends BaseActivity {
         viewPager.setAdapter(adapter);
         viewPager.setOffscreenPageLimit(1);
         slidingIndicator.setViewPager(viewPager);
-//        updateArrowTheme();
     }
 
     public static void launch(Context context){

@@ -22,6 +22,6 @@ public class ChengyuAdapter extends BaseRecyclerViewAdapter<ChengyuModel.Chengyu
 
     @Override
     public void showData(BaseRecyclerViewHolder holder, int position) {
-        holder.setText(R.id.tv_name,mList.get(position).getName());
+        holder.setText(R.id.tv_name,mList.get(position).getName(),getHighLightText());
     }
 }

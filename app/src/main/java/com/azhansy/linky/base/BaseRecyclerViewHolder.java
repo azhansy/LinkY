@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.azhansy.linky.utils.TextHighlightUtil;
+
 /**
  * Created by SHU on 2016/6/22.
  */
@@ -50,6 +52,18 @@ public class BaseRecyclerViewHolder extends RecyclerView.ViewHolder {
     public BaseRecyclerViewHolder setText(int viewId, String text) {
         TextView view = getView(viewId);
         view.setText(text);
+        return this;
+    }
+    /**
+     * 为TextView设置字符串 高亮
+     *
+     * @param viewId
+     * @param text
+     * @return
+     */
+    public BaseRecyclerViewHolder setText(int viewId, String text, String highlightText) {
+        TextView view = getView(viewId);
+        view.setText(TextHighlightUtil.setHighlightText(text,highlightText));
         return this;
     }
 

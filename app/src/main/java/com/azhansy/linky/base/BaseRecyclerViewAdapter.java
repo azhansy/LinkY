@@ -2,6 +2,7 @@ package com.azhansy.linky.base;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -15,7 +16,7 @@ import java.util.List;
 public abstract class BaseRecyclerViewAdapter<T> extends RecyclerView.Adapter<BaseRecyclerViewHolder> {
     protected Context mContext;
     protected List<T> mList;
-
+    protected String mHighLightText;
     public BaseRecyclerViewAdapter(Context mContext) {
         this.mContext = mContext;
         mList = new ArrayList<>();
@@ -114,4 +115,14 @@ public abstract class BaseRecyclerViewAdapter<T> extends RecyclerView.Adapter<Ba
         mList.clear();
         notifyDataSetChanged();
     }
+    public void setHighLightText(String str){
+        this.mHighLightText = str;
+    }
+    public String getHighLightText(){
+        if (TextUtils.isEmpty(mHighLightText)) {
+            mHighLightText = "";
+        }
+        return mHighLightText;
+    }
+
 }

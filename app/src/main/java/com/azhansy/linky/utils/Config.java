@@ -15,7 +15,7 @@ public class Config {
     public static final String joke_host = "http://apis.baidu.com/showapi_open_bus/showapi_joke/joke_text";
     //名人名言
     public static final String ming_host = "http://apis.baidu.com/avatardata/mingrenmingyan/lookup";
-    public static final String cheng_host = "http://apis.baidu.com/avatardata/chengyu/lookup";
+    public static final String cheng_host = "http://apis.baidu.com/avatardata/chengyu/lookup";//单个成语解析
     public static final String cheng_search_host = "http://apis.baidu.com/avatardata/chengyu/search";
 
 

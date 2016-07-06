@@ -19,7 +19,7 @@ public class TextHighlightUtil {
      * @return 返回数据
      */
     public static SpannableString setHighlightText(String text, String queryString){
-        return getHighlightText(text, queryString, 0xffF35050);
+        return getHighlightText(text, queryString, 0xffFF9800);
     }
 
     public static SpannableString getHighlightText(String text, String queryString, int colorResource) {
