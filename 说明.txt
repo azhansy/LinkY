@@ -19,3 +19,7 @@ AppID
 uIj3m9mKpcIOsJOH65i8xC6v-gzGzoHsz
 App key
 eyKl3G9qdrAiU52mmFTgXjjB
+
+CSDN
+App Key：	1100318
+App Secret：	a6ca9fffe0384d76b255491ddc208866

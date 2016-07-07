@@ -11,7 +11,7 @@
 //
 //import com.azhansy.linky.R;
 //import com.azhansy.linky.base.SimpleOneViewHolderBaseAdapter;
-//import com.azhansy.linky.blog.model.BlogModel;
+//import com.azhansy.linky.blog.model.BlogNameModel;
 //
 //import java.util.List;
 //
@@ -22,10 +22,10 @@
 // * Created by SHU on 2016/6/17.
 // */
 //public class BlogAdapter extends RecyclerView.Adapter<BlogAdapter.BlogViewHolder>{
-//    private List<BlogModel> mBlogModelList;
+//    private List<BlogNameModel> mBlogModelList;
 //    private Context mContext;
 //
-//    public BlogAdapter(Context context,List<BlogModel> list){
+//    public BlogAdapter(Context context,List<BlogNameModel> list){
 //        this.mBlogModelList = list;
 //        this.mContext = context;
 //    }
@@ -38,7 +38,7 @@
 //    @Override
 //    public void onBindViewHolder(BlogViewHolder holder, int position) {
 //
-//        BlogModel blogModel = mBlogModelList.get(position);
+//        BlogNameModel blogModel = mBlogModelList.get(position);
 //
 //    }
 //

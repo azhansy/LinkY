@@ -3,12 +3,12 @@ package com.azhansy.linky.blog.model;
 /**
  * Created by SHU on 2016/6/17.
  */
-public class BlogModel {
+public class BlogNameModel {
     private String name;
     private String url;
 
 
-    public BlogModel(String name, String url) {
+    public BlogNameModel(String name, String url) {
         this.name = name;
         this.url = url;
     }
