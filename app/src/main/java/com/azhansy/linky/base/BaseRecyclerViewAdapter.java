@@ -17,6 +17,8 @@ public abstract class BaseRecyclerViewAdapter<T> extends RecyclerView.Adapter<Ba
     protected Context mContext;
     protected List<T> mList;
     protected String mHighLightText;
+    public boolean isHasMore = true;//默认可以加载更多
+
     public BaseRecyclerViewAdapter(Context mContext) {
         this.mContext = mContext;
         mList = new ArrayList<>();
@@ -72,12 +74,6 @@ public abstract class BaseRecyclerViewAdapter<T> extends RecyclerView.Adapter<Ba
         mList.addAll(elem);
         notifyDataSetChanged();
     }
-//    public void addList(List<T> elem){
-//        for (T t : elem) {
-//            mList.add(t);
-//        }
-//        notifyDataSetChanged();
-//    }
 
     public List<T> getList() {
         return mList;

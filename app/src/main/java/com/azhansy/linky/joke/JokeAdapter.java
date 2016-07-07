@@ -11,7 +11,6 @@ import com.azhansy.linky.joke.bean.JokeBean;
  * Created by SHU on 2016/6/22.
  */
 public class JokeAdapter extends BaseRecyclerViewAdapter<JokeBean> {
-    public boolean isHasMore = true;
 
     public JokeAdapter(Context mContext) {
         super(mContext);

@@ -1,6 +1,6 @@
 # LinkY
 ![image](https://github.com/azhansy/LinkY/blob/master/linky.gif)
-这是旨在Android 开发者的爱好App
+这是旨在Android 开发者的爱好App 目标：跟上开发技术节奏，查看技术博客，学习名人名言装逼。。。
 -------------------------------------
 1、看博客技术
 

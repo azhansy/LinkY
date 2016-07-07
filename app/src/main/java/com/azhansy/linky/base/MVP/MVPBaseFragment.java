@@ -12,8 +12,7 @@ import butterknife.Bind;
 
 
 /**
- * Created by jd on 2015/10/12.
- * modified by ohdroid 2015年11月10日10:17:41
+ *
  */
 public abstract class MVPBaseFragment<Presenter extends MVPBasePresenter> extends BaseFragment {
 
@@ -21,21 +20,10 @@ public abstract class MVPBaseFragment<Presenter extends MVPBasePresenter> extend
     protected SwipeRefreshLayout mSwipeRefreshLayout;
 
     protected Presenter mPresenter;
-//    protected String mGid;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        /**
-         * TODO 并未用到GID，若有后续需求，再进行更改
-         */
-//        if (getArguments() != null) {
-//            mGid = getArguments().getString(INewsBaseUi.KEY_GID);
-//        }
-//        if (TextUtils.isEmpty(mGid)) {
-//            mGid = YYWCloudOfficeApplication.getInstance().getCurrentGid();
-//        }
-
         if (usePresenter()) {
             mPresenter = createPresenter();
             mPresenter.attach(getBaseUi());

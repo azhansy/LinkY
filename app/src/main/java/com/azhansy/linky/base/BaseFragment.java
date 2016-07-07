@@ -17,7 +17,7 @@ import android.widget.ListView;
 import com.azhansy.linky.R;
 import com.azhansy.linky.utils.DrawableUtil;
 import com.azhansy.linky.utils.KeyboardUtil;
-import com.azhansy.linky.utils.ListViewUtil;
+//import com.azhansy.linky.utils.ListViewUtil;
 
 import butterknife.ButterKnife;
 
@@ -71,27 +71,11 @@ public abstract class BaseFragment extends Fragment{
 
         super.onPrepareOptionsMenu(menu);
     }
-    /**
-     * 检查activity是否存在
-     *
-     * @return
-     */
-    public boolean checkActivity() {
-        Activity activity = getActivity();
-        return isAdded() && activity != null;
-    }
-
-
     @Override
     public void onDestroy() {
         super.onDestroy();
         ButterKnife.unbind(this);
     }
-
-
-
-
-
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -116,12 +100,10 @@ public abstract class BaseFragment extends Fragment{
         else
             return null;
     }
-
-
-
-    /**
+/*
+    *//**
      * 如果存在ListView的点击往上顶
-     */
+     *//*
     public void onListViewTop() {
         ListView mListView = (ListView) getView().findViewById(getSupportSmoothScrollToTopListViewId());
         if (mListView != null) {
@@ -130,13 +112,13 @@ public abstract class BaseFragment extends Fragment{
     }
 
     protected int getSupportSmoothScrollToTopListViewId() {
-        /**
+        *//**
          * TODO 这里移植过来的时候要报错，且不太明白以前的用意，所以这里返回空的
-         */
+         *//*
         return 0;
     }
 
     public ListView getSupportSmoothScrollToTopListView() {
         return null;
-    }
+    }*/
 }

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="20dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/id_spell"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lineSpacingMultiplier="1.2"
+        android:gravity="center"
+        android:padding="5dp"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        tools:text="bù  shí  rén  jiān  yǒu  xiū  chǐ  shì" />
+    <TextView
+        android:id="@+id/id_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lineSpacingMultiplier="1.2"
+        android:gravity="center"
+        android:padding="5dp"
+        android:textSize="18sp"
+        tools:text="不识人间有羞耻事" />
+    <TextView
+        android:id="@+id/id_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lineSpacingMultiplier="1.2"
+        android:gravity="center"
+        android:padding="5dp"
+        android:textSize="18sp"
+        tools:text="不知道人世间还有羞耻之事。形容恬不知耻。" />
+    <TextView
+        android:layout_width="match_parent"
+        android:text="例子"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginTop="10dp"
+        android:lineSpacingMultiplier="1.2"
+        android:gravity="center"
+        android:padding="5dp"
+        android:textSize="18sp"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/id_samples"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lineSpacingMultiplier="1.2"
+        android:gravity="center"
+        android:padding="5dp"
+        android:textSize="18sp"
+        tools:text="不知道人世间还有羞耻之事。形容恬不babababa知耻。" />
+
+</LinearLayout>

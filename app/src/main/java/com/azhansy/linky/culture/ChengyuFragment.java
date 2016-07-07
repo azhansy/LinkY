@@ -1,8 +1,10 @@
 package com.azhansy.linky.culture;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
@@ -10,15 +12,18 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.azhansy.linky.R;
 import com.azhansy.linky.base.BaseRecyclerViewAdapter;
 import com.azhansy.linky.base.MVP.MVPBaseFragment;
 import com.azhansy.linky.culture.adapter.ChengyuAdapter;
+import com.azhansy.linky.culture.model.ChengyuAnalysisModel;
 import com.azhansy.linky.culture.model.ChengyuModel;
 import com.azhansy.linky.culture.presenter.ChengyuPrensenterImpl;
 import com.azhansy.linky.utils.KeyboardUtil;
@@ -41,7 +46,6 @@ public class ChengyuFragment extends MVPBaseFragment<ChengyuPrensenterImpl> impl
     CommonSearchView searchView;
 
     private ChengyuAdapter adapter;
-    private String SearchKey="人";
 
     public static ChengyuFragment getInstance(){
         return new ChengyuFragment();
@@ -61,19 +65,41 @@ public class ChengyuFragment extends MVPBaseFragment<ChengyuPrensenterImpl> impl
 
     private void init() {
         adapter = new ChengyuAdapter(getActivity());
-        adapter.setOnRecycleViewItemClickListener(new BaseRecyclerViewAdapter.OnItemClickListener() {
+        adapter.setOnRecycleViewItemClickListener((view, data, position) -> {
+            //RecycleView点击事件
+            ChengyuModel.ChengyuDetailModel detailModel = (ChengyuModel.ChengyuDetailModel) data;
+            mPresenter.getChengyuAnalysis(detailModel.getId());
+        });
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),2);
+        recyclerView.setLayoutManager(gridLayoutManager);
+        recyclerView.setAdapter(adapter);
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            private int lastVisibleItem;
             @Override
-            public void onItemClick(View view, Object data, int position) {
-                ChengyuModel.ChengyuDetailModel detailModel = (ChengyuModel.ChengyuDetailModel) data;
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if (recyclerView.getAdapter() != null && newState == RecyclerView.SCROLL_STATE_IDLE
+                        && lastVisibleItem + 1 == recyclerView.getAdapter().getItemCount() && adapter.isHasMore) {
+                    mPresenter.onLoad();
+                    refreshLoading();
+                }
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                lastVisibleItem = gridLayoutManager.findLastVisibleItemPosition();
             }
         });
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),1));
-        recyclerView.setAdapter(adapter);
-        mSwipeRefreshLayout.setOnRefreshListener(this::refresh);
-        refresh();
+        mSwipeRefreshLayout.setOnRefreshListener(() -> {
+            mPresenter.onRefresh();
+        });
+        getData("人");
+        searchView.clearFocus();
+        hideInput();
     }
 
-    private void refresh() {
+    private void getData(String SearchKey) {
         mPresenter.getData(SearchKey);
         adapter.setHighLightText(SearchKey);
         refreshLoading();
@@ -84,26 +110,48 @@ public class ChengyuFragment extends MVPBaseFragment<ChengyuPrensenterImpl> impl
             @Override
             public boolean onQueryTextSubmit(String query) {
                 if (!TextUtils.isEmpty(query.trim())) {
-                    SearchKey = query.trim();
+                    getData(query.trim());
                     hideInput();
-                    refresh();
                     searchView.setVisibility(View.GONE);
                 }
-
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
                 if (!TextUtils.isEmpty(newText.trim())) {
-                    SearchKey = newText.trim();
-                    refresh();
+                    getData(newText.trim());
                 }
                 return false;
             }
         });
     }
 
+    private void SnackbarToast(ChengyuAnalysisModel.ChengyuAnalysisModelDetail analysis){
+        Snackbar snackbar = Snackbar.make(recyclerView, analysis.getContent(), Snackbar.LENGTH_LONG);
+        snackbar.show();
+        snackbar.setAction("Look", v -> {
+            AlertDialog dialog = new AlertDialog.Builder(getActivity())
+                    .setTitle("成语解析")
+                    .setView(getDialogView(analysis))
+                    .setPositiveButton("确定", null)
+                    .create();
+            dialog.show();
+        });
+    }
+
+    private View getDialogView(ChengyuAnalysisModel.ChengyuAnalysisModelDetail analysis){
+        View item = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_show_text, null);
+        TextView name = (TextView) item.findViewById(R.id.id_name);
+        TextView spell = (TextView) item.findViewById(R.id.id_spell);
+        TextView content = (TextView) item.findViewById(R.id.id_content);
+        TextView samples = (TextView) item.findViewById(R.id.id_samples);
+        name.setText(analysis.getName());
+        spell.setText(analysis.getSpell());
+        content.setText(analysis.getContent());
+        samples.setText(analysis.getSamples());
+        return item;
+    }
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
@@ -157,6 +205,13 @@ public class ChengyuFragment extends MVPBaseFragment<ChengyuPrensenterImpl> impl
         stopLoading();
         ToastUtil.showToast(getActivity(), error);
     }
+
+    @Override
+    public void getDetailSuccess(ChengyuAnalysisModel.ChengyuAnalysisModelDetail detail) {
+        stopLoading();
+        SnackbarToast(detail);
+    }
+
     @Override
     public void onDestroy() {
         super.onDestroy();

@@ -6,20 +6,19 @@
     android:minHeight="38dp"
     android:orientation="vertical">
 
-    <android.support.v7.widget.CardView
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <TextView
-            android:id="@+id/tv_name"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:textSize="22sp"
-            android:padding="10dp"
-            tools:text="name" />
-    </android.support.v7.widget.CardView>
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@drawable/background_cheng_yu"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textSize="22sp"
+        tools:text="name" />
 
-
-    <include layout="@layout/common_line" />
 </LinearLayout>

@@ -3,7 +3,6 @@ package com.azhansy.linky.culture;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
@@ -18,10 +17,8 @@ import com.azhansy.linky.base.MVP.MVPBaseFragment;
 import com.azhansy.linky.culture.adapter.MingrenAdapter;
 import com.azhansy.linky.culture.model.MingrenModel;
 import com.azhansy.linky.culture.presenter.MingrenPrensenterImpl;
-import com.azhansy.linky.utils.Logger;
 import com.azhansy.linky.utils.ToastUtil;
 import com.azhansy.linky.view.CommonSearchView;
-import com.loopj.android.http.RequestParams;
 
 import java.util.List;
 
@@ -29,6 +26,7 @@ import butterknife.Bind;
 
 /**
  * Created by SHU on 2016/7/4.
+ * 名人名言 fragment
  */
 public class MingrenFragment extends MVPBaseFragment<MingrenPrensenterImpl> implements MingrenView {
     @Bind(R.id.list_recycler_view)
@@ -36,7 +34,6 @@ public class MingrenFragment extends MVPBaseFragment<MingrenPrensenterImpl> impl
     @Bind(R.id.search_view)
     CommonSearchView searchView;
     private MingrenAdapter adapter;
-    private String SearchKey = "爱因斯坦";
 
     public static MingrenFragment getInstance(){
         return new MingrenFragment();
@@ -60,14 +57,38 @@ public class MingrenFragment extends MVPBaseFragment<MingrenPrensenterImpl> impl
     }
     private void init() {
         adapter = new MingrenAdapter(getActivity());
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),1));
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),1);
+        recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setAdapter(adapter);
-        mSwipeRefreshLayout.setOnRefreshListener(this::refresh);
-        refresh();
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            private int lastVisibleItem;
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if (recyclerView.getAdapter() != null && newState == RecyclerView.SCROLL_STATE_IDLE
+                        && lastVisibleItem + 1 == recyclerView.getAdapter().getItemCount() && adapter.isHasMore) {
+                    mPresenter.onLoad();
+                    refreshLoading();
+                }
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                lastVisibleItem = gridLayoutManager.findLastVisibleItemPosition();
+            }
+        });
+        mSwipeRefreshLayout.setOnRefreshListener(() ->
+                mPresenter.onRefresh()
+        );
+        getData("爱因斯坦");
+        searchView.clearFocus();
+        hideInput();
     }
 
-    private void refresh() {
-        mPresenter.getMingRen(SearchKey,"");
+    private void getData(String SearchKey) {
+        mPresenter.getMingRen(SearchKey);
+        adapter.setHighLightText(SearchKey);
         refreshLoading();
     }
     private void initSearchView() {
@@ -75,9 +96,8 @@ public class MingrenFragment extends MVPBaseFragment<MingrenPrensenterImpl> impl
             @Override
             public boolean onQueryTextSubmit(String query) {
                 if (!TextUtils.isEmpty(query.trim())) {
-                    SearchKey = query.trim();
+                    getData(query.trim());
                     hideInput();
-                    mPresenter.getMingRen(query.trim(),"");
                     searchView.setVisibility(View.GONE);
                 }
 
@@ -87,8 +107,7 @@ public class MingrenFragment extends MVPBaseFragment<MingrenPrensenterImpl> impl
             @Override
             public boolean onQueryTextChange(String newText) {
                 if (!TextUtils.isEmpty(newText.trim())) {
-                    SearchKey = newText.trim();
-                    mPresenter.getMingRen(newText.trim(),"");
+                    getData(newText.trim());
                 }
                 return false;
             }
@@ -135,11 +154,13 @@ public class MingrenFragment extends MVPBaseFragment<MingrenPrensenterImpl> impl
 
     @Override
     public void getDataSuccess(List<MingrenModel.MingrenDetailModel> list) {
+        stopLoading();
         adapter.replaceAll(list);
     }
 
     @Override
     public void getDataFailed(String error) {
+        stopLoading();
         ToastUtil.showToast(getActivity(),error);
     }
 

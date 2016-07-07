@@ -22,7 +22,7 @@ public class MingrenAdapter extends BaseRecyclerViewAdapter<MingrenModel.Mingren
 
     @Override
     public void showData(BaseRecyclerViewHolder holder, int position) {
-        holder.setText(R.id.tv_famous_name, mList.get(position).getFamous_name());
-        holder.setText(R.id.tv_famous_saying, mList.get(position).getFamous_saying());
+        holder.setText(R.id.tv_famous_name, mList.get(position).getFamous_name(), getHighLightText());
+        holder.setText(R.id.tv_famous_saying, mList.get(position).getFamous_saying(), getHighLightText());
     }
 }

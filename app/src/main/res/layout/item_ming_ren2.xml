@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     android:background="@color/windowBackGround"
     android:paddingBottom="10dp"
+    android:gravity="right"
     android:orientation="vertical">
 
     <TextView
@@ -12,19 +13,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="5dp"
-        android:layout_marginLeft="5dp"
-        android:textSize="16sp"
+        android:layout_marginRight="5dp"
+        android:textSize="20sp"
         tools:text="famous_name" />
 
     <TextView
         android:id="@+id/tv_famous_saying"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center|left"
-        android:background="@drawable/chat_bg_other"
-        android:textSize="16sp"
-        android:layout_marginRight="25dp"
-        android:layout_marginLeft="5dp"
+        android:gravity="center"
+        android:background="@drawable/chat_bg_normal"
+        android:textSize="20sp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="5dp"
         tools:text="famous_saying" />
 
     <include layout="@layout/common_line" />

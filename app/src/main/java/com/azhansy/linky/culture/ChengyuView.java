@@ -1,6 +1,7 @@
 package com.azhansy.linky.culture;
 
 import com.azhansy.linky.base.MVP.IBaseUi;
+import com.azhansy.linky.culture.model.ChengyuAnalysisModel;
 import com.azhansy.linky.culture.model.ChengyuModel;
 
 import java.util.List;
@@ -11,4 +12,8 @@ import java.util.List;
 public interface ChengyuView extends IBaseUi {
     void getDataSuccess(List<ChengyuModel.ChengyuDetailModel> list);
     void getDataFailed(String error);
+
+    void getDetailSuccess(ChengyuAnalysisModel.ChengyuAnalysisModelDetail detail);
+
+
 }
