@@ -72,9 +72,9 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustNothing" />
         <activity
-            android:name=".information.MoreInformActivity"
+            android:name=".information.InformActivity"
             android:exported="false"
-            android:label="更多资讯"
+            android:label="林林资讯"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustNothing" />
         <activity
@@ -87,6 +87,12 @@
             android:name=".citypicker.CityPickerActivity"
             android:exported="false"
             android:label="选择城市"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustNothing" />
+        <activity
+            android:name=".blog.BlogDetailActivity"
+            android:exported="false"
+            android:label="博客详情"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustNothing" />
         <!--高德地图定位-->

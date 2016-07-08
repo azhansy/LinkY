@@ -9,12 +9,12 @@
 3、天气预报
 http://apistore.baidu.com/apiworks/servicedetail/112.html
 
-4、看搞笑视频
+//4、看搞笑视频
 
 5、搞笑段子
 http://apistore.baidu.com/apiworks/servicedetail/864.html
 
-6、看小说
+//6、看小说
 
 7、名人名言
 http://apistore.baidu.com/apiworks/servicedetail/1756.html

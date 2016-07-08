@@ -1,18 +1,20 @@
-package com.azhansy.linky.blog.jsoup;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
-import java.util.ArrayList;
-import java.util.List;
-
-/**
- * Created by SHU on 2016/7/7.
- */
-public class BlogItemJsoup {
-//    public List<NewsItem> getNewsItems(int newsType, int curPage)
+//package com.azhansy.linky.blog.jsoup;
+//
+//import com.azhansy.linky.blog.model.BlogItem;
+//
+//import org.jsoup.Jsoup;
+//import org.jsoup.nodes.Document;
+//import org.jsoup.nodes.Element;
+//import org.jsoup.select.Elements;
+//
+//import java.util.ArrayList;
+//import java.util.List;
+//
+///**
+// * Created by SHU on 2016/7/7.
+// */
+//public class BlogItemJsoup {
+//    public List<BlogItem> getNewsItems(int newsType, int curPage)
 //            throws CommonException {
 //        List<NewsItem> newsItems = new ArrayList<>();
 //        String url = UrlUtil.getUrl(newsType, curPage);
@@ -48,4 +50,4 @@ public class BlogItemJsoup {
 //
 //        return newsItems;
 //    }
-}
+//}

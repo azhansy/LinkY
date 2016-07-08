@@ -67,7 +67,7 @@ public class ChengyuPrensenterImpl extends RxBasePresenter implements ChengyuPre
 
     @Override
     public void getChengyuAnalysis(String id) {
-        Call<ChengyuAnalysisModel> call = BaiDuStoreService.getInstance().baiDuStoreApi.getChengyuDetail(id);
+        Call<ChengyuAnalysisModel> call = BaiDuStoreService.getInstance().api.getChengyuDetail(id);
         call.enqueue(new Callback<ChengyuAnalysisModel>() {
             @Override
             public void onResponse(Call<ChengyuAnalysisModel> call, Response<ChengyuAnalysisModel> response) {

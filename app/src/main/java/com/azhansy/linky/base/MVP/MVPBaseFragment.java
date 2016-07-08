@@ -51,13 +51,13 @@ public abstract class MVPBaseFragment<Presenter extends MVPBasePresenter> extend
     }
 
     protected void refreshLoading() {
-        if (mSwipeRefreshLayout != null && !mSwipeRefreshLayout.isRefreshing()) {
+        if (mSwipeRefreshLayout != null/* && !mSwipeRefreshLayout.isRefreshing()*/) {
             mSwipeRefreshLayout.setRefreshing(true);
         }
     }
 //
     protected void stopLoading() {
-        if (mSwipeRefreshLayout != null  && mSwipeRefreshLayout.isRefreshing()) {
+        if (mSwipeRefreshLayout != null/*  && mSwipeRefreshLayout.isRefreshing()*/) {
             mSwipeRefreshLayout.setRefreshing(false);
         }
     }

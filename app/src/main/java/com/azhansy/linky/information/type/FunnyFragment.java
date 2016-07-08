@@ -1,24 +1,6 @@
 package com.azhansy.linky.information.type;
 
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.support.annotation.Nullable;
-import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-
-import com.azhansy.linky.R;
-import com.azhansy.linky.base.BaseFragment;
 import com.azhansy.linky.base.BaseWebViewFragment;
-import com.azhansy.linky.information.MoreInformActivity;
-
-import butterknife.Bind;
 
 /**
  * Created by SHU on 2016/6/27.

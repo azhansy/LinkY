@@ -23,8 +23,6 @@ public class InformTabFragment extends BaseFragment {
     TabLayout mTabls;
     @Bind(R.id.viewpager)
     ViewPager mViewpager;
-    @Bind(R.id.toolbar_title)
-    TextView mTitle;
     private InformTabFragmentPagerAdapter adapter;
 
     public static InformTabFragment getInstance(){
@@ -38,7 +36,6 @@ public class InformTabFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mTitle.setText("日常资讯");
         adapter = new InformTabFragmentPagerAdapter(getFragmentManager());
         adapter.initFragments();
 //        mViewpager.setOffscreenPageLimit(2);

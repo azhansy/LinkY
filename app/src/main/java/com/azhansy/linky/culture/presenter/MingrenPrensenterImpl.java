@@ -41,7 +41,7 @@ public class MingrenPrensenterImpl extends BaseRetrofitPresenter implements Ming
     }
 
     private void requestMingyan() {
-        Call<MingrenModel> call = BaiDuStoreService.getInstance().baiDuStoreApi.getMingren(keyword, page, "10");
+        Call<MingrenModel> call = BaiDuStoreService.getInstance().api.getMingren(keyword, page, "10");
         call.enqueue(new Callback<MingrenModel>() {
             @Override
             public void onResponse(Call<MingrenModel> call, Response<MingrenModel> response) {

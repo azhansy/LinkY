@@ -11,6 +11,7 @@ http://apistore.baidu.com/apiworks/servicedetail/112.html
 5、搞笑段子
 http://apistore.baidu.com/apiworks/servicedetail/864.html
 
+//近期不实现
 6、看小说
 7、聊天
 

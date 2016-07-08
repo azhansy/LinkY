@@ -3,18 +3,13 @@ package com.azhansy.linky.ui;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.transition.Slide;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,15 +21,12 @@ import com.azhansy.linky.base.BaseActivity;
 import com.azhansy.linky.base.LinkApplication;
 import com.azhansy.linky.blog.fragment.BlogFragment;
 import com.azhansy.linky.culture.CultureActivity;
-import com.azhansy.linky.information.InformationFragment;
-import com.azhansy.linky.information.MoreInformActivity;
+import com.azhansy.linky.information.InformActivity;
 import com.azhansy.linky.joke.JokeFragment;
 import com.azhansy.linky.login.LoginActivity;
 import com.azhansy.linky.column.ChangeChannelActivity;
-import com.azhansy.linky.novel.NovelFragment;
 import com.azhansy.linky.rx.event.ChannelEvent;
 import com.azhansy.linky.setting.SettingsActivity;
-import com.azhansy.linky.swipebackhelper.SwipeBackHelper;
 import com.azhansy.linky.utils.AppManager;
 import com.azhansy.linky.utils.Config;
 import com.azhansy.linky.utils.SharePreferenceUtil;
@@ -49,10 +41,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import butterknife.Bind;
-import rx.Subscriber;
-import rx.functions.Action1;
-import rx.functions.Func1;
-import rx.subjects.Subject;
 import rx.subscriptions.CompositeSubscription;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -122,14 +110,14 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 fragmentList.add(BlogFragment.getInstance());
                 continue;
             }
-            if (channel.toString().equals("NOVEL")) {
-                fragmentList.add(NovelFragment.getInstance());
-                continue;
-            }
-            if (channel.toString().equals("INFORMATION")) {
-                fragmentList.add(InformationFragment.getInstance());
-                continue;
-            }
+//            if (channel.toString().equals("NOVEL")) {
+//                fragmentList.add(NovelFragment.getInstance());
+//                continue;
+//            }
+//            if (channel.toString().equals("INFORMATION")) {
+//                fragmentList.add(InformationFragment.getInstance());
+//                continue;
+//            }
         }
     }
 
@@ -202,6 +190,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         switch (id) {
             case R.id.nav_login:
                 LoginActivity.launch(this);
+                break;
+            case R.id.nav_inform:
+                InformActivity.launch(this);
                 break;
             case R.id.nav_night:
                 SharePreferenceUtil.setNight(this,!SharePreferenceUtil.isNight());
