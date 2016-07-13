@@ -60,7 +60,7 @@ public class WeatherFragment extends MVPBaseFragment<WeatherPresenterImpl> imple
                 }
                 break;
             case R.id.appbar:
-                Intent intent = new Intent(mActivity, CityPickerActivity.class);
+                Intent intent = new Intent(getActivity(), CityPickerActivity.class);
                 startActivityForResult(intent, CityPickerActivity.RESULT_FIRST_USER);
                 break;
         }
@@ -157,7 +157,7 @@ public class WeatherFragment extends MVPBaseFragment<WeatherPresenterImpl> imple
 
     @Override
     public Context getPresenterContext() {
-        return mActivity;
+        return getActivity();
     }
 
 

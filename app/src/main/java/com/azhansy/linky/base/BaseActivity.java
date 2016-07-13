@@ -71,11 +71,11 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
-    protected void updateArrowTheme() {
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setHomeAsUpIndicator(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
-        }
-    }
+//    protected void updateArrowTheme() {
+//        if (getSupportActionBar() != null) {
+//            getSupportActionBar().setHomeAsUpIndicator(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
+//        }
+//    }
     @Override
     public void setContentView(int layoutResID) {
         super.setContentView(layoutResID);

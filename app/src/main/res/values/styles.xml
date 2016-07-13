@@ -141,10 +141,16 @@
         <item name="transition_end_color">#ffffff</item>
     </style>
 
-    <style name="InputDialogWithXTheme" parent="@android:style/Theme.Dialog">
+    <style name="dialog" parent="@android:style/Theme.Dialog">
         <item name="android:windowFrame">@null</item>
         <item name="android:windowNoTitle">true</item>
-        <!--替换系统对话框背景的点9图，消除黑影-->
+        <!--替换系统对话框背景的点9图，消除黑影,无标题-->
         <item name="android:windowBackground">@color/transparent</item>
+        <!-- 边框 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsTranslucent">false</item>
+        <!-- 背景透明 -->
+        <item name="android:backgroundDimEnabled">false</item>
     </style>
 </resources>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dialog_root_layout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:minWidth="85dp"
+    android:layout_gravity="center"
+    android:background="@drawable/overlay_bg" >
+
+    <LinearLayout
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:layout_width="wrap_content"
+        android:layout_height="85dp"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/dialog_center_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <!-- 在外面转的 -->
+            <ImageView
+                android:id="@+id/dialog_circle_image_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/dialog_loading_circle"
+                android:layout_centerInParent="true" />
+
+            <TextView
+                android:id="@+id/dialog_logo_image_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Y"
+                android:textColor="@android:color/white"
+                android:textSize="20dp"
+                android:layout_centerInParent="true" />
+
+        </RelativeLayout>
+
+        <!--加载进度-->
+        <LinearLayout
+            android:id="@+id/dialog_speed_progress_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:visibility="gone" >
+
+            <TextView
+                android:id="@+id/dialog_speed_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="0.0K/s"
+                android:textColor="@android:color/white"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/dialog_progress_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="加载中"
+                android:textColor="@android:color/white"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
