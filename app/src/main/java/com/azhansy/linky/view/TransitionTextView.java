@@ -18,6 +18,7 @@ public class TransitionTextView extends TextView implements PagerSlidingIndicato
     private int mEndColor = Color.BLACK;
     ArgbEvaluator mArgbEvaluator = new ArgbEvaluator();
 
+
     public TransitionTextView(Context context) {
         this(context, null);
     }
