@@ -10,7 +10,6 @@
 ///**
 // * 使用接口的形式的处理接口以及接口的回调
 // *
-// * Created by luo_shuai on 2015/9/19 17:07.
 // */
 //public abstract class ObserverBaseBusiness<T> extends BaseBusiness {
 //

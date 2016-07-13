@@ -74,8 +74,8 @@ public class JokeFragment extends MVPBaseFragment<JokePresenterImpl> implements 
 
     private void init() {
         jokeAdapter = new JokeAdapter(getActivity());
-        jokeAdapter.setOnRecycleViewItemClickListener(this);
-        mFloatBtn.setVisibility(View.VISIBLE);
+        jokeAdapter.setOnItemClickListener(this);
+//        mFloatBtn.setVisibility(View.VISIBLE);
         mSwipeRefreshLayout.setOnRefreshListener(() -> {
             page = 1;
             getData();

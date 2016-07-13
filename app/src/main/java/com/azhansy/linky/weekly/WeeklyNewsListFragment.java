@@ -1,21 +1,14 @@
-package com.azhansy.linky.blog.fragment;
+package com.azhansy.linky.weekly;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.View;
+import android.widget.TextView;
 
 import com.azhansy.linky.R;
-import com.azhansy.linky.base.BaseRecyclerViewAdapter;
 import com.azhansy.linky.base.MVP.MVPBaseFragment;
-import com.azhansy.linky.blog.BlogAdapter;
-import com.azhansy.linky.blog.BlogDetailActivity;
-import com.azhansy.linky.blog.BlogView;
-import com.azhansy.linky.blog.model.BlogDetail;
-import com.azhansy.linky.blog.model.BlogItem;
-import com.azhansy.linky.blog.presenter.BlogListFragmentPrensenterImpl;
 import com.azhansy.linky.utils.ToastUtil;
 
 import java.util.List;
@@ -24,49 +17,42 @@ import butterknife.Bind;
 import butterknife.OnClick;
 
 /**
- * Created by SHU on 2016/6/30.
- * 个人博客
+ * Created by SHU on 2016/7/13.
  */
-public class BlogListFragment extends MVPBaseFragment<BlogListFragmentPrensenterImpl>  implements BlogView {
-    public static String STRINGURL = "BlogListFragment";
+public class WeeklyNewsListFragment extends MVPBaseFragment<WeeklyNewsPresenterImpl> implements WeeklyView {
+    @Bind(R.id.toolbar_title)
+    TextView mTitle;
     @Bind(R.id.list_recycler_view)
     RecyclerView mRecycleView;
-    private BlogAdapter blogAdapter;
+    private WeeklyNewsAdapter weeklyAdapter;
     @OnClick(R.id.float_btn)
     void OnClick() {
         mRecycleView.smoothScrollToPosition(0);
     }
+
+    public static WeeklyNewsListFragment getInstance(){
+        return  new WeeklyNewsListFragment();
+    }
     @Override
     protected int getLayoutResource() {
-        return R.layout.fragment_blog_list;
-    }
-
-    public static BlogListFragment getInstance(String name){
-        Bundle arguments = new Bundle();
-        arguments.putString(BlogListFragment.STRINGURL,name);
-        BlogListFragment fragment = new BlogListFragment();
-        fragment.setArguments(arguments);
-        return fragment;
+        return R.layout.layout_of_recycle;
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        String name =getArguments().getString(BlogListFragment.STRINGURL);
-        if (TextUtils.isEmpty(name)) {
-            name = "azhansy";
-        }
-        blogAdapter = new BlogAdapter(getActivity());
+        mTitle.setText("Android周报");
+        weeklyAdapter = new WeeklyNewsAdapter(getActivity());
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 1);
         mRecycleView.setLayoutManager(gridLayoutManager);
-        mRecycleView.setAdapter(blogAdapter);
+        mRecycleView.setAdapter(weeklyAdapter);
         mRecycleView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             private int lastItem;
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
                 if (newState == RecyclerView.SCROLL_STATE_IDLE
-                        && lastItem + 1 == mRecycleView.getAdapter() .getItemCount() && blogAdapter.isHasMore) {
+                        && lastItem + 1 == mRecycleView.getAdapter() .getItemCount() && weeklyAdapter.isHasMore) {
                     refreshLoading();
                     mPresenter.onLoad();
                 }
@@ -78,11 +64,11 @@ public class BlogListFragment extends MVPBaseFragment<BlogListFragmentPrensenter
                 lastItem = gridLayoutManager.findLastVisibleItemPosition();
             }
         });
-        mPresenter.getBlogForName(name);
+        mPresenter.getNews();
         mSwipeRefreshLayout.setOnRefreshListener(() -> mPresenter.onRefresh());
-        blogAdapter.setOnItemClickListener((view1, data, position) -> {
-            BlogItem item = (BlogItem) data;
-            BlogDetailActivity.launch(getActivity(),item.getLink());
+        weeklyAdapter.setOnItemClickListener((view1, data, position) -> {
+            WeeklyModel item = (WeeklyModel) data;
+            WeeklyNewsDetailActivity.launch(getActivity(),item.getUrl());
         });
     }
 
@@ -92,23 +78,22 @@ public class BlogListFragment extends MVPBaseFragment<BlogListFragmentPrensenter
     }
 
     @Override
-    protected BlogListFragmentPrensenterImpl createPresenter() {
-        return new BlogListFragmentPrensenterImpl();
+    protected WeeklyNewsPresenterImpl createPresenter() {
+        return new WeeklyNewsPresenterImpl();
     }
-
     @Override
     public Context getPresenterContext() {
         return getActivity();
     }
 
     @Override
-    public void LoadHtmlSuccess(List<BlogItem> list) {
+    public void LoadHtmlSuccess(List<WeeklyModel> list) {
         stopLoading();
-        blogAdapter.replaceAll(list);
+        weeklyAdapter.replaceAll(list);
     }
 
     @Override
-    public void LoadHtmlSuccess(BlogDetail blogDetail) {
+    public void LoadHtmlSuccess(WeeklyModel model) {
 
     }
 

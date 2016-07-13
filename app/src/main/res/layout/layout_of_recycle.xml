@@ -57,6 +57,7 @@
         android:layout_alignParentRight="true"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
+        android:visibility="gone"
         android:src="@android:drawable/ic_menu_upload"
         app:layout_behavior="com.azhansy.linky.view.ScrollAwareFABBehavior"
         app:rippleColor="@color/menu_item_blue" />

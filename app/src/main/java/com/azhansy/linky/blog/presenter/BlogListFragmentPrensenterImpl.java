@@ -65,11 +65,11 @@ public class BlogListFragmentPrensenterImpl extends MVPBasePresenter implements 
                     BlogView view = getActualUi();
 //                    view.LoadHtmlSuccess(response.body().string());
                     if (page != 1) {
-                        for (BlogItem blogItem : JsoupParseUtil.JsoupParse(response.body().string())) {
+                        for (BlogItem blogItem : JsoupParseUtil.JsoupBlogParse(response.body().string())) {
                             blogItemList.add(blogItem);
                         }
                     }else {
-                        blogItemList =  JsoupParseUtil.JsoupParse(response.body().string());
+                        blogItemList =  JsoupParseUtil.JsoupBlogParse(response.body().string());
                     }
                     view.LoadHtmlSuccess(blogItemList);
                     Logger.d(response.body().string());

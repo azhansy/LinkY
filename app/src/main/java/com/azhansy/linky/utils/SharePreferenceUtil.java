@@ -32,7 +32,7 @@ public class SharePreferenceUtil {
         return prefs.getString("cityName", "湛江");
     }
 
-    public static void setCityName(Context context, String name){
+    public static void setCityName(String name){
         prefs.edit().putString("cityName", name).apply();
     }
 }

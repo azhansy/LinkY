@@ -65,7 +65,7 @@ public class ChengyuFragment extends MVPBaseFragment<ChengyuPrensenterImpl> impl
 
     private void init() {
         adapter = new ChengyuAdapter(getActivity());
-        adapter.setOnRecycleViewItemClickListener((view, data, position) -> {
+        adapter.setOnItemClickListener((view, data, position) -> {
             //RecycleView点击事件
             ChengyuModel.ChengyuDetailModel detailModel = (ChengyuModel.ChengyuDetailModel) data;
             mPresenter.getChengyuAnalysis(detailModel.getId());

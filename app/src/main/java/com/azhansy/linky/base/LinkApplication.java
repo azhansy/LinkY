@@ -8,6 +8,8 @@ import com.avos.avoscloud.AVObject;
 import com.azhansy.linky.rx.RxBus;
 import com.azhansy.linky.model.UserModel;
 import com.azhansy.linky.utils.SharePreferenceUtil;
+import com.squareup.leakcanary.LeakCanary;
+import com.squareup.leakcanary.RefWatcher;
 
 /**
  * Created by 神奇勇士 on 2016/6/15.
@@ -15,11 +17,13 @@ import com.azhansy.linky.utils.SharePreferenceUtil;
 public class LinkApplication extends Application {
     private static Context context;
     private static LinkApplication INSTANCE;
+    private RefWatcher mRefWatcher;
     private RxBus bus ;
     @Override
     public void onCreate() {
         super.onCreate();
         SharePreferenceUtil.init(this);
+        mRefWatcher = LeakCanary.install(this);
         INSTANCE = this;
         bus = new RxBus();
         context = getApplicationContext();

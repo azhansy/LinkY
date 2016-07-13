@@ -125,7 +125,7 @@ public class WeatherFragment extends MVPBaseFragment<WeatherPresenterImpl> imple
                 params.put("cityname", cityName);
                 mPresenter.getData(params);
                 mCity.setText(cityName);
-                SharePreferenceUtil.setCityName(mActivity, cityName);
+                SharePreferenceUtil.setCityName(cityName);
             }
         }
     }

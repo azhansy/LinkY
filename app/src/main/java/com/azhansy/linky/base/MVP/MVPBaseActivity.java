@@ -13,7 +13,6 @@ import com.azhansy.linky.base.BaseActivity;
 
 
 /**
- * Created by jd on 2015/10/12.
  */
 public abstract class MVPBaseActivity<Presenter extends MVPBasePresenter> extends BaseActivity {
 

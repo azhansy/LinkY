@@ -21,6 +21,7 @@
     <string name="fragment_joke_title">笑话全集</string>
     <string name="fragment_blog_title">技术博客</string>
     <string name="fragment_novel_title">小说全集</string>
+    <string name="fragment_weekly_title">Android周报</string>
     <string name="fragment_information_title">日常资讯</string>
     <string name="more_information">更多资讯</string>
 

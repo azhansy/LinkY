@@ -8,7 +8,6 @@ import java.lang.ref.WeakReference;
 
 /**
  *
- * Created by luo_shuai on 2015/9/23 11:11.
  */
 public abstract class ObserverBasePresenter<T extends ObserverPresenterBaseUi> implements ObserverPresenter<T> {
 

@@ -33,6 +33,8 @@ import com.azhansy.linky.utils.SharePreferenceUtil;
 import com.azhansy.linky.utils.ToastUtil;
 import com.azhansy.linky.weather.WeatherFragment;
 import com.azhansy.linky.weather.bean.TodayBean;
+import com.azhansy.linky.weekly.WeeklyNewsFragment;
+import com.azhansy.linky.weekly.WeeklyNewsListFragment;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -108,6 +110,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             }
             if (channel.toString().equals("BLOG")) {
                 fragmentList.add(BlogFragment.getInstance());
+                continue;
+            }
+            if (channel.toString().equals("WEEKLY")) {
+                fragmentList.add(WeeklyNewsListFragment.getInstance());
                 continue;
             }
 //            if (channel.toString().equals("NOVEL")) {

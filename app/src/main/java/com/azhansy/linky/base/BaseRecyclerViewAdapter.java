@@ -29,7 +29,7 @@ public abstract class BaseRecyclerViewAdapter<T> extends RecyclerView.Adapter<Ba
     public interface OnItemClickListener {
         void onItemClick(View view, Object data, int position);
     }
-    public void setOnRecycleViewItemClickListener(OnItemClickListener lis){
+    public void setOnItemClickListener(OnItemClickListener lis){
         this.listener = lis;
     }
 
