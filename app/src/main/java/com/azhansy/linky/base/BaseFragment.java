@@ -12,26 +12,25 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.ListView;
 
 import com.azhansy.linky.R;
+import com.azhansy.linky.dialog.LoadDialogFragment;
 import com.azhansy.linky.utils.DrawableUtil;
 import com.azhansy.linky.utils.KeyboardUtil;
-//import com.azhansy.linky.utils.ListViewUtil;
 
 import butterknife.ButterKnife;
 
 /**
  * Created by SHU on 2016/6/17.
  */
-public abstract class BaseFragment extends Fragment{
+public abstract class BaseFragment extends Fragment {
     protected abstract int getLayoutResource();
-    protected Activity mActivity;   //全局的activity的引用，避免内存回收时导致getActivity()为null的情况
+    protected LoadDialogFragment loadingDialog;
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        mActivity=getActivity();
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        loadingDialog = new LoadDialogFragment.Builder(this).build();
     }
 
     @Override
@@ -89,7 +88,6 @@ public abstract class BaseFragment extends Fragment{
 
     /**
      * Get string extra from activity's intent
-     *
      * @param name
      * @return extra
      */
@@ -100,25 +98,15 @@ public abstract class BaseFragment extends Fragment{
         else
             return null;
     }
-/*
-    *//**
-     * 如果存在ListView的点击往上顶
-     *//*
-    public void onListViewTop() {
-        ListView mListView = (ListView) getView().findViewById(getSupportSmoothScrollToTopListViewId());
-        if (mListView != null) {
-            ListViewUtil.smoothScrollListViewToTop(mListView);
+    public void showLoadingDialog() {
+        if (loadingDialog != null && !loadingDialog.isShowing(this)) {
+            loadingDialog.show(this);
         }
     }
 
-    protected int getSupportSmoothScrollToTopListViewId() {
-        *//**
-         * TODO 这里移植过来的时候要报错，且不太明白以前的用意，所以这里返回空的
-         *//*
-        return 0;
+    public void closeLoadingDialog() {
+        if (loadingDialog != null) {
+            loadingDialog.dismiss();
+        }
     }
-
-    public ListView getSupportSmoothScrollToTopListView() {
-        return null;
-    }*/
 }

@@ -226,7 +226,7 @@ public class InputDialogWithX extends Dialog {
 
         public InputDialogWithX create() {
 
-            InputDialogWithX dialog = new InputDialogWithX(context,R.style.InputDialogWithXTheme);
+            InputDialogWithX dialog = new InputDialogWithX(context,R.style.dialog);
             if (!TextUtils.isEmpty(title)) {
                 dialog.setTitle(title);
             }
