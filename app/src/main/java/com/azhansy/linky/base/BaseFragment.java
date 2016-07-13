@@ -28,6 +28,7 @@ public abstract class BaseFragment extends Fragment{
     protected abstract int getLayoutResource();
     protected Activity mActivity;   //全局的activity的引用，避免内存回收时导致getActivity()为null的情况
 
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
