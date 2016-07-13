@@ -2,16 +2,12 @@ package com.azhansy.linky.blog.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 
 import com.azhansy.linky.R;
-import com.azhansy.linky.base.BaseRecyclerViewAdapter;
 import com.azhansy.linky.base.MVP.MVPBaseFragment;
-import com.azhansy.linky.blog.BlogAdapter;
-import com.azhansy.linky.blog.BlogDetailActivity;
 import com.azhansy.linky.blog.BlogView;
 import com.azhansy.linky.blog.model.BlogDetail;
 import com.azhansy.linky.blog.model.BlogItem;
@@ -31,7 +27,7 @@ public class BlogListFragment extends MVPBaseFragment<BlogListFragmentPrensenter
     public static String STRINGURL = "BlogListFragment";
     @Bind(R.id.list_recycler_view)
     RecyclerView mRecycleView;
-    private BlogAdapter blogAdapter;
+//    private BlogAdapter blogAdapter;
     @OnClick(R.id.float_btn)
     void OnClick() {
         mRecycleView.smoothScrollToPosition(0);
@@ -53,37 +49,38 @@ public class BlogListFragment extends MVPBaseFragment<BlogListFragmentPrensenter
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         String name =getArguments().getString(BlogListFragment.STRINGURL);
-        if (TextUtils.isEmpty(name)) {
-            name = "azhansy";
-        }
-        blogAdapter = new BlogAdapter(getActivity());
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 1);
-        mRecycleView.setLayoutManager(gridLayoutManager);
-        mRecycleView.setAdapter(blogAdapter);
-        mRecycleView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            private int lastItem;
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-                if (newState == RecyclerView.SCROLL_STATE_IDLE
-                        && lastItem + 1 == mRecycleView.getAdapter() .getItemCount() && blogAdapter.isHasMore) {
-                    refreshLoading();
-                    mPresenter.onLoad();
-                }
-            }
-
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                lastItem = gridLayoutManager.findLastVisibleItemPosition();
-            }
-        });
+        mPresenter.initPresenter();
+//        blogAdapter = new BlogAdapter(getActivity());
+//        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 1);
+//        mRecycleView.setLayoutManager(gridLayoutManager);
+//        mRecycleView.setAdapter(blogAdapter);
+//        mRecycleView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+//            private int lastItem;
+//            @Override
+//            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+//                super.onScrollStateChanged(recyclerView, newState);
+//                if (newState == RecyclerView.SCROLL_STATE_IDLE
+//                        && lastItem + 1 == mRecycleView.getAdapter() .getItemCount() && blogAdapter.isHasMore) {
+//                    refreshLoading();
+//                    mPresenter.onLoad();
+//                }
+//            }
+//
+//            @Override
+//            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+//                super.onScrolled(recyclerView, dx, dy);
+//                lastItem = gridLayoutManager.findLastVisibleItemPosition();
+//            }
+//        });
+//        mPresenter.getBlogForName(name);
+//        mSwipeRefreshLayout.setOnRefreshListener(() -> mPresenter.onRefresh());
+//        blogAdapter.setOnItemClickListener((view1, data, position) -> {
+//            BlogItem item = (BlogItem) data;
+//            BlogDetailActivity.launch(getActivity(),item.getLink());
+//        });
         mPresenter.getBlogForName(name);
         mSwipeRefreshLayout.setOnRefreshListener(() -> mPresenter.onRefresh());
-        blogAdapter.setOnItemClickListener((view1, data, position) -> {
-            BlogItem item = (BlogItem) data;
-            BlogDetailActivity.launch(getActivity(),item.getLink());
-        });
+        showLoadingDialog();
     }
 
     @Override
@@ -104,7 +101,8 @@ public class BlogListFragment extends MVPBaseFragment<BlogListFragmentPrensenter
     @Override
     public void LoadHtmlSuccess(List<BlogItem> list) {
         stopLoading();
-        blogAdapter.replaceAll(list);
+        closeLoadingDialog();
+//        blogAdapter.replaceAll(list);
     }
 
     @Override
@@ -115,6 +113,12 @@ public class BlogListFragment extends MVPBaseFragment<BlogListFragmentPrensenter
     @Override
     public void LoadHtmlFailed(String error) {
         stopLoading();
+        closeLoadingDialog();
         ToastUtil.showToast(getActivity(),error);
+    }
+
+    @Override
+    public RecyclerView getRecyclerView() {
+        return mRecycleView;
     }
 }

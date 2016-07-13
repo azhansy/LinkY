@@ -99,12 +99,19 @@ public abstract class BaseFragment extends Fragment {
         else
             return null;
     }
+
+    /**
+     * 显示加载动画
+     */
     public void showLoadingDialog() {
         if (loadingDialog != null && !loadingDialog.isShowing(this)) {
             loadingDialog.show(this);
         }
     }
 
+    /**
+     * 关闭加载动画
+     */
     public void closeLoadingDialog() {
         if (loadingDialog != null) {
             loadingDialog.dismiss();

@@ -70,6 +70,7 @@ public class WeeklyNewsListFragment extends MVPBaseFragment<WeeklyNewsPresenterI
             WeeklyModel item = (WeeklyModel) data;
             WeeklyNewsDetailActivity.launch(getActivity(),item.getUrl());
         });
+        showLoadingDialog();
     }
 
     @Override
@@ -89,6 +90,7 @@ public class WeeklyNewsListFragment extends MVPBaseFragment<WeeklyNewsPresenterI
     @Override
     public void LoadHtmlSuccess(List<WeeklyModel> list) {
         stopLoading();
+        closeLoadingDialog();
         weeklyAdapter.replaceAll(list);
     }
 
@@ -100,6 +102,7 @@ public class WeeklyNewsListFragment extends MVPBaseFragment<WeeklyNewsPresenterI
     @Override
     public void LoadHtmlFailed(String error) {
         stopLoading();
+        closeLoadingDialog();
         ToastUtil.showToast(getActivity(),error);
     }
 }

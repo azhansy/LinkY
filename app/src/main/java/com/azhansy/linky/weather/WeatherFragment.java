@@ -86,6 +86,7 @@ public class WeatherFragment extends MVPBaseFragment<WeatherPresenterImpl> imple
         params.put("cityname", SharePreferenceUtil.getCityName());
         mPresenter.getData(params);
         refreshLoading();
+        showLoadingDialog();
     }
 
     public static WeatherFragment getInstance() {
@@ -112,6 +113,7 @@ public class WeatherFragment extends MVPBaseFragment<WeatherPresenterImpl> imple
     public void setHead(String s) {
         mCity.setText(s);
         stopLoading();
+        closeLoadingDialog();
     }
 
     @Override
@@ -124,6 +126,7 @@ public class WeatherFragment extends MVPBaseFragment<WeatherPresenterImpl> imple
                 RequestParams params = new RequestParams();
                 params.put("cityname", cityName);
                 mPresenter.getData(params);
+                showLoadingDialog();
                 mCity.setText(cityName);
                 SharePreferenceUtil.setCityName(cityName);
             }
@@ -153,6 +156,7 @@ public class WeatherFragment extends MVPBaseFragment<WeatherPresenterImpl> imple
     public void getDataFail() {
         ToastUtil.showToast(getActivity(), "请求失败，请稍后再试");
         stopLoading();
+        closeLoadingDialog();
     }
 
     @Override

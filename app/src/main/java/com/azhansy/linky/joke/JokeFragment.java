@@ -115,6 +115,8 @@ public class JokeFragment extends MVPBaseFragment<JokePresenterImpl> implements 
     private void getData() {
         mPresenter.getData(page);
         refreshLoading();
+        showLoadingDialog();
+
     }
 
     @Override
@@ -126,6 +128,7 @@ public class JokeFragment extends MVPBaseFragment<JokePresenterImpl> implements 
     @Override
     public void addListData(JokeBeanHead jokeBeanHead) {
        stopLoading();
+        closeLoadingDialog();
         if (page == 1) {
             jokeAdapter.replaceAll(jokeBeanHead.getJokeBeanList());
         } else {
@@ -136,6 +139,7 @@ public class JokeFragment extends MVPBaseFragment<JokePresenterImpl> implements 
     @Override
     public void getDataFailed(String error) {
       stopLoading();
+        closeLoadingDialog();
         ToastUtil.showToast(getActivity(), error);
     }
 

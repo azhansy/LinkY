@@ -38,7 +38,7 @@ public class LoadDialogFragment extends DialogFragment {
     /**
      * 默认圆圈动画时间，单位毫秒
      */
-    private static final long DEFAULT_ANIM_DURATION = 1500;
+    private static final long DEFAULT_ANIM_DURATION = 800;
     private Long mAnimDuration;
 
     @Nullable
@@ -52,9 +52,15 @@ public class LoadDialogFragment extends DialogFragment {
         return view;
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setStyle(DialogFragment.STYLE_NORMAL,R.style.dialog);
+    }
+
     /**
      * 设置动画
-     * @param defaultAnimDuration 动画时间
+     * @param defaultAnimDuration 一圈旋转动画时间
      */
     private void setLoadingAimationDuration(long defaultAnimDuration) {
         ObjectAnimator animator = ObjectAnimator.ofFloat(mCircleView, "rotation", 0, 359);
@@ -182,10 +188,17 @@ public class LoadDialogFragment extends DialogFragment {
         }
         public LoadDialogFragment build() {
             LoadDialogFragment fragment = new LoadDialogFragment();
+            fragment.mTag = getTag(tagObj);
             fragment.mAnimDuration = duration;
             fragment.mCancelable = cancelable;
             fragment.mOutsideCancelable = outsideCancelable;
             return fragment;
+        }
+        private String getTag(Object tagObj) {
+            if (tagObj == null) {
+                return null;
+            }
+            return tagObj.getClass().getName() + '@' + Integer.toHexString(tagObj.hashCode());
         }
     }
 

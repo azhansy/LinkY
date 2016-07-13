@@ -90,6 +90,7 @@ public class MingrenFragment extends MVPBaseFragment<MingrenPrensenterImpl> impl
         mPresenter.getMingRen(SearchKey);
         adapter.setHighLightText(SearchKey);
         refreshLoading();
+        showLoadingDialog();
     }
     private void initSearchView() {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -155,12 +156,14 @@ public class MingrenFragment extends MVPBaseFragment<MingrenPrensenterImpl> impl
     @Override
     public void getDataSuccess(List<MingrenModel.MingrenDetailModel> list) {
         stopLoading();
+        closeLoadingDialog();
         adapter.replaceAll(list);
     }
 
     @Override
     public void getDataFailed(String error) {
         stopLoading();
+        closeLoadingDialog();
         ToastUtil.showToast(getActivity(),error);
     }
 

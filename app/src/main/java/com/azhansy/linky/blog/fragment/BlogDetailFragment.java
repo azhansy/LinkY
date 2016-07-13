@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.WebSettings;
@@ -130,6 +131,11 @@ public class BlogDetailFragment extends MVPBaseFragment<BlogListFragmentPrensent
     public void LoadHtmlFailed(String error) {
         stopLoading();
         ToastUtil.showToast(getActivity(),error);
+    }
+
+    @Override
+    public RecyclerView getRecyclerView() {
+        return null;
     }
 
     @Override
