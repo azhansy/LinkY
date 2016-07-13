@@ -51,8 +51,11 @@ public class WeeklyNewsPresenterImpl extends MVPBasePresenter implements WeeklyN
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 WeeklyView view = getActualUi();
-                view.LoadHtmlFailed(t.toString());
-                Logger.d(t.toString());
+                if (view != null && t != null) {
+                    view.LoadHtmlFailed(t.toString());
+                    Logger.d(t.toString());
+                }
+
             }
         });
     }

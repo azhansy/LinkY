@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:showDividers="middle"
+    app:paddingStart="@dimen/activity_horizontal_margin"
+    app:divider="@color/common_divide_line_color"
     android:background="@color/windowBackGround"
     android:paddingBottom="10dp"
     android:orientation="vertical">
@@ -22,10 +26,11 @@
         android:layout_height="wrap_content"
         android:gravity="center|left"
         android:background="@drawable/chat_bg_other"
+        android:textIsSelectable="true"
         android:textSize="16sp"
         android:layout_marginRight="25dp"
         android:layout_marginLeft="5dp"
         tools:text="famous_saying" />
 
     <include layout="@layout/common_line" />
-</LinearLayout>
+</android.support.v7.widget.LinearLayoutCompat>

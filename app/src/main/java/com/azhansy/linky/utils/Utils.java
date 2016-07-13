@@ -1,6 +1,8 @@
 package com.azhansy.linky.utils;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -28,6 +30,7 @@ import android.widget.TextView;
 
 
 import com.azhansy.linky.R;
+import com.azhansy.linky.citypicker.utils.ToastUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -257,37 +260,6 @@ public class Utils {
     }
 
 
-
-    /**
-     * 关键字高亮（不带样式）
-     * @param context
-     * @param text
-     * @param keyword
-     * @return
-     */
-    public static SpannableString getHighLight(Context context, String text, String keyword) {
-        if (TextUtils.isEmpty(text)) return null;
-        SearchHighlightModel highlightModel = new SearchHighlightModel();
-        highlightModel.setSpannableString(text, keyword, DrawableUtil.getPrimaryColor(context));
-        return highlightModel.getSpannableString();
-    }
-
-    /**
-     * 关键字高亮（带样式）
-     *
-     * @param context
-     * @param text
-     * @param style
-     * @param keyword
-     * @return
-     */
-    public static SpannableString getHighLight(Context context, String text, int style, String keyword) {
-        if (TextUtils.isEmpty(text)) return null;
-        SearchHighlightModel highlightModel = new SearchHighlightModel();
-        highlightModel.setSpannableString(context, text, keyword, style);
-        return highlightModel.getSpannableString();
-    }
-
     public static String getEditText(TextView editText) {
         if (TextUtils.isEmpty(editText.getText())) {
             return "";
@@ -350,5 +322,30 @@ public class Utils {
         WindowManager windowManager = ((Activity)context).getWindowManager();
         Display display = windowManager.getDefaultDisplay();
         return  display.getHeight();
+    }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    public static void setClipboard(String text, Context mContext) {
+        setClipboard(text, mContext, false);
+    }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    public static void setClipboard(String text, Context mContext, boolean isUrlCopy) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
+            android.text.ClipboardManager clipboard = (android.text.ClipboardManager) mContext
+                    .getSystemService(Context.CLIPBOARD_SERVICE);
+            clipboard.setText(text);
+        } else {
+            ClipboardManager clipboard = (ClipboardManager) mContext
+                    .getSystemService(Context.CLIPBOARD_SERVICE);
+            clipboard.setText(text);
+        }
+        if (mContext instanceof Activity) {
+            if (isUrlCopy) {
+                ToastUtils.showToast(mContext, "复制成功");
+            } else {
+                ToastUtils.showToast(mContext, "复制成功");
+            }
+        }
     }
 }

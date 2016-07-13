@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:layout_gravity="center"
+        android:textIsSelectable="true"
         android:gravity="center"
         android:background="@drawable/background_cheng_yu"
         android:paddingTop="2dp"
