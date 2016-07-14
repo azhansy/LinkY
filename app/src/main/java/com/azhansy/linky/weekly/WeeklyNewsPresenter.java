@@ -7,5 +7,6 @@ import com.azhansy.linky.base.MVP.LoadBasePresenter;
  */
 public interface WeeklyNewsPresenter  extends LoadBasePresenter {
     void getNews();
-    void getNewsDetailForUrl(String url);
+    void getWeeklyList(String url);
+//    void getNewsDetailForUrl(String url);
 }

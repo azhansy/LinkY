@@ -14,5 +14,8 @@ public interface WeeklyApi {
     Call<ResponseBody> getWeeklyNews(@Path("page") int page);
 
     @GET()
+    Call<ResponseBody> getWeeklyNewsList(@Url String url);//一期周报里面有多少内容列表
+
+    @GET()
     Call<ResponseBody> getWeeklyNewsDetail(@Url String url);
 }

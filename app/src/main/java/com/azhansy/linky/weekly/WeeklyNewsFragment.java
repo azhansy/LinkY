@@ -15,7 +15,7 @@ import butterknife.Bind;
  * Created by SHU on 2016/7/12.
  */
 public class WeeklyNewsFragment extends MVPBaseFragment {
-    private static final String WEEKLYNEWSFRAGMENT = "";
+    private static String WEEKLYNEWSFRAGMENT="WeeklyNewsFragment";
     @Bind(R.id.web_view)
     WebView mWebView;
 
@@ -27,7 +27,7 @@ public class WeeklyNewsFragment extends MVPBaseFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        String url = getStringExtra(WEEKLYNEWSFRAGMENT);
+        String url = getArguments().getString(WEEKLYNEWSFRAGMENT);
         if (!TextUtils.isEmpty(url)) {
             mWebView.loadUrl(url);//http://androidweekly.cn/
         }

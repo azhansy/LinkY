@@ -21,7 +21,7 @@ public abstract class BaseRetrofitService<T> {
         this(true);
     }
     /**
-     * @param isJson 返回的是不是Json格式，是就要设置为true
+     * @param isJson 返回的是不是Json格式，是就要设置为true，否则为false
      */
     public BaseRetrofitService(boolean isJson) {
         //手动创建一个OkHttpClient并设置超时时间

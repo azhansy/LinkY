@@ -92,7 +92,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         addFragment();//初始化碎片
         initMenu(); //初始化菜单
     }
-
+private WeeklyNewsListFragment weeklyNewsListFragment;
     private void addFragment() {
         if (fragmentList != null) {
             fragmentList.clear();
@@ -113,7 +113,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 continue;
             }
             if (channel.toString().equals("WEEKLY")) {
-                fragmentList.add(WeeklyNewsListFragment.getInstance());
+                if (weeklyNewsListFragment == null) {
+                    weeklyNewsListFragment = WeeklyNewsListFragment.getInstance();
+                }
+                fragmentList.add(weeklyNewsListFragment);
                 continue;
             }
 //            if (channel.toString().equals("NOVEL")) {
@@ -220,8 +223,12 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     }
     @Override
     public void onBackPressed() {
-        if(!closeDrawerLayout()){
-            exitBy2Click();
+        if (weeklyNewsListFragment != null && weeklyNewsListFragment.grade == 1) {
+           weeklyNewsListFragment.onBackPress();
+        }else {
+            if(!closeDrawerLayout()){
+                exitBy2Click();
+            }
         }
     }
 

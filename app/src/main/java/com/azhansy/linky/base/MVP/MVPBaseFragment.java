@@ -28,7 +28,6 @@ public abstract class MVPBaseFragment<Presenter extends MVPBasePresenter> extend
             mPresenter = createPresenter();
             mPresenter.attach(getBaseUi());
         }
-
     }
 
     @Override

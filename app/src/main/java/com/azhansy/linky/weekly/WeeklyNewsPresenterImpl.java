@@ -27,6 +27,9 @@ public class WeeklyNewsPresenterImpl extends MVPBasePresenter implements WeeklyN
     }
 
     private void getWeekly(){
+        if (call != null) {
+            call.cancel();
+        }
         call = WeeklyService.getInstance().api.getWeeklyNews(page);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -59,17 +62,23 @@ public class WeeklyNewsPresenterImpl extends MVPBasePresenter implements WeeklyN
             }
         });
     }
-
     @Override
-    public void getNewsDetailForUrl(String url) {
-        Call<ResponseBody> responseBodyCall = WeeklyService.getInstance().api.getWeeklyNewsDetail(url);
-        responseBodyCall.enqueue(new Callback<ResponseBody>() {
+    public void getWeeklyList(String url){
+        if (call != null) {
+            call.cancel();
+        }
+        call = WeeklyService.getInstance().api.getWeeklyNewsList(url);
+        call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 try {
                     WeeklyView view = getActualUi();
-                    WeeklyModel model = JsoupParseUtil.getWeeklyModel(response.body().string());
-                    view.LoadHtmlSuccess(model);
+                    weeklyModelList.clear();
+                    for (WeeklyModel item : JsoupParseUtil.getWeeklyModelList(response.body().string())) {
+                        weeklyModelList.add(item);
+                    }
+                    view.LoadHtmlSuccess(weeklyModelList);
+                    Logger.d(response.body().string());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -78,10 +87,38 @@ public class WeeklyNewsPresenterImpl extends MVPBasePresenter implements WeeklyN
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 WeeklyView view = getActualUi();
-                view.LoadHtmlFailed("请求失败");
+                if (view != null && t != null) {
+                    view.LoadHtmlFailed(t.toString());
+//                    getNews();
+                    Logger.d(t.toString());
+                }
+
             }
         });
     }
+
+//    @Override
+//    public void getNewsDetailForUrl(String url) {
+//        Call<ResponseBody> responseBodyCall = WeeklyService.getInstance().api.getWeeklyNewsDetail(url);
+//        responseBodyCall.enqueue(new Callback<ResponseBody>() {
+//            @Override
+//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//                try {
+//                    WeeklyView view = getActualUi();
+//                    WeeklyModel model = JsoupParseUtil.getWeeklyModel(response.body().string());
+//                    view.LoadHtmlSuccess(model);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ResponseBody> call, Throwable t) {
+//                WeeklyView view = getActualUi();
+//                view.LoadHtmlFailed("请求失败");
+//            }
+//        });
+//    }
     @Override
     public void onRefresh() {
         if (call != null) {

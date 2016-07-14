@@ -14,6 +14,7 @@ import java.util.List;
 
 /**
  * Created by SHU on 2016/7/8.
+ * 网页Jsoup解析类
  */
 public class JsoupParseUtil {
     /**
@@ -96,6 +97,7 @@ public class JsoupParseUtil {
                 weekly.setContent(content.text());
                 Element date = element.getElementsByClass("post-meta").get(0).getElementsByClass("post-date").get(0);
                 weekly.setTime(date.text());
+                weeklyModelList.add(weekly);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -104,18 +106,29 @@ public class JsoupParseUtil {
     }
 
     /**
-     * @param htmlStr 开发周报详情
+     * @param htmlStr 开发一期周报详情列表
      * @return
      */
-    public static WeeklyModel getWeeklyModel(String htmlStr) {
-        WeeklyModel detail1 = new WeeklyModel();
+    public static List<WeeklyModel> getWeeklyModelList(String htmlStr) {
+        List<WeeklyModel> weeklyModelList = new ArrayList<>();
         Document doc = Jsoup.parse(htmlStr);
         // 获得文章中的第一个detail
-        Element detail = doc.select("div.blog_article_c").first();  //class blog_article_c clearfix
-        detail1.setContent(detail.html());
-//        //获取title
-        Element title = detail.getElementsByClass("blog_article_c").get(0).getElementsByClass("article_t").get(0);
-        detail1.setTitle(title.text());
-        return detail1;
+        try {
+            Elements more = doc.getElementsByClass("post-content").get(0).getElementsByTag("h3");
+            for (int i = 0; i < more.size(); i++) {
+                Elements detailList = doc.getElementsByClass("post-content").get(0).getElementsByTag("ol").get(i).getElementsByTag("li");
+                for (Element element1 : detailList) {
+                    WeeklyModel detail1 = new WeeklyModel();
+                    Element title = element1.getElementsByTag("p").get(0).child(0);
+                    detail1.setTitle(title.text());
+                    detail1.setUrl(title.attr("href"));
+                    detail1.setContent(element1.getElementsByTag("p").get(1) == null ? title.text() : element1.getElementsByTag("p").get(1).text());
+                    weeklyModelList.add(detail1);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return weeklyModelList;
     }
 }

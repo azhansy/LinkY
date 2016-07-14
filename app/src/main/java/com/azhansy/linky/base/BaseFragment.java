@@ -27,7 +27,6 @@ public abstract class BaseFragment extends Fragment {
     protected abstract int getLayoutResource();
     protected LoadDialogFragment  loadingDialog;//添加动画
 
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

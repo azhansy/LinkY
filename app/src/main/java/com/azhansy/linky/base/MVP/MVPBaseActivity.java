@@ -11,34 +11,15 @@ import android.text.TextUtils;
 import com.azhansy.linky.base.BaseActivity;
 
 
-
 /**
  */
 public abstract class MVPBaseActivity<Presenter extends MVPBasePresenter> extends BaseActivity {
 
-    @Nullable
-//    @Bind(R.id.loading_layout)
-//    protected View mLoading;
-
     protected Presenter mPresenter;
-    protected String mGid;
-
-//    @Override
-//    public int getLayoutResource() {
-//        return R.layout.layout_of_common_title_and_loading;
-//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        hideLoading();
-
-        mGid = getIntent().getStringExtra(IBaseUi.KEY_GID);
-
-//        if (TextUtils.isEmpty(mGid)) {
-//            mGid = DiskApplication.getInstance().getCurrentGid();
-//        }
-
         if (usePresenter()) {
             mPresenter = createPresenter();
             mPresenter.attach(getBaseUi());
@@ -55,18 +36,6 @@ public abstract class MVPBaseActivity<Presenter extends MVPBasePresenter> extend
         super.onDestroy();
     }
 
-//    protected void showLoading() {
-//        if (mLoading != null) {
-//            mLoading.setVisibility(View.VISIBLE);
-//        }
-//    }
-//
-//    protected void hideLoading() {
-//        if (mLoading != null) {
-//            mLoading.setVisibility(View.GONE);
-//        }
-//    }
-
     /**
      * 是否需要使用Presenter
      */
@@ -81,21 +50,6 @@ public abstract class MVPBaseActivity<Presenter extends MVPBasePresenter> extend
     @SuppressWarnings(value = "unchecked")
     protected <Ui extends IBaseUi> Ui getBaseUi() {
         return (Ui) this;
-    }
-
-    public static void launch(Context context, Class<? extends MVPBaseActivity> cls) {
-        launch(context, cls, null);
-    }
-
-    public static void launch(Context context, Class<? extends MVPBaseActivity> cls, String gid) {
-        Intent intent = new Intent(context, cls);
-        if (!TextUtils.isEmpty(gid)) {
-            intent.putExtra(IBaseUi.KEY_GID, gid);
-        }
-        if (!(context instanceof Activity)) {
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        }
-        context.startActivity(intent);
     }
 
 }
