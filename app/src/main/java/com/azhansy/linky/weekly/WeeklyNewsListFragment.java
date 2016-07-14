@@ -74,8 +74,10 @@ public class WeeklyNewsListFragment extends MVPBaseFragment<WeeklyNewsPresenterI
             }
         });
         mPresenter.getNews();
+        showLoadingDialog();
         mSwipeRefreshLayout.setOnRefreshListener(() -> {
                     if (grade != 0) {
+                        stopLoading();
                         return;
                     }
                     mPresenter.onRefresh();
@@ -85,13 +87,13 @@ public class WeeklyNewsListFragment extends MVPBaseFragment<WeeklyNewsPresenterI
             WeeklyModel item = (WeeklyModel) data;
             if (grade == 0) {
                 grade++;
+                showLoadingDialog();
                 mPresenter.getWeeklyList(item.getUrl());
                 mTitle.setText(item.getTitle());
             } else {
-                WeeklyNewsDetailActivity.launch(getActivity(), item.getUrl());
+                WeeklyNewsDetailActivity.launch(getActivity(), item.getUrl(),item.getTitle());
             }
         });
-        showLoadingDialog();
     }
 
     public void onBackPress() {
@@ -127,6 +129,7 @@ public class WeeklyNewsListFragment extends MVPBaseFragment<WeeklyNewsPresenterI
         stopLoading();
         closeLoadingDialog();
         weeklyAdapter.replaceAll(list);
+        mRecycleView.scrollToPosition(0);
     }
 
     @Override

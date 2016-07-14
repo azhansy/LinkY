@@ -55,7 +55,7 @@ public class WeeklyNewsPresenterImpl extends MVPBasePresenter implements WeeklyN
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 WeeklyView view = getActualUi();
                 if (view != null && t != null) {
-                    view.LoadHtmlFailed(t.toString());
+//                    view.LoadHtmlFailed(t.toString());
                     Logger.d(t.toString());
                 }
 
@@ -88,7 +88,7 @@ public class WeeklyNewsPresenterImpl extends MVPBasePresenter implements WeeklyN
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 WeeklyView view = getActualUi();
                 if (view != null && t != null) {
-                    view.LoadHtmlFailed(t.toString());
+//                    view.LoadHtmlFailed(t.toString());
 //                    getNews();
                     Logger.d(t.toString());
                 }

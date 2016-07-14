@@ -13,6 +13,7 @@ import com.azhansy.linky.base.BaseActivity;
  */
 public class WeeklyNewsDetailActivity extends BaseActivity {
     private static final String WEEKLYNEWSDETAILACTIVITY="WeeklyNewsDetailActivity";
+    private static final String TITLE="title";
 
 
     @Override
@@ -24,12 +25,15 @@ public class WeeklyNewsDetailActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         String url = getIntent().getStringExtra(WEEKLYNEWSDETAILACTIVITY);
+        String title = getIntent().getStringExtra(TITLE);
+        setTitle(title);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, WeeklyNewsFragment.getInstance(url)).commit();
     }
 
-    public static void launch(Context context, String url) {
+    public static void launch(Context context, String url,String title) {
         Intent intent = new Intent(context, WeeklyNewsDetailActivity.class);
         intent.putExtra(WEEKLYNEWSDETAILACTIVITY, url);
+        intent.putExtra(TITLE, title);
         context.startActivity(intent);
     }
 

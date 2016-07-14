@@ -119,10 +119,23 @@ public class JsoupParseUtil {
                 Elements detailList = doc.getElementsByClass("post-content").get(0).getElementsByTag("ol").get(i).getElementsByTag("li");
                 for (Element element1 : detailList) {
                     WeeklyModel detail1 = new WeeklyModel();
-                    Element title = element1.getElementsByTag("p").get(0).child(0);
-                    detail1.setTitle(title.text());
-                    detail1.setUrl(title.attr("href"));
-                    detail1.setContent(element1.getElementsByTag("p").get(1) == null ? title.text() : element1.getElementsByTag("p").get(1).text());
+                    if (element1.getElementsByTag("p").size() == 0) {
+                        detail1.setTitle(element1.text());
+                        detail1.setContent(element1.text());
+                        detail1.setUrl(element1.child(0).attr("href"));
+                    }else {
+                        if (element1.getElementsByTag("p").size() == 1) {
+                            Element title = element1.getElementsByTag("p").get(0).child(0);
+                            detail1.setTitle(title.text());
+                            detail1.setContent(title.text());
+                            detail1.setUrl(title.attr("href"));
+                        }else {
+                            Element title = element1.getElementsByTag("p").get(0).child(0);
+                            detail1.setTitle(title.text());
+                            detail1.setUrl(title.attr("href"));
+                            detail1.setContent(element1.getElementsByTag("p").get(1) == null ? title.text() : element1.getElementsByTag("p").get(1).text());
+                        }
+                    }
                     weeklyModelList.add(detail1);
                 }
             }
