@@ -15,8 +15,7 @@
 
         <item name="colorControlNormal">?colorPrimary</item>
         <!--影响了toolbar 的menu 颜色 -->
-       <item name="android:textColorSecondary">@android:color/white</item>
-
+        <item name="android:textColorSecondary">@android:color/black</item>
         <!-- actionbar 菜单的文本颜色 -->
         <item name="actionMenuTextColor">@color/white</item>
         <item name="android:actionBarSize">48dp</item>
@@ -37,6 +36,12 @@
 
     </style>
 
+    <style name="BaseActivityTheme" parent="AppTheme">
+        <!--影响了toolbar 的menu 颜色 -->
+        <item name="android:textColorSecondary">@android:color/white</item>
+        <!-- actionbar 菜单的文本颜色 -->
+        <item name="actionMenuTextColor">@color/white</item>
+    </style>
     <style name="CustomPopupMenuStyle" parent="@style/Widget.AppCompat.Light.PopupMenu">
         <item name="android:popupBackground">?colorPrimaryDark</item>
         <item name="android:dropDownVerticalOffset">1dp</item>
