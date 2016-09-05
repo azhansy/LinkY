@@ -33,6 +33,7 @@
     <string name="config_navigation_drawer_wallpaper">侧栏壁纸</string>
     <string name="config_check_update">检查更新</string>
     <string name="config_about">关于</string>
+    <string name="config_test">测试</string>
     <string name="na">N/A</string>
     <string name="nav_weather">温度 30C 阵雨</string>
     <string name="about_introduce">这是一个Android爱好者的App,有关心的天气预报，有闷骚的笑话，有大神的博客，我还喜欢小说。。。喜欢就干吧！本着免费开源的思想让各位哥们一起爽爽，本人也是菜鸟一个，拿来练手用，部分素材来源于网络，如有侵权请与我联系，我会在24小时内删除！嘿嘿 \n邮箱地址：azhansy@hotmail.com</string>
@@ -45,4 +46,15 @@
     <string name="locating">正在定位…</string>
     <string name="located_failed">定位失败</string>
 
+    <string name="permission_camera_message">在设置-应用-“LinkY”-权限中开启相机权限，以正常使用拍照等功能。</string>
+    <string name="permission_phone_message">在设置-应用-“LinkY”-权限中开启电话权限，以正常使用LinkY功能。\nLinkY使用电话权限加密登录，以保证帐号登录和数据传输的安全性。</string>
+    <string name="permission_sdcard_message">在设置-应用-“LinkY”-权限中开启存储空间权限，以正常使用115+功能。</string>
+    <string name="permission_location_message">在设置-应用-“LinkY”-权限中开启位置信息权限，以正常使用发送位置、雷达等功能。</string>
+    <string name="permission_contact_message">在设置-应用-“LinkY”-权限中开启通讯录权限，以正常使用邀请手机通讯录好友等功能。</string>
+    <string name="permission_microphone_message">在设置-应用-“LinkY”-权限中开启麦克风权限，以正常使用语音功能。如果开启后仍无法使用，请重启手机。</string>
+    <string name="permission_necessary_message">电话/存储空间关闭将无法使用LinkY</string>
+    <!-- 6.0权限管理相关label -->
+    <string name="tedpermission_setting">去设置</string>
+    <string name="tedpermission_close">取消</string>
+    <string name="tedpermission_confirm">确定</string>
 </resources>

@@ -43,7 +43,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by luo_shuai on 2015/8/8 10:13.
  */
 public class Utils {
 

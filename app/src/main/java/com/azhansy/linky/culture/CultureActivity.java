@@ -38,7 +38,7 @@ public class CultureActivity extends BaseActivity {
             adapter.restoreFragments(savedInstanceState);
         }
         viewPager.setAdapter(adapter);
-        viewPager.setOffscreenPageLimit(1);
+        viewPager.setOffscreenPageLimit(2);
         slidingIndicator.setViewPager(viewPager);
     }
 

@@ -5,7 +5,9 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,6 +17,8 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.azhansy.linky.R;
 import com.azhansy.linky.dialog.LoadDialogFragment;
+import com.azhansy.linky.tedPermission.PermissionCheckHandler;
+import com.azhansy.linky.tedPermission.PermissionCheckHelper;
 import com.azhansy.linky.utils.DrawableUtil;
 import com.azhansy.linky.utils.KeyboardUtil;
 
@@ -26,11 +30,13 @@ import butterknife.ButterKnife;
 public abstract class BaseFragment extends Fragment {
     protected abstract int getLayoutResource();
     protected LoadDialogFragment  loadingDialog;//添加动画
+    private PermissionCheckHandler mPermissionCheckHandler;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         loadingDialog = new LoadDialogFragment.Builder(this).build();
+        initCheckPermissionHelper(getActivity());
     }
 
     @Override
@@ -116,4 +122,58 @@ public abstract class BaseFragment extends Fragment {
             loadingDialog.dismiss();
         }
     }
+    // ===================== 6.0 权限适配相关代码 start ===================== //
+
+    protected void initCheckPermissionHelper(Context context) {
+        mPermissionCheckHandler = PermissionCheckHandler.get(context);
+        mPermissionCheckHandler.addCheckMustPermissionExtraListener(mCheckMustPermissionExtraListener);
+//        System.out.println("Fragment helper -> " + mPermissionCheckHandler + " " + this.getClass().getSimpleName());
+    }
+
+    protected void onMustPermissionGranted(PermissionCheckHelper helper, String permission, boolean end, boolean returnValue) {
+    }
+
+    protected void onMustPermissionDenied(PermissionCheckHelper helper, String permission, boolean returnValue) {
+    }
+
+    protected PermissionCheckHandler getPermissionCheckHandler() {
+        return mPermissionCheckHandler;
+    }
+
+    /**
+     * 检测单个权限
+     */
+    protected void checkUserPermission(String permission, @StringRes int denyMessageResId, PermissionCheckHelper.PermissionCheckListener l) {
+        checkUserPermission(permission, getString(denyMessageResId), l);
+    }
+
+    /**
+     * 检测单个权限
+     */
+    protected void checkUserPermission(String permission, String denyMessage, PermissionCheckHelper.PermissionCheckListener l) {
+        if (TextUtils.isEmpty(permission)) {
+            throw new IllegalArgumentException("permission can't be null");
+        }
+        if (l == null) {
+            throw new IllegalArgumentException("permission listener can't be null");
+        }
+        PermissionCheckHelper.PermissionTask task = new PermissionCheckHelper.PermissionTask.Builder(getActivity(), permission)
+                .setDenyMessage(denyMessage)
+                .build();
+        mPermissionCheckHandler.checkUserPermission(l, task);
+    }
+
+    private PermissionCheckHandler.CheckMustPermissionExtraListener mCheckMustPermissionExtraListener = new PermissionCheckHandler.CheckMustPermissionExtraListener() {
+        @Override
+        public void onMustPermissionGranted(PermissionCheckHelper helper, String permission, boolean end, boolean returnValue) {
+            BaseFragment.this.onMustPermissionGranted(helper, permission, end, returnValue);
+        }
+
+        @Override
+        public void onMustPermissionDenied(PermissionCheckHelper helper, String permission, boolean returnValue) {
+            BaseFragment.this.onMustPermissionDenied(helper, permission, returnValue);
+        }
+    };
+
+    // ===================== 6.0 权限适配相关代码 start ===================== //
 }

@@ -1,5 +1,6 @@
 package com.azhansy.linky.citypicker;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -29,6 +30,7 @@ import com.azhansy.linky.citypicker.model.City;
 import com.azhansy.linky.citypicker.model.LocateState;
 import com.azhansy.linky.citypicker.utils.StringUtils;
 import com.azhansy.linky.citypicker.view.SideLetterBar;
+import com.azhansy.linky.tedPermission.PermissionCheckHelper;
 
 import java.util.List;
 
@@ -109,13 +111,31 @@ public class CityPickerActivity extends BaseActivity implements View.OnClickList
 
             @Override
             public void onLocateClick() {
-                Log.e("onLocateClick", "重新定位...");
-                mCityAdapter.updateLocateState(LocateState.LOCATING, null);
-                mLocationClient.startLocation();
+//                Log.e("onLocateClick", "重新定位...");
+//                mCityAdapter.updateLocateState(LocateState.LOCATING, null);
+//                mLocationClient.startLocation();
+                checkLocation();
             }
         });
 
         mResultAdapter = new ResultListAdapter(this, null);
+    }
+
+    private void checkLocation(){
+        checkUserPermission(Manifest.permission.ACCESS_FINE_LOCATION, getString(R.string.permission_location_message), new PermissionCheckHelper.PermissionCheckListener() {
+            @Override
+            public boolean onPermissionGranted(PermissionCheckHelper helper, String permission, int index, int total, boolean end) {
+                Log.e("onLocateClick", "重新定位...");
+                mCityAdapter.updateLocateState(LocateState.LOCATING, null);
+                mLocationClient.startLocation();
+                return false;
+            }
+
+            @Override
+            public boolean onPermissionDenied(PermissionCheckHelper helper, String permission, int index, int total) {
+                return false;
+            }
+        });
     }
 
     private void initView() {

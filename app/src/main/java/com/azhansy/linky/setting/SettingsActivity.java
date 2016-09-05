@@ -71,6 +71,11 @@ public class SettingsActivity extends BaseActivity {
         }
     }
 
+    @OnClick(R.id.btn_test)
+    void onClick(){
+        TestActivity.launch(this);
+    }
+
     private String dataCache="0K";
     @Override
     public int getLayoutResource() {

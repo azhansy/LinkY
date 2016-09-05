@@ -76,9 +76,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         mSubscriptions.add(LinkApplication.getInstance().getRxBus().toObserverable()
                 .subscribe(event -> {
                     if (event instanceof TodayBean) {
-                        if (navView == null)return;
-                        TodayBean today = (TodayBean)event;
-                        navView.setText(today.getType()+" "+today.getCurTemp());
+                        if (navView == null) return;
+                        TodayBean today = (TodayBean) event;
+                        navView.setText(today.getType() + " " + today.getCurTemp());
                     }
                     if (event instanceof ChannelEvent) {
                         initNavChannel();
@@ -87,12 +87,14 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 }, throwable -> {
                 }));
     }
+
     private void initNavChannel() {
         getChannel();//获取本地的栏目
         addFragment();//初始化碎片
         initMenu(); //初始化菜单
     }
-private WeeklyNewsListFragment weeklyNewsListFragment;
+
+    //private WeeklyNewsListFragment weeklyNewsListFragment;
     private void addFragment() {
         if (fragmentList != null) {
             fragmentList.clear();
@@ -110,15 +112,15 @@ private WeeklyNewsListFragment weeklyNewsListFragment;
             }
             if (channel.toString().equals("BLOG")) {
                 fragmentList.add(BlogFragment.getInstance());
-                continue;
+//                continue;
             }
-            if (channel.toString().equals("WEEKLY")) {
-                if (weeklyNewsListFragment == null) {
-                    weeklyNewsListFragment = WeeklyNewsListFragment.getInstance();
-                }
-                fragmentList.add(weeklyNewsListFragment);
-                continue;
-            }
+//            if (channel.toString().equals("WEEKLY")) {
+//                if (weeklyNewsListFragment == null) {
+//                    weeklyNewsListFragment = WeeklyNewsListFragment.getInstance();
+//                }
+//                fragmentList.add(weeklyNewsListFragment);
+//                continue;
+//            }
 //            if (channel.toString().equals("NOVEL")) {
 //                fragmentList.add(NovelFragment.getInstance());
 //                continue;
@@ -132,12 +134,13 @@ private WeeklyNewsListFragment weeklyNewsListFragment;
 
     private TextView navView;
     private View header;
+
     private void initMenu() {
         Menu menu = mNavView.getMenu();
         if (header == null) {
             header = mNavView.inflateHeaderView(R.layout.nav_header_main);
             navView = (TextView) header.findViewById(R.id.tv_nav_weather);
-            header.findViewById(R.id.cv_culture).setOnClickListener(v ->{
+            header.findViewById(R.id.cv_culture).setOnClickListener(v -> {
                 closeDrawerLayout();
                 CultureActivity.launch(this);
             });
@@ -152,20 +155,29 @@ private WeeklyNewsListFragment weeklyNewsListFragment;
             }
         }
         mNavView.inflateMenu(R.menu.activity_main_drawer);
-        switchFragment(fragmentList.get(0),getString(savedChannelList.get(0).getTitle()));
+        switchFragment(fragmentList.get(0), getString(savedChannelList.get(0).getTitle()));
     }
 
-    private void getChannel(){
+    private void getChannel() {
         savedChannelList = new ArrayList<>();
         String savedChannel = getSharedPreferences(SharePreferenceUtil.SHARED_PREFERENCE_NAME, Context.MODE_PRIVATE).getString(SharePreferenceUtil.SAVED_CHANNEL, null);
         if (TextUtils.isEmpty(savedChannel)) {
             Collections.addAll(savedChannelList, Config.Channel.values());
         } else {
             for (String s : savedChannel.split(",")) {
-                savedChannelList.add(Config.Channel.valueOf(s));
+                Config.Channel channel = null;
+                try {
+                    channel = Config.Channel.valueOf(s);
+                } catch (IllegalArgumentException e) {
+                    e.printStackTrace();
+                }
+                if (channel != null) {
+                    savedChannelList.add(channel);
+                }
             }
         }
     }
+
     private void switchFragment(Fragment fragment, String title) {
 //        Slide slideTransition;
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -176,13 +188,13 @@ private WeeklyNewsListFragment weeklyNewsListFragment;
 //            fragment.setExitTransition(slideTransition);
 //        }
         if (currentFragment == null || !currentFragment.getClass().getName().equals(fragment.getClass().getName())) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment,fragment.getClass().getName()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment, fragment.getClass().getName()).commit();
             currentFragment = fragment;
 //            setTitle(title);
         }
     }
 
-//    private void setTitle(String title){
+    //    private void setTitle(String title){
 //        mTitle.setText(title);
 //    }
     public static void launch(Context context) {
@@ -204,7 +216,7 @@ private WeeklyNewsListFragment weeklyNewsListFragment;
                 InformActivity.launch(this);
                 break;
             case R.id.nav_night:
-                SharePreferenceUtil.setNight(this,!SharePreferenceUtil.isNight());
+                SharePreferenceUtil.setNight(this, !SharePreferenceUtil.isNight());
                 finish();
                 startActivity(new Intent(this, MainActivity.class));
                 break;
@@ -221,22 +233,24 @@ private WeeklyNewsListFragment weeklyNewsListFragment;
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
     @Override
     public void onBackPressed() {
-        if (weeklyNewsListFragment != null && weeklyNewsListFragment.grade == 1) {
-           weeklyNewsListFragment.onBackPress();
-        }else {
-            if(!closeDrawerLayout()){
-                exitBy2Click();
-            }
+//        if (weeklyNewsListFragment != null && weeklyNewsListFragment.grade == 1) {
+//           weeklyNewsListFragment.onBackPress();
+//        }else {
+        if (!closeDrawerLayout()) {
+            exitBy2Click();
         }
+//        }
     }
 
     /**
      * 关闭侧滑菜单，返回true
+     *
      * @return 返回侧滑菜单是否已经关闭，执行关闭动作返回真
      */
-    private boolean closeDrawerLayout(){
+    private boolean closeDrawerLayout() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         assert drawer != null;
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -247,11 +261,12 @@ private WeeklyNewsListFragment weeklyNewsListFragment;
     }
 
     private static Boolean isExit = false; // used for exit by twice
-    private void exitBy2Click(){
+
+    private void exitBy2Click() {
         Timer timer;
         if (!isExit) {
             isExit = true;
-            ToastUtil.showToast(this,this.getResources().getString(R.string.press_twice_to_exit));
+            ToastUtil.showToast(this, this.getResources().getString(R.string.press_twice_to_exit));
             timer = new Timer();
             timer.schedule(new TimerTask() {
                 @Override
@@ -259,7 +274,7 @@ private WeeklyNewsListFragment weeklyNewsListFragment;
                     isExit = false;
                 }
             }, 2000);
-        }else {
+        } else {
             AppManager appManager = AppManager.getAppManager();
             appManager.ExitApp(this);
         }

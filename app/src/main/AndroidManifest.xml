@@ -72,6 +72,12 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustNothing" />
         <activity
+            android:name=".setting.TestActivity"
+            android:exported="false"
+            android:label="测试"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustNothing" />
+        <activity
             android:name=".information.InformActivity"
             android:exported="false"
             android:label="林林资讯"
@@ -101,8 +107,16 @@
             android:label="周报详情"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustNothing" />
+        <!-- 6.0权限提醒页面 -->
+        <activity
+            android:name=".tedPermission.TedPermissionActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <!--高德地图定位-->
         <service android:name="com.amap.api.location.APSService"/>
+        <service android:name="com.amap.api.service.AMapService"/>
         <meta-data android:name="com.amap.api.v2.apikey" android:value="07e4e3deba98311f4e9749f8170a9166"/>
         <!--高德地图定位结束-->
     </application>

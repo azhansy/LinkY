@@ -2,11 +2,13 @@ package com.azhansy.linky.base;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -21,6 +23,8 @@ import android.widget.TextView;
 
 import com.azhansy.linky.R;
 import com.azhansy.linky.swipebackhelper.SwipeBackHelper;
+import com.azhansy.linky.tedPermission.PermissionCheckHandler;
+import com.azhansy.linky.tedPermission.PermissionCheckHelper;
 import com.azhansy.linky.utils.AppManager;
 import com.azhansy.linky.utils.DrawableUtil;
 import com.azhansy.linky.utils.SharePreferenceUtil;
@@ -39,6 +43,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected Toolbar mToolbar;
     protected SystemBarTintManager mTintManager;
     public boolean isNight;
+    private PermissionCheckHandler mPermissionCheckHandler;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -69,6 +74,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(getResources().getColor(android.R.color.black));
         }
+        initCheckPermissionHelper();
     }
     @Override
     public void setContentView(int layoutResID) {
@@ -266,6 +272,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         ButterKnife.unbind(this);
         appManager.removeActivity(this);
         SwipeBackHelper.onDestroy(this);
+        mPermissionCheckHandler.onDestroy();
         super.onDestroy();
     }
 
@@ -359,4 +366,70 @@ public abstract class BaseActivity extends AppCompatActivity {
         overridePendingTransition(0, 0);
         startActivity(intent);
     }
+    // ===================== 6.0 权限适配相关代码 start ===================== //
+
+    protected void initCheckPermissionHelper() {
+        mPermissionCheckHandler = PermissionCheckHandler.get(this);
+        mPermissionCheckHandler.setCheckMustPermissionListener(mCheckMustPermissionListener);
+        mPermissionCheckHandler.onCreate();
+//        System.out.println("Activity helper -> " + mPermissionCheckHandler + " " + this.getClass().getSimpleName());
+    }
+
+    /**
+     * APP必须需要的权限被允许
+     *
+     * @param permission 权限
+     * @param end        是否是最后一个权限
+     * @return 如果为true，后续的权限将不会再被检测
+     */
+    protected boolean onMustPermissionGranted(PermissionCheckHelper helper, String permission, boolean end) {
+        return false;
+    }
+
+    /**
+     * APP必须需要的权限被拒绝
+     */
+    protected boolean onMustPermissionDenied(PermissionCheckHelper helper, String permission) {
+        AppManager.getAppManager().ExitApp(this); // 结束应用
+        return true;
+    }
+
+    protected PermissionCheckHandler getPermissionCheckHandler() {
+        return mPermissionCheckHandler;
+    }
+
+    protected void checkUserPermission(String permission, String denyMessage, PermissionCheckHelper.PermissionCheckListener l) {
+        if (TextUtils.isEmpty(permission)) {
+            throw new IllegalArgumentException("permission can't be null");
+        }
+        if (l == null) {
+            throw new IllegalArgumentException("permission listener can't be null");
+        }
+        PermissionCheckHelper.PermissionTask task = new PermissionCheckHelper.PermissionTask.Builder(this, permission)
+                .setDenyMessage(denyMessage)
+                .build();
+        mPermissionCheckHandler.checkUserPermission(l, task);
+    }
+
+    private PermissionCheckHandler.CheckMustPermissionListener mCheckMustPermissionListener = new PermissionCheckHandler.CheckMustPermissionListener() {
+        @Override
+        public boolean onMustPermissionGranted(PermissionCheckHelper helper, String permission, boolean end) {
+            return BaseActivity.this.onMustPermissionGranted(helper, permission, end);
+        }
+
+        @Override
+        public boolean onMustPermissionDenied(PermissionCheckHelper helper, String permission) {
+            return BaseActivity.this.onMustPermissionDenied(helper, permission);
+        }
+    };
+
+    /**
+     * 检查是否开启某项权限
+     * <p><b>注：6.0之前的权限是在安装的时候声明的，所以在运行时默认都是有权限的，如果通过手动禁止则通过捕获异常来提醒权限<b/><p/>
+     */
+    protected boolean hasUserPermission(String permission) {
+        return ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED;
+    }
+
+    // ===================== 6.0 权限适配相关代码 start ===================== //
 }

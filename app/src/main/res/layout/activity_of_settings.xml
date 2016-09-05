@@ -162,6 +162,12 @@
                     android:layout_height="wrap_content"
                     app:sv_icon="@mipmap/ic_about"
                     app:sv_title="@string/config_about" />
+                <com.azhansy.linky.view.SettingView
+                    android:id="@+id/btn_test"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:sv_icon="@mipmap/ic_about"
+                    app:sv_title="@string/config_test" />
             </LinearLayout>
         </ScrollView>
 
