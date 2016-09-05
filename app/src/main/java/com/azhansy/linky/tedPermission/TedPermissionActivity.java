@@ -52,9 +52,6 @@ public class TedPermissionActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//        if (setTheme) {
-//            setTheme(getAppTheme());
-//        }
         super.onCreate(savedInstanceState);
 
         // 这里必须加上背景透明的属性，否则页面对话框会变成纯白背景。
@@ -102,26 +99,6 @@ public class TedPermissionActivity extends AppCompatActivity {
 
         super.onSaveInstanceState(outState);
     }
-//    protected int getAppTheme() {
-//        if (YYWCloudOfficeApplication.getInstance().isWebBrowserProcess()) {
-//            return CommonPreference.getTheme(this);
-//        }
-//        Account account = YYWCloudOfficeApplication.getInstance().getAccount();
-//        if (account != null) {
-//            Account.Group group = account.getCurrentGroup();
-//            if (group != null) {
-//                int mobileSkin = Integer.parseInt(group.getMobile_skin());
-//
-//                return CommonPreference.getTheme(mobileSkin);
-//            } else {
-//                return CommonPreference.getTheme(this);
-//
-//            }
-//        } else {
-//            return CommonPreference.getTheme(this);
-//        }
-//
-//    }
 
     private void permissionGranted() {
         TedPermissionEvent.post(true, null);

@@ -8,7 +8,6 @@ import android.text.style.TextAppearanceSpan;
 
 /**
  * 搜索需要高亮的数据
- * Created by terryyhl on 15/5/27.
  */
 public class SearchHighlightModel {
 

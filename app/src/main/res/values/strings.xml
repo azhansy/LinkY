@@ -48,7 +48,7 @@
 
     <string name="permission_camera_message">在设置-应用-“LinkY”-权限中开启相机权限，以正常使用拍照等功能。</string>
     <string name="permission_phone_message">在设置-应用-“LinkY”-权限中开启电话权限，以正常使用LinkY功能。\nLinkY使用电话权限加密登录，以保证帐号登录和数据传输的安全性。</string>
-    <string name="permission_sdcard_message">在设置-应用-“LinkY”-权限中开启存储空间权限，以正常使用115+功能。</string>
+    <string name="permission_sdcard_message">在设置-应用-“LinkY”-权限中开启存储空间权限，以正常使用LinkY功能。</string>
     <string name="permission_location_message">在设置-应用-“LinkY”-权限中开启位置信息权限，以正常使用发送位置、雷达等功能。</string>
     <string name="permission_contact_message">在设置-应用-“LinkY”-权限中开启通讯录权限，以正常使用邀请手机通讯录好友等功能。</string>
     <string name="permission_microphone_message">在设置-应用-“LinkY”-权限中开启麦克风权限，以正常使用语音功能。如果开启后仍无法使用，请重启手机。</string>
