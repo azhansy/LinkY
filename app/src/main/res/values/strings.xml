@@ -9,6 +9,10 @@
     <string name="login_logout">登出账号</string>
     <string name="default_description">努力，让生活更具色彩。</string>
 
+    <string name="ok">确定</string>
+    <string name="cancel">取消</string>
+    <string name="exit">退出</string>
+
     <string name="night_night">模式切换</string>
     <string name="activity_setting_title">设置</string>
     <string name="activity_change_channel_title">更改栏目</string>
@@ -57,4 +61,6 @@
     <string name="tedpermission_setting">去设置</string>
     <string name="tedpermission_close">取消</string>
     <string name="tedpermission_confirm">确定</string>
+
+
 </resources>

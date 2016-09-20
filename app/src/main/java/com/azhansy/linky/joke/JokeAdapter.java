@@ -9,6 +9,7 @@ import com.azhansy.linky.joke.bean.JokeBean;
 
 /**
  * Created by SHU on 2016/6/22.
+ * dhfsdfkhsjdfhsjdhfskfj
  */
 public class JokeAdapter extends BaseRecyclerViewAdapter<JokeBean> {
 
